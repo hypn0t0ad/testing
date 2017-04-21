@@ -79,7 +79,7 @@ namespace Systemet.Controllers
             }
         }
 
-        public ActionResult Redigera(AnvändarKonton user)
+        public ActionResult Redigera()
         {
             int ID = Convert.ToInt32(Session["AnvändarID"]);
             using (OurDBContext db = new OurDBContext())
@@ -95,19 +95,10 @@ namespace Systemet.Controllers
         }
 
         [HttpPost]
-        public ActionResult Redigera(AnvändarKonton user)
+        public ActionResult Redigera([Bind(Include = "AnvändarID,Förnamn,Efternamn,Epost,Telefon,Password")] AnvändarKonton konto )
         {
-            int ID = Convert.ToInt32(Session["AnvändarID"]);
-            using (OurDBContext db = new OurDBContext())
-            {
-                if (Session["AnvändarID"] != null)
-                {
-                    var usr = db.konton.Single(u => u.AnvändarID == ID);
-                    return View(usr);
-                }
 
-            }
-            return View();
+            return View("index");
         }
 
     }
