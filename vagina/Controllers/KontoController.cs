@@ -81,12 +81,18 @@ namespace Systemet.Controllers
 
         public ActionResult Redigera()
         {
+            
+            using (OurDBContext db = new OurDBContext())
+            {
+                if (Session["AnvändarID"] != null)
+                {
+                    var usr = db.konton.Single(u => u.AnvändarID == );
+                    return View(usr);
+                }
+                
+            }
             return View();
-        }
-
-        public ActionResult Redigera()
-        {
-
-        }
+        }       
+        
     }
 }

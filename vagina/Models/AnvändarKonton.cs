@@ -11,6 +11,7 @@ namespace Systemet.Models
         [Key]
         public int AnvändarID { get; set; }
 
+        
         [Required(ErrorMessage = "förnamn är viktigt.")]
         public string FörNamn { get; set; }
 
