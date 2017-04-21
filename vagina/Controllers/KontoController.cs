@@ -74,7 +74,8 @@ namespace Systemet.Controllers
             }
             else
             {
-                return RedirectToAction("inloggad");
+                //return RedirectToAction("inloggad");
+                return RedirectToAction("Index", "Home");
             }
         }
     }
