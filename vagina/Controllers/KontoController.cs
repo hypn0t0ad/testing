@@ -7,9 +7,9 @@ using Systemet.Models;
 
 namespace Systemet.Controllers
 {
-    public class AccountController : Controller
+    public class KontoController : Controller
     {
-        // GET: Account
+        // GET: Konto
         public ActionResult Index()
         {
             using (OurDBContext db = new OurDBContext())
@@ -24,17 +24,17 @@ namespace Systemet.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(AnvändarKonton account)
+        public ActionResult Register(AnvändarKonton Konto)
         {
             if (ModelState.IsValid)
             {
                 using (OurDBContext db = new OurDBContext())
                 {
-                    db.konton.Add(account);
+                    db.konton.Add(Konto);
                     db.SaveChanges();
                 }
                 ModelState.Clear();
-                ViewBag.Message = account.FörNamn + " " + account.EfterNamn + " färdig med registreringen!";
+                ViewBag.Message = Konto.FörNamn + " " + Konto.EfterNamn + " färdig med registreringen!";
             }
             return View();
         }
