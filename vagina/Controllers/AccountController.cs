@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using vagina.Models;
+using Systemet.Models;
 
-namespace vagina.Controllers
+namespace Systemet.Controllers
 {
     public class AccountController : Controller
     {
@@ -14,7 +14,7 @@ namespace vagina.Controllers
         {
             using (OurDBContext db = new OurDBContext())
             {
-                return View(db.UserAccount.ToList());
+                return View(db.konton.ToList());
             }
         }
 
@@ -24,17 +24,17 @@ namespace vagina.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(UserAccount account)
+        public ActionResult Register(AnvändarKonton account)
         {
             if (ModelState.IsValid)
             {
                 using (OurDBContext db = new OurDBContext())
                 {
-                    db.UserAccount.Add(account);
+                    db.konton.Add(account);
                     db.SaveChanges();
                 }
                 ModelState.Clear();
-                ViewBag.Message = account.FirstName + " " + account.LastName + " succesfully registered!";
+                ViewBag.Message = account.FörNamn + " " + account.EfterNamn + " färdig med registreringen!";
             }
             return View();
         }
@@ -46,34 +46,34 @@ namespace vagina.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(UserAccount user)
+        public ActionResult Login(AnvändarKonton user)
         {
             using (OurDBContext db = new OurDBContext())
             {
-                var usr = db.UserAccount.Single(u => u.UserName == user.UserName && u.Password == user.Password);
+                var usr = db.konton.Single(u => u.FörNamn == user.FörNamn && u.Password == user.Password);
                 if (usr != null)
                 {
-                    Session["UserID"] = usr.UserID.ToString();
-                    Session["UserName"] = usr.UserName.ToString();
-                    return RedirectToAction("LogedIn");
+                    Session["UserID"] = usr.AnvändarID.ToString();
+                    Session["Email"] = usr.Email.ToString();
+                    return RedirectToAction("inloggad");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "username or password is wrong");
+                    ModelState.AddModelError("", "email eller lösenordet är felaktigt");
                 }
             }
             return View();
         }
 
-        public ActionResult LogedIn()
+        public ActionResult inloggad()
         {
-            if (Session["UserId"] != null)
+            if (Session["AnvändarID"] != null)
             {
                 return View();
             }
             else
             {
-                return RedirectToAction("Login");
+                return RedirectToAction("inloggad");
             }
         }
     }

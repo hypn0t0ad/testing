@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace vagina
+namespace Systemet
 {
     public class BundleConfig
     {

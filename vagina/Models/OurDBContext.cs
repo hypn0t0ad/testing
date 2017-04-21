@@ -4,10 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 
-namespace vagina.Models
+namespace Systemet.Models
 {
     public class OurDBContext : DbContext
     {
-        public DbSet<UserAccount> UserAccount { get; set; }
+        public DbSet<AnvändarKonton> konton { get; set; }
     }
 }
