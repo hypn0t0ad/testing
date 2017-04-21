@@ -1,0 +1,25 @@
+﻿@using Systemet.Models
+@if (Session["AnvändarID"] != null)
+{
+    using (Html.BeginForm("Logga ut", "Konto", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @*<div>
+                    hej @Session["Användarnamn"].ToString() + "!"
+                </div>*@
+                @Html.ActionLink("Hej " + Session["Förnamn"].ToString() + "!", "Index", routeValues: null)
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Registrera", "Register", "Konto", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Logga in", "Login", "Konto", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

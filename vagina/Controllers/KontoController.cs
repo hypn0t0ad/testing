@@ -54,7 +54,7 @@ namespace Systemet.Controllers
                 if (usr != null)
                 {
                     Session["AnvändarID"] = usr.AnvändarID.ToString();
-                    Session["Användarnamn"] = usr.FörNamn.ToString();
+                    Session["Förnamn"] = usr.FörNamn.ToString();
                     Session["Email"] = usr.Email.ToString();
                     return RedirectToAction("inloggad");
                 }

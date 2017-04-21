@@ -203,6 +203,8 @@
     <Content Include="Views\Konto\Login.cshtml" />
     <Content Include="Views\Konto\Index.cshtml" />
     <Content Include="Views\Konto\inloggad.cshtml" />
+    <Content Include="Views\Shared\Login.cshtml" />
+    <Content Include="Views\Shared\loggaIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
