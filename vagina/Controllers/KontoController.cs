@@ -50,7 +50,7 @@ namespace Systemet.Controllers
         {
             using (OurDBContext db = new OurDBContext())
             {
-                var usr = db.konton.Single(u => u.FörNamn == user.FörNamn && u.Password == user.Password);
+                var usr = db.konton.Single(u => u.Email == user.Email && u.Password == user.Password);
                 if (usr != null)
                 {
                     Session["UserID"] = usr.AnvändarID.ToString();
