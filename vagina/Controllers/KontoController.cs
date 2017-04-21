@@ -81,18 +81,34 @@ namespace Systemet.Controllers
 
         public ActionResult Redigera(AnvändarKonton user)
         {
-            
+            int ID = Convert.ToInt32(Session["AnvändarID"]);
             using (OurDBContext db = new OurDBContext())
             {
                 if (Session["AnvändarID"] != null)
                 {
-                    var usr = db.konton.Single(u => u.AnvändarID == (int)Session["AnvändarID"]);
+                    var usr = db.konton.Single(u => u.AnvändarID == ID);
                     return View(usr);
                 }
                 
             }
             return View();
-        }       
-        
+        }
+
+        [HttpPost]
+        public ActionResult Redigera(AnvändarKonton user)
+        {
+            int ID = Convert.ToInt32(Session["AnvändarID"]);
+            using (OurDBContext db = new OurDBContext())
+            {
+                if (Session["AnvändarID"] != null)
+                {
+                    var usr = db.konton.Single(u => u.AnvändarID == ID);
+                    return View(usr);
+                }
+
+            }
+            return View();
+        }
+
     }
 }

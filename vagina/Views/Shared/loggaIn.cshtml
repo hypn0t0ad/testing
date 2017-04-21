@@ -10,7 +10,7 @@
                 @*<div>
                     hej @Session["Användarnamn"].ToString() + "!"
                 </div>*@
-                @Html.ActionLink("Hej " + Session["Förnamn"].ToString() + "!", "Redigera", routeValues: null)
+                @Html.ActionLink("Hej " + Session["Förnamn"].ToString() + "!" + " användarID " + Session["AnvändarID"].ToString(), "Redigera", routeValues: null)
             </li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
         </ul>
