@@ -53,7 +53,8 @@ namespace Systemet.Controllers
                 var usr = db.konton.Single(u => u.Email == user.Email && u.Password == user.Password);
                 if (usr != null)
                 {
-                    Session["UserID"] = usr.AnvändarID.ToString();
+                    Session["AnvändarID"] = usr.AnvändarID.ToString();
+                    Session["Användarnamn"] = usr.FörNamn.ToString();
                     Session["Email"] = usr.Email.ToString();
                     return RedirectToAction("inloggad");
                 }
