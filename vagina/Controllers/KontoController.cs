@@ -78,5 +78,15 @@ namespace Systemet.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+
+        public ActionResult Redigera()
+        {
+            return View();
+        }
+
+        public ActionResult Redigera()
+        {
+
+        }
     }
 }
