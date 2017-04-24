@@ -11,24 +11,23 @@ namespace Systemet.Models
         [Key]
         public int AnvändarID { get; set; }
 
-        
-        [Required(ErrorMessage = "förnamn är viktigt.")]
+        //[Required(ErrorMessage = "förnamn är viktigt.")]
         public string FörNamn { get; set; }
 
-        [Required(ErrorMessage = "efternamn är viktigt.")]
+        //[Required(ErrorMessage = "efternamn är viktigt.")]
         public string EfterNamn { get; set; }
 
-        [Required(ErrorMessage = "Email är viktigt.")]
+        //[Required(ErrorMessage = "Email är viktigt.")]
         //[RegularExpression("")]
         public string Email { get; set; }
 
         public int Telefon { get; set; }
 
-        [Required(ErrorMessage = "lösenord är viktigt.")]
+        //[Required(ErrorMessage = "lösenord är viktigt.")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Compare("Password", ErrorMessage = "bekräfta ditt lösenord.")]
+        //[Compare("Password", ErrorMessage = "bekräfta ditt lösenord.")]
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
     }

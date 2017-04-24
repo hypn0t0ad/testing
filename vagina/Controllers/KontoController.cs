@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.ModelBinding;
 using System.Web.Mvc;
 using Systemet.Models;
 
@@ -50,12 +51,12 @@ namespace Systemet.Controllers
         {
             using (OurDBContext db = new OurDBContext())
             {
-                var usr = db.konton.Single(u => u.Email == user.Email && u.Password == user.Password);
-                if (usr != null)
+                AnvändarKonton konto = db.konton.SingleOrDefault(u => u.Email == user.Email && u.Password == user.Password);
+                if (konto != null)
                 {
-                    Session["AnvändarID"] = usr.AnvändarID.ToString();
-                    Session["Förnamn"] = usr.FörNamn.ToString();
-                    Session["Email"] = usr.Email.ToString();
+                    Session["AnvändarID"] = konto.AnvändarID.ToString();
+                    Session["Förnamn"] = konto.FörNamn.ToString();
+                    Session["Email"] = konto.Email.ToString();
                     return RedirectToAction("inloggad");
                 }
                 else
@@ -95,10 +96,20 @@ namespace Systemet.Controllers
         }
 
         [HttpPost]
-        public ActionResult Redigera([Bind(Include = "AnvändarID,Förnamn,Efternamn,Epost,Telefon,Password")] AnvändarKonton konto )
+        [ValidateAntiForgeryToken]
+        public ActionResult Redigera([Bind(Include = "AnvändarID,Förnamn,Efternamn,Email,Telefon,Password, ConfirmPassword")] AnvändarKonton konto )
         {
+           
+                using (OurDBContext db = new OurDBContext())
+                {
+                    db.Entry(konto).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+            
+            
 
-            return View("index");
+            return RedirectToAction("Index", "Home");
+
         }
 
     }
