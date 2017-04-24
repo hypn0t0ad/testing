@@ -30,5 +30,7 @@ namespace Systemet.Models
         //[Compare("Password", ErrorMessage = "bekräfta ditt lösenord.")]
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
+
+        public List<Grupp> TillhörGrupper { get; set; }
     }
 }

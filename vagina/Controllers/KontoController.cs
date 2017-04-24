@@ -90,27 +90,26 @@ namespace Systemet.Controllers
                     var usr = db.konton.Single(u => u.AnvändarID == ID);
                     return View(usr);
                 }
-                
+
             }
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Redigera([Bind(Include = "AnvändarID,Förnamn,Efternamn,Email,Telefon,Password, ConfirmPassword")] AnvändarKonton konto )
+        public ActionResult Redigera([Bind(Include = "AnvändarID,Förnamn,Efternamn,Email,Telefon,Password, ConfirmPassword")] AnvändarKonton konto)
         {
-           
-                using (OurDBContext db = new OurDBContext())
-                {
-                    db.Entry(konto).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
-                }
-            
-            
+
+            using (OurDBContext db = new OurDBContext())
+            {
+                db.Entry(konto).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
 
             return RedirectToAction("Index", "Home");
-
         }
+
+
 
     }
 }

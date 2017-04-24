@@ -160,7 +160,12 @@
     <Compile Include="Migrations\201704241426357_ta bort valideringar.Designer.cs">
       <DependentUpon>201704241426357_ta bort valideringar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704241644577_lagt till grupper.cs" />
+    <Compile Include="Migrations\201704241644577_lagt till grupper.Designer.cs">
+      <DependentUpon>201704241644577_lagt till grupper.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Grupp.cs" />
     <Compile Include="Models\OurDBContext.cs" />
     <Compile Include="Models\AnvändarKonton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -237,6 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704241426357_ta bort valideringar.resx">
       <DependentUpon>201704241426357_ta bort valideringar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704241644577_lagt till grupper.resx">
+      <DependentUpon>201704241644577_lagt till grupper.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
