@@ -97,19 +97,20 @@ namespace Systemet.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Redigera([Bind(Include = "AnvändarID,Förnamn,Efternamn,Email,Telefon,Password, ConfirmPassword")] AnvändarKonton konto)
+-        public ActionResult Redigera([Bind(Include = "AnvändarID,Förnamn,Efternamn,Email,Telefon,Password,ConfirmPassword")] AnvändarKonton konto)
         {
-
-            using (OurDBContext db = new OurDBContext())
+            if (ModelState.IsValid)
             {
-                db.Entry(konto).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
+                using (OurDBContext db = new OurDBContext())
+                {
+                    db.Entry(konto).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+
+                return RedirectToAction("Index", "Home");
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Redigera", "Konto");
         }
-
-
-
     }
 }
