@@ -97,7 +97,7 @@ namespace Systemet.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
--        public ActionResult Redigera([Bind(Include = "AnvändarID,Förnamn,Efternamn,Email,Telefon,Password,ConfirmPassword")] AnvändarKonton konto)
+        public ActionResult Redigera([Bind(Include = "AnvändarID,Förnamn,Efternamn,Email,Telefon,Password,ConfirmPassword")] AnvändarKonton konto)
         {
             if (ModelState.IsValid)
             {

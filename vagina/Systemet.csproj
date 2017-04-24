@@ -168,6 +168,10 @@
     <Compile Include="Migrations\201704241839468_+valideringar.Designer.cs">
       <DependentUpon>201704241839468_+valideringar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704241914151_validering grupp.cs" />
+    <Compile Include="Migrations\201704241914151_validering grupp.Designer.cs">
+      <DependentUpon>201704241914151_validering grupp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Grupp.cs" />
     <Compile Include="Models\OurDBContext.cs" />
@@ -252,6 +256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704241839468_+valideringar.resx">
       <DependentUpon>201704241839468_+valideringar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704241914151_validering grupp.resx">
+      <DependentUpon>201704241914151_validering grupp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
