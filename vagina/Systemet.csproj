@@ -236,6 +236,7 @@
     <Content Include="Views\Grupp\Details.cshtml" />
     <Content Include="Views\Grupp\Edit.cshtml" />
     <Content Include="Views\Grupp\Index.cshtml" />
+    <Content Include="Views\Grupp\MinaGrupper.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -123,5 +123,11 @@ namespace vagina.Controllers
             }
             base.Dispose(disposing);
         }
+
+        //vy till grupper som användare tillhör
+        public ActionResult MinaGrupper()
+        {
+            return View();
+        }
     }
 }
