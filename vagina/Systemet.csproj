@@ -147,6 +147,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\GruppController.cs" />
     <Compile Include="Controllers\KontoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -171,6 +172,10 @@
     <Compile Include="Migrations\201704241914151_validering grupp.cs" />
     <Compile Include="Migrations\201704241914151_validering grupp.Designer.cs">
       <DependentUpon>201704241914151_validering grupp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704270958129_grupp scaffolding.cs" />
+    <Compile Include="Migrations\201704270958129_grupp scaffolding.Designer.cs">
+      <DependentUpon>201704270958129_grupp scaffolding.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Grupp.cs" />
@@ -226,6 +231,11 @@
     <Content Include="Views\Konto\inloggad.cshtml" />
     <Content Include="Views\Shared\loggaIn.cshtml" />
     <Content Include="Views\Konto\Redigera.cshtml" />
+    <Content Include="Views\Grupp\Create.cshtml" />
+    <Content Include="Views\Grupp\Delete.cshtml" />
+    <Content Include="Views\Grupp\Details.cshtml" />
+    <Content Include="Views\Grupp\Edit.cshtml" />
+    <Content Include="Views\Grupp\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -258,6 +268,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704241914151_validering grupp.resx">
       <DependentUpon>201704241914151_validering grupp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704270958129_grupp scaffolding.resx">
+      <DependentUpon>201704270958129_grupp scaffolding.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
