@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.ModelBinding;
 using System.Web.Mvc;
+using System.Web.Security;
 using Systemet.Models;
 
 namespace Systemet.Controllers
@@ -75,7 +76,7 @@ namespace Systemet.Controllers
             }
             else
             {
-                //return RedirectToAction("inloggad");
+             
                 return RedirectToAction("Index", "Home");
             }
         }
@@ -111,6 +112,13 @@ namespace Systemet.Controllers
             }
 
             return RedirectToAction("Redigera", "Konto");
+        }
+
+        public ActionResult LogOut()
+        {
+            Session.Clear();
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

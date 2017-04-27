@@ -1,7 +1,7 @@
 ﻿@using Systemet.Models
 @if (Session["AnvändarID"] != null)
 {
-    using (Html.BeginForm("Logga ut", "Konto", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    using (Html.BeginForm(/*"Logga ut", "Konto", FormMethod.Post, new { id = "LogOut", @class = "navbar-right" }*/))
     {
         @Html.AntiForgeryToken()
 
@@ -9,8 +9,11 @@
             <li>
                 
                 @Html.ActionLink("Hej " + Session["Förnamn"].ToString() + "!" + " användarID " + Session["AnvändarID"].ToString(), "Redigera", "Konto")
+            </li>            
+            <li>
+                @Html.ActionLink("Logga ut", "LogOut", "Konto")
             </li>
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+           
         </ul>
     }
 }

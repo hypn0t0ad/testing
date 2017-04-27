@@ -224,7 +224,6 @@
     <Content Include="Views\Konto\Login.cshtml" />
     <Content Include="Views\Konto\Index.cshtml" />
     <Content Include="Views\Konto\inloggad.cshtml" />
-    <Content Include="Views\Shared\Login.cshtml" />
     <Content Include="Views\Shared\loggaIn.cshtml" />
     <Content Include="Views\Konto\Redigera.cshtml" />
   </ItemGroup>
