@@ -46,16 +46,19 @@ namespace vagina.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GruppID,GruppNamn")] Grupp grupp)
+        public ActionResult Create([Bind(Include = "GruppID,GruppNamn")] Grupp grupp, AnvändarKonton user)
         {
-            if (ModelState.IsValid)
-            {
+            
+            //if (ModelState.IsValid)
+            //{
+                grupp.LedareID = Convert.ToInt32(Session["AnvändarID"]);
+                 
                 db.Grupps.Add(grupp);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
+            //}
 
-            return View(grupp);
+            //return View(grupp);
         }
 
         // GET: Grupp/Edit/5
@@ -78,7 +81,7 @@ namespace vagina.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "GruppID,GruppNamn")] Grupp grupp)
+        public ActionResult Edit([Bind(Include = "GruppID,GruppNamn,LedareID")] Grupp grupp)
         {
             if (ModelState.IsValid)
             {
@@ -122,12 +125,6 @@ namespace vagina.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        //vy till grupper som användare tillhör
-        public ActionResult MinaGrupper()
-        {
-            return View();
         }
     }
 }

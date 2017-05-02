@@ -15,6 +15,8 @@ namespace Systemet.Models
         [Required(ErrorMessage = "Gruppnamn måste anges.")]
         public string GruppNamn { get; set; }
 
+        public int LedareID { get; set; }
+
 
         public List<AnvändarKonton> GruppMedlemmar { get; set; }
     }
