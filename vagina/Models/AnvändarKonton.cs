@@ -32,6 +32,6 @@ namespace Systemet.Models
         public string ConfirmPassword { get; set; }
 
 
-        public List<Grupp> TillhörGrupper { get; set; }
+        public ICollection<Grupp> TillhörGrupper { get; set; }
     }
 }

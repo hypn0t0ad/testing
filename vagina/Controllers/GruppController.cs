@@ -46,19 +46,35 @@ namespace vagina.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GruppID,GruppNamn")] Grupp grupp, AnvändarKonton user)
+        public ActionResult Create([Bind(Include = "GruppID,GruppNamn")] Grupp grupp)
         {
+            int ID = Convert.ToInt32(Session["AnvändarID"]);
             
-            //if (ModelState.IsValid)
-            //{
-                grupp.LedareID = Convert.ToInt32(Session["AnvändarID"]);
-                 
-                db.Grupps.Add(grupp);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            //}
+            grupp.LedareID = Convert.ToInt32(Session["AnvändarID"]);            
 
-            //return View(grupp);
+            db.Grupps.Add(grupp);
+            db.SaveChanges();
+            
+
+            return RedirectToAction("blimedlemigrupp", grupp);
+
+        }
+
+        public ActionResult blimedlemigrupp(Grupp grupp)
+        {
+            int ID = Convert.ToInt32(Session["AnvändarID"]);
+            AnvändarKonton user = db.konton.Single(u => u.AnvändarID == ID);
+            user.TillhörGrupper.Add(grupp);
+            return View();
+
+        }
+        public ActionResult läggtilligruppen(Grupp grupp)
+        {
+            int ID = Convert.ToInt32(Session["AnvändarID"]);
+            AnvändarKonton user = db.konton.Single(u => u.AnvändarID == ID);
+            grupp.GruppMedlemmar.Add(user);
+            db.SaveChanges();
+            return View("index");
         }
 
         // GET: Grupp/Edit/5

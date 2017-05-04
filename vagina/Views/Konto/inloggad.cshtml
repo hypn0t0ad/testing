@@ -6,6 +6,11 @@
 @if (Session["AnvändarID"] != null)
 {
     <h4> Hejsan @Session["Förnamn"].ToString()</h4>
-   @Html.ActionLink("gå med i grupp", "gåmedigrupp", "Grupp");
+    <div>
+        @Html.ActionLink("gå med i grupp", "gåmedigrupp", "Grupp")
+    </div>
+    <div>
+        @Html.ActionLink("mina uppgifter", "Redigera", "Konto")
+    </div>
 }
 

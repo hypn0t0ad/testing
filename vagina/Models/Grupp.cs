@@ -18,6 +18,6 @@ namespace Systemet.Models
         public int LedareID { get; set; }
 
 
-        public List<AnvändarKonton> GruppMedlemmar { get; set; }
+        public ICollection<AnvändarKonton> GruppMedlemmar { get; set; }
     }
 }

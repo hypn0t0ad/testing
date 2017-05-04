@@ -241,6 +241,7 @@
     <Content Include="Views\Grupp\Edit.cshtml" />
     <Content Include="Views\Grupp\Index.cshtml" />
     <Content Include="Views\Grupp\gåmedigrupp.cshtml" />
+    <Content Include="Views\Grupp\bekräftagrupp.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
