@@ -1,0 +1,13 @@
+﻿@model Systemet.Models.Grupp
+
+@{
+    ViewBag.Title = "gåmedigrupp";
+}
+
+<h2>sök gruppens namn</h2>
+@using (Html.BeginForm())
+{
+    @Html.TextBox("sökning")
+    <input type="submit" value="Search" />
+}
+

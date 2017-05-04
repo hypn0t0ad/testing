@@ -240,6 +240,7 @@
     <Content Include="Views\Grupp\Details.cshtml" />
     <Content Include="Views\Grupp\Edit.cshtml" />
     <Content Include="Views\Grupp\Index.cshtml" />
+    <Content Include="Views\Grupp\gåmedigrupp.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

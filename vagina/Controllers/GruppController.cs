@@ -126,5 +126,22 @@ namespace vagina.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult gåmedigrupp()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult gåmedigrupp(string sökning)
+        {            
+            var hittat = db.Grupps.Where(f => f.GruppNamn == sökning);
+            if (hittat != null)
+            {
+                //här ska nästa sida visas där man kan bekräfta att man vill gå med i gruppen
+                return View("");
+            }
+            return View("error", "konto");
+        }
     }
 }

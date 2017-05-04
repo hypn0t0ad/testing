@@ -10,6 +10,6 @@ namespace Systemet.Models
     {
         public DbSet<AnvändarKonton> konton { get; set; }
 
-        public System.Data.Entity.DbSet<Systemet.Models.Grupp> Grupps { get; set; }
+        public DbSet<Grupp> Grupps { get; set; }
     }
 }
