@@ -193,6 +193,18 @@
     <Compile Include="Migrations\201705091619125_many to many for fuck sake.Designer.cs">
       <DependentUpon>201705091619125_many to many for fuck sake.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705091643118_nu borde det ha kommit en many to many.cs" />
+    <Compile Include="Migrations\201705091643118_nu borde det ha kommit en many to many.Designer.cs">
+      <DependentUpon>201705091643118_nu borde det ha kommit en many to many.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705091656548_nurå many to many.cs" />
+    <Compile Include="Migrations\201705091656548_nurå many to many.Designer.cs">
+      <DependentUpon>201705091656548_nurå many to many.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705091658591_100.cs" />
+    <Compile Include="Migrations\201705091658591_100.Designer.cs">
+      <DependentUpon>201705091658591_100.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Grupp.cs" />
     <Compile Include="Models\OurDBContext.cs" />
@@ -302,6 +314,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705091619125_many to many for fuck sake.resx">
       <DependentUpon>201705091619125_many to many for fuck sake.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705091643118_nu borde det ha kommit en many to many.resx">
+      <DependentUpon>201705091643118_nu borde det ha kommit en many to many.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705091656548_nurå many to many.resx">
+      <DependentUpon>201705091656548_nurå many to many.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705091658591_100.resx">
+      <DependentUpon>201705091658591_100.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

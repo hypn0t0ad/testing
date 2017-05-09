@@ -57,18 +57,21 @@ namespace vagina.Controllers
             db.SaveChanges();
 
             return View("index");
-            //return RedirectToAction("läggtilligruppen", grupp);
+            
 
         }
 
-        public ActionResult blimedlemigrupp(Grupp grupp)
+        [HttpPost]
+        public ActionResult blimedlemigrupp(string? namn)
         {
+            Grupp grupp = db.Grupps.Single(a => a.GruppNamn == namn);
             int ID = Convert.ToInt32(Session["AnvändarID"]);
             AnvändarKonton user = db.konton.Single(u => u.AnvändarID == ID);
+            grupp.GruppMedlemmar.Add(user);
             user.TillhörGrupper.Add(grupp);
             db.SaveChanges();
 
-            return RedirectToAction("index", grupp);
+            return View("index");
 
         }
         public ActionResult läggtilligruppen(Grupp grupp)
@@ -78,7 +81,7 @@ namespace vagina.Controllers
             
             grupp.GruppMedlemmar.Add(user);
             db.SaveChanges();
-            return View("blimedlemigrupp");
+            return View();
         }
 
         // GET: Grupp/Edit/5
@@ -155,11 +158,13 @@ namespace vagina.Controllers
         [HttpPost]
         public ActionResult gåmedigrupp(string sökning)
         {            
-            var hittat = db.Grupps.Where(f => f.GruppNamn == sökning);
-            if (hittat != null)
+            Grupp grupp = db.Grupps.Single(f => f.GruppNamn == sökning);
+            ViewBag.gruppen = grupp.GruppNamn;
+            if (grupp != null)
             {
-                //här ska nästa sida visas där man kan bekräfta att man vill gå med i gruppen
-                return View("");
+
+                GC.KeepAlive(grupp);
+                return View("bekräftagrupp");
             }
             return View("error", "konto");
         }
