@@ -6,7 +6,7 @@
 
 <h2>Vill du gå med i @ViewBag.gruppen ?</h2>
 
-@using (Html.BeginForm("blimedlemigrupp", "grupp", new { namnet = ViewBag.gruppen }))
+@using (Html.BeginForm("blimedlemigrupp", "grupp", FormMethod.Post, new { namnet = ViewBag.gruppen }))
 {
 
     <input type="submit" value="gå med" />

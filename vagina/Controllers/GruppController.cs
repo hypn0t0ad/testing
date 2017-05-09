@@ -62,7 +62,7 @@ namespace vagina.Controllers
         }
 
         [HttpPost]
-        public ActionResult blimedlemigrupp(string? namn)
+        public ActionResult blimedlemigrupp(string namn)
         {
             Grupp grupp = db.Grupps.Single(a => a.GruppNamn == namn);
             int ID = Convert.ToInt32(Session["AnvändarID"]);
