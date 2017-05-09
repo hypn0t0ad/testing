@@ -62,7 +62,7 @@ namespace vagina.Controllers
         }
 
         [HttpPost]
-        public ActionResult blimedlemigrupp(string? namn)
+        public ActionResult blimedlemigrupp(string namn)
         {
             Grupp grupp = db.Grupps.Single(a => a.GruppNamn == namn);
             int ID = Convert.ToInt32(Session["AnvändarID"]);
@@ -157,13 +157,14 @@ namespace vagina.Controllers
 
         [HttpPost]
         public ActionResult gåmedigrupp(string sökning)
-        {            
-            Grupp grupp = db.Grupps.Single(f => f.GruppNamn == sökning);
-            ViewBag.gruppen = grupp.GruppNamn;
+        {   
+            
+            Grupp grupp = db.Grupps.Where(f => f.GruppNamn == sökning).FirstOrDefault();
+
             if (grupp != null)
             {
-
-                GC.KeepAlive(grupp);
+                ViewBag.gruppen = grupp.GruppNamn;
+                TempData["gruppnamn"] = grupp.GruppNamn;
                 return View("bekräftagrupp");
             }
             return View("error", "konto");

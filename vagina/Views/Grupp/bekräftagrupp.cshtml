@@ -2,14 +2,15 @@
 
 @{
     ViewBag.Title = "bekräftagrupp";
+    
 }
 
 <h2>Vill du gå med i @ViewBag.gruppen ?</h2>
 
-@using (Html.BeginForm("blimedlemigrupp", "grupp", new { namnet = ViewBag.gruppen }))
+@using (Html.BeginForm("blimedlemigrupp", "grupp", new { namn = TempData["gruppnamn"] }))
 {
 
-    <input type="submit" value="gå med" />
+    <input type="submit" value="Gå med i Gruppen!" />
 
 }
 
