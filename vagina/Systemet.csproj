@@ -181,6 +181,18 @@
     <Compile Include="Migrations\201705021617391_added ledareID for grupp.Designer.cs">
       <DependentUpon>201705021617391_added ledareID for grupp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705091551574_many-to-many.cs" />
+    <Compile Include="Migrations\201705091551574_many-to-many.Designer.cs">
+      <DependentUpon>201705091551574_many-to-many.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705091557431_many to many 2.cs" />
+    <Compile Include="Migrations\201705091557431_many to many 2.Designer.cs">
+      <DependentUpon>201705091557431_many to many 2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705091619125_many to many for fuck sake.cs" />
+    <Compile Include="Migrations\201705091619125_many to many for fuck sake.Designer.cs">
+      <DependentUpon>201705091619125_many to many for fuck sake.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Grupp.cs" />
     <Compile Include="Models\OurDBContext.cs" />
@@ -239,9 +251,10 @@
     <Content Include="Views\Grupp\Delete.cshtml" />
     <Content Include="Views\Grupp\Details.cshtml" />
     <Content Include="Views\Grupp\Edit.cshtml" />
-    <Content Include="Views\Grupp\Index.cshtml" />
     <Content Include="Views\Grupp\gåmedigrupp.cshtml" />
     <Content Include="Views\Grupp\bekräftagrupp.cshtml" />
+    <Content Include="Views\Grupp\minagrupper.cshtml" />
+    <Content Include="Views\Grupp\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -280,6 +293,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705021617391_added ledareID for grupp.resx">
       <DependentUpon>201705021617391_added ledareID for grupp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705091551574_many-to-many.resx">
+      <DependentUpon>201705091551574_many-to-many.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705091557431_many to many 2.resx">
+      <DependentUpon>201705091557431_many to many 2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705091619125_many to many for fuck sake.resx">
+      <DependentUpon>201705091619125_many to many for fuck sake.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

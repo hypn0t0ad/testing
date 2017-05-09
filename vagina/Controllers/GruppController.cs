@@ -17,7 +17,7 @@ namespace vagina.Controllers
         // GET: Grupp
         public ActionResult Index()
         {
-            return View(db.Grupps.ToList());
+            return View();
         }
 
         // GET: Grupp/Details/5
@@ -49,14 +49,15 @@ namespace vagina.Controllers
         public ActionResult Create([Bind(Include = "GruppID,GruppNamn")] Grupp grupp)
         {
             int ID = Convert.ToInt32(Session["AnvändarID"]);
-            
-            grupp.LedareID = Convert.ToInt32(Session["AnvändarID"]);            
-
+            AnvändarKonton user = db.konton.Single(u => u.AnvändarID == ID);
+            grupp.LedareID = user.AnvändarID;
             db.Grupps.Add(grupp);
+            grupp.GruppMedlemmar.Add(user);
+            user.TillhörGrupper.Add(grupp);
             db.SaveChanges();
-            
 
-            return RedirectToAction("blimedlemigrupp", grupp);
+            return View("index");
+            //return RedirectToAction("läggtilligruppen", grupp);
 
         }
 
@@ -65,16 +66,19 @@ namespace vagina.Controllers
             int ID = Convert.ToInt32(Session["AnvändarID"]);
             AnvändarKonton user = db.konton.Single(u => u.AnvändarID == ID);
             user.TillhörGrupper.Add(grupp);
-            return View();
+            db.SaveChanges();
+
+            return RedirectToAction("index", grupp);
 
         }
         public ActionResult läggtilligruppen(Grupp grupp)
         {
             int ID = Convert.ToInt32(Session["AnvändarID"]);
             AnvändarKonton user = db.konton.Single(u => u.AnvändarID == ID);
+            
             grupp.GruppMedlemmar.Add(user);
             db.SaveChanges();
-            return View("index");
+            return View("blimedlemigrupp");
         }
 
         // GET: Grupp/Edit/5
@@ -158,6 +162,11 @@ namespace vagina.Controllers
                 return View("");
             }
             return View("error", "konto");
+        }
+
+        public ActionResult minagrupper()
+        {
+            return View();
         }
     }
 }

@@ -11,5 +11,7 @@ namespace Systemet.Models
         public DbSet<AnvändarKonton> konton { get; set; }
 
         public DbSet<Grupp> Grupps { get; set; }
+
+        
     }
 }

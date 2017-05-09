@@ -11,7 +11,7 @@
                 @Html.ActionLink("Hej " + Session["Förnamn"].ToString() + "!" + " användarID " + Session["AnvändarID"].ToString(), "inloggad", "Konto")
             </li>              
             <li>
-                @Html.ActionLink("Mina grupper", "LogOut", "Grupp")
+                @Html.ActionLink("Mina grupper", "minagrupper", "Grupp")
             </li>
             <li>
                 @Html.ActionLink("Skapa Grupp", "Create", "Grupp")

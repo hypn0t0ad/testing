@@ -8,6 +8,12 @@ namespace Systemet.Models
 {
     public class AnvändarKonton
     {
+
+        public AnvändarKonton()
+        {
+            this.TillhörGrupper = new HashSet<Grupp>();
+        }
+
         [Key]
         public int AnvändarID { get; set; }
 
@@ -31,7 +37,8 @@ namespace Systemet.Models
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
 
+        //public virtual Grupp grupper { get; set; }
 
-        public ICollection<Grupp> TillhörGrupper { get; set; }
+        public virtual ICollection<Grupp> TillhörGrupper { get; set; }
     }
 }

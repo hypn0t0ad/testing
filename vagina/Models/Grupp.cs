@@ -9,6 +9,11 @@ namespace Systemet.Models
     public class Grupp
     {
 
+        public Grupp()
+        {
+            this.GruppMedlemmar = new HashSet<AnvändarKonton>();
+        }
+
         [Key]
         public int GruppID { get; set; }
 
@@ -17,7 +22,10 @@ namespace Systemet.Models
 
         public int LedareID { get; set; }
 
+        //public virtual AnvändarKonton användare { get; set; }
 
-        public ICollection<AnvändarKonton> GruppMedlemmar { get; set; }
+
+        public virtual ICollection<AnvändarKonton> GruppMedlemmar { get; set; }
+        
     }
 }
