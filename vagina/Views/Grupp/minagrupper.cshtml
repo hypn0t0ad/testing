@@ -26,9 +26,10 @@
 
 @foreach (var item in ViewBag.minagrupper) {
     <tr>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.)
-        </td>*@
+        <td>
+            @item.GruppNamn
+        </td>
+        
         
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.GruppID }) |

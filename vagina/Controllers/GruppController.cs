@@ -173,7 +173,7 @@ namespace vagina.Controllers
         {
             int ID = Convert.ToInt32(Session["AnvändarID"]);
             AnvändarKonton user = db.konton.Single(u => u.AnvändarID == ID);
-
+            
             ViewBag.minagrupper = user.TillhörGrupper;
 
             return View();
