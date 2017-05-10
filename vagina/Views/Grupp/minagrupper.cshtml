@@ -6,8 +6,10 @@
 
 <h2>minagrupper</h2>
 
+<p></p>
+
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Skapa ny grupp", "Create")
 </p>
 <table class="table">
     <tr>
@@ -20,14 +22,14 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+
+
+@foreach (var item in ViewBag.minagrupper) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.GruppNamn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LedareID)
-        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.)
+        </td>*@
+        
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.GruppID }) |
             @Html.ActionLink("Details", "Details", new { id=item.GruppID }) |

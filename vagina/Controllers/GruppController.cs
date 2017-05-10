@@ -56,9 +56,7 @@ namespace vagina.Controllers
             user.TillhörGrupper.Add(grupp);
             db.SaveChanges();
 
-            return View("index");
-            
-
+            return View("index");            
         }
 
         [HttpPost]
@@ -72,8 +70,9 @@ namespace vagina.Controllers
             db.SaveChanges();
 
             return View("index");
-
         }
+
+        //den här används inte än
         public ActionResult läggtilligruppen(Grupp grupp)
         {
             int ID = Convert.ToInt32(Session["AnvändarID"]);
@@ -172,7 +171,15 @@ namespace vagina.Controllers
 
         public ActionResult minagrupper()
         {
+            int ID = Convert.ToInt32(Session["AnvändarID"]);
+            AnvändarKonton user = db.konton.Single(u => u.AnvändarID == ID);
+
+            ViewBag.minagrupper = user.TillhörGrupper;
+
             return View();
         }
+
+        
+        
     }
 }
