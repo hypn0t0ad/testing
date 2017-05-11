@@ -1,4 +1,4 @@
-﻿@model Systemet.Models.Grupp
+﻿@model Tuple <Systemet.Models.Grupp, Systemet.Models.AnvändarKonton>
 
 @{
     ViewBag.Title = "Details";
@@ -11,24 +11,25 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.GruppNamn)
+            @Html.DisplayNameFor(model => model.Item1.GruppNamn)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.GruppNamn)
+            @Html.DisplayFor(model => model.Item1.GruppNamn)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LedareID)
+        <dt>            
+            Ledaren för gruppen
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.LedareID)
+            @ViewBag.ledaren
+            @*@Html.DisplayFor(model => model.LedareID)*@
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.GruppID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Item1.GruppID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

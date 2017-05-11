@@ -205,7 +205,12 @@
     <Compile Include="Migrations\201705091658591_100.Designer.cs">
       <DependentUpon>201705091658591_100.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705111047107_evenemang påbörjat.cs" />
+    <Compile Include="Migrations\201705111047107_evenemang påbörjat.Designer.cs">
+      <DependentUpon>201705111047107_evenemang påbörjat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Evenemang.cs" />
     <Compile Include="Models\Grupp.cs" />
     <Compile Include="Models\OurDBContext.cs" />
     <Compile Include="Models\AnvändarKonton.cs" />
@@ -323,6 +328,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705091658591_100.resx">
       <DependentUpon>201705091658591_100.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705111047107_evenemang påbörjat.resx">
+      <DependentUpon>201705111047107_evenemang påbörjat.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

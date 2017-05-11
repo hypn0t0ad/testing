@@ -28,11 +28,14 @@ namespace vagina.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Grupp grupp = db.Grupps.Find(id);
+            int ID = grupp.LedareID;
+            AnvändarKonton ledare = db.konton.Single(a => a.AnvändarID == ID);
+            ViewBag.ledaren = ledare.FörNamn + " " + ledare.EfterNamn;
             if (grupp == null)
             {
                 return HttpNotFound();
             }
-            return View(grupp);
+            return View(Tuple.Create(grupp, ledare));
         }
 
         // GET: Grupp/Create
