@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Systemet.Models;
 
-namespace vagina.Controllers
+namespace Systemet.Controllers
 {
     public class EvenemangsController : Controller
     {
