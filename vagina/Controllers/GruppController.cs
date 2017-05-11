@@ -182,6 +182,11 @@ namespace vagina.Controllers
             return View();
         }
 
+        public ActionResult gruppsida ()
+        {
+            return View();
+        }
+
         
         
     }

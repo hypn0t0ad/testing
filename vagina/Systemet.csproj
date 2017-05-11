@@ -147,6 +147,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EvenemangsController.cs" />
     <Compile Include="Controllers\GruppController.cs" />
     <Compile Include="Controllers\KontoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -272,6 +273,12 @@
     <Content Include="Views\Grupp\bekräftagrupp.cshtml" />
     <Content Include="Views\Grupp\minagrupper.cshtml" />
     <Content Include="Views\Grupp\Index.cshtml" />
+    <Content Include="Views\Evenemangs\Create.cshtml" />
+    <Content Include="Views\Evenemangs\Delete.cshtml" />
+    <Content Include="Views\Evenemangs\Details.cshtml" />
+    <Content Include="Views\Evenemangs\Edit.cshtml" />
+    <Content Include="Views\Evenemangs\Index.cshtml" />
+    <Content Include="Views\Grupp\gruppsida.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
