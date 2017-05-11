@@ -7,13 +7,13 @@ namespace Systemet.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class manytomany2 : IMigrationMetadata
+    public sealed partial class uppgifter : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(manytomany2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(uppgifter));
         
         string IMigrationMetadata.Id
         {
-            get { return "201705091557431_many to many 2"; }
+            get { return "201705111516016_uppgifter"; }
         }
         
         string IMigrationMetadata.Source

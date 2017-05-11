@@ -12,6 +12,6 @@ namespace Systemet.Models
 
         public DbSet<Grupp> Grupps { get; set; }
 
-        public System.Data.Entity.DbSet<Systemet.Models.Evenemang> Evenemangs { get; set; }
+        public DbSet<Evenemang> Evenemangs { get; set; }
     }
 }

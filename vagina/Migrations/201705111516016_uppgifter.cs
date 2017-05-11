@@ -3,7 +3,7 @@ namespace Systemet.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class nuråmanytomany : DbMigration
+    public partial class uppgifter : DbMigration
     {
         public override void Up()
         {
