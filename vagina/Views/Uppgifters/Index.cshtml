@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Systemet.Models.Uppgifter>
+
+@{
+    ViewBag.Title = "Uppgifter för Grupp -gruppnamn-";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Skapa ny uppgift", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Namn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Beskrivning)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Utförd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Påbörjad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Startdatum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Slutdatum)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Namn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Beskrivning)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Utförd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Påbörjad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Startdatum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Slutdatum)
+        </td>
+        <td>
+            @Html.ActionLink("Ändra", "Edit", new { id=item.UppgifterID }) |
+            @Html.ActionLink("Detaljer", "Details", new { id=item.UppgifterID }) |
+            @Html.ActionLink("Ta bort", "Delete", new { id=item.UppgifterID })
+        </td>
+    </tr>
+}
+
+</table>

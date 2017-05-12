@@ -13,5 +13,7 @@ namespace Systemet.Models
         public DbSet<Grupp> Grupps { get; set; }
 
         public DbSet<Evenemang> Evenemangs { get; set; }
+
+        public System.Data.Entity.DbSet<Systemet.Models.Uppgifter> Uppgifters { get; set; }
     }
 }

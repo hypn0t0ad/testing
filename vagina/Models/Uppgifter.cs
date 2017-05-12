@@ -18,8 +18,8 @@ namespace Systemet.Models
 
 
 
-        public virtual AnvändarKonton Ansvarig { get; set; }
-        public virtual Grupp TillhörGrupp { get; set; }
+        public AnvändarKonton Ansvarig { get; set; }
+        public Grupp TillhörGrupp { get; set; }
 
     }
 }

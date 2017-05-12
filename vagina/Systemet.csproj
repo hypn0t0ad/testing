@@ -151,6 +151,7 @@
     <Compile Include="Controllers\GruppController.cs" />
     <Compile Include="Controllers\KontoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UppgiftersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -194,9 +195,17 @@
     <Compile Include="Migrations\201705111047107_evenemang påbörjat.Designer.cs">
       <DependentUpon>201705111047107_evenemang påbörjat.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705111516016_uppgifter.cs" />
-    <Compile Include="Migrations\201705111516016_uppgifter.Designer.cs">
-      <DependentUpon>201705111516016_uppgifter.cs</DependentUpon>
+    <Compile Include="Migrations\201705111725377_uppgifter.cs" />
+    <Compile Include="Migrations\201705111725377_uppgifter.Designer.cs">
+      <DependentUpon>201705111725377_uppgifter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705121053420_uppgifter1.cs" />
+    <Compile Include="Migrations\201705121053420_uppgifter1.Designer.cs">
+      <DependentUpon>201705121053420_uppgifter1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705121250475_uppgifterviewmodel.cs" />
+    <Compile Include="Migrations\201705121250475_uppgifterviewmodel.Designer.cs">
+      <DependentUpon>201705121250475_uppgifterviewmodel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Evenemang.cs" />
@@ -204,6 +213,7 @@
     <Compile Include="Models\OurDBContext.cs" />
     <Compile Include="Models\AnvändarKonton.cs" />
     <Compile Include="Models\Uppgifter.cs" />
+    <Compile Include="Models\UppgifterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -264,6 +274,11 @@
     <Content Include="Views\Evenemangs\Edit.cshtml" />
     <Content Include="Views\Evenemangs\Index.cshtml" />
     <Content Include="Views\Grupp\gruppsida.cshtml" />
+    <Content Include="Views\Uppgifters\Create.cshtml" />
+    <Content Include="Views\Uppgifters\Delete.cshtml" />
+    <Content Include="Views\Uppgifters\Details.cshtml" />
+    <Content Include="Views\Uppgifters\Edit.cshtml" />
+    <Content Include="Views\Uppgifters\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -314,8 +329,14 @@
     <EmbeddedResource Include="Migrations\201705111047107_evenemang påbörjat.resx">
       <DependentUpon>201705111047107_evenemang påbörjat.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705111516016_uppgifter.resx">
-      <DependentUpon>201705111516016_uppgifter.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705111725377_uppgifter.resx">
+      <DependentUpon>201705111725377_uppgifter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705121053420_uppgifter1.resx">
+      <DependentUpon>201705121053420_uppgifter1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705121250475_uppgifterviewmodel.resx">
+      <DependentUpon>201705121250475_uppgifterviewmodel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
