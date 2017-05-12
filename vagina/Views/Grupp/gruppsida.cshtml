@@ -1,7 +1,9 @@
-﻿
+﻿@model Systemet.Models.Grupp
 @{
     ViewBag.Title = "Gruppsida";
 }
 
-<h2>Gruppsida</h2>
-
+<h2>@Model.GruppNamn</h2>
+@Html.ActionLink("skapa evenemang", "Create", "Grupp")
+<p>här ska det finnas information om dina uppgifter</p>
+<p>här ska det finnas notiser om meddelanden mm</p>

@@ -59,7 +59,7 @@ namespace Systemet.Controllers
             user.TillhörGrupper.Add(grupp);
             db.SaveChanges();
 
-            return View("index");            
+            return View("gruppsida", grupp);            
         }
 
         [HttpPost]
@@ -182,9 +182,19 @@ namespace Systemet.Controllers
             return View();
         }
 
-        public ActionResult gruppsida ()
+        public ActionResult gruppsida (Grupp grupp)
         {
-            return View();
+            Grupp gruppen;
+            if (grupp.GruppNamn != null)
+            {
+               gruppen = db.Grupps.Single(m => m.GruppNamn == grupp.GruppNamn);
+            }
+            else
+            {
+                gruppen = grupp;
+            }
+
+            return View(gruppen);
         }
 
         

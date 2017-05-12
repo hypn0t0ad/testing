@@ -28,7 +28,7 @@
 @foreach (var item in ViewBag.minagrupper) {
     <tr>
         <td>
-            <a href="@Url.Action("gruppsida")" title="@item.GruppNamn">
+            <a href="@Url.Action("gruppsida", new { GruppNamn = item.GruppNamn })" title="@item.GruppNamn">
                 @item.GruppNamn
             </a>          
         </td>
