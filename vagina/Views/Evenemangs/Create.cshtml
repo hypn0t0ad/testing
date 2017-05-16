@@ -4,9 +4,10 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
-    <link rel='stylesheet' type='text/css' href='css/timepicki.css' />
+    <link rel='stylesheet' type='text/css' href='css/timepicker.css' />
     ViewBag.Title = "Create";
 }
+<link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
 
 <h2>Create</h2>
 
@@ -36,33 +37,14 @@
             </div>
         </div>
 
+
         <div class="form-group">
             @Html.LabelFor(model => model.Dag, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Dag, htmlAttributes: new { id = "datepicker", @class = "form-control" } )              
+                @Html.TextBoxFor(model => model.Dag, htmlAttributes: new { id = "datetimepickerfinal", @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Dag, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        @*här ska jag göra en timepicker*@
-        <div class="form-group">
-            @Html.LabelFor(model => model.StartTid, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.StartTid, htmlAttributes: new { id = "timepicker", @class = "form-control" })
-                
-                @Html.ValidationMessageFor(model => model.StartTid, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.StartTid, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">                
-                @Html.EditorFor(model => model.StartTid, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.StartTid, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
 
 
 
@@ -93,14 +75,16 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type='text/javascript' src='js/jquery.js'></script>
-<script type='text/javascript' src='js/timepicki.js'></script>
-<script>
-    $(function () {
-        $("#datepicker").datepicker();
-    });
 
+<script src="~/Scripts/jquery.datetimepicker.full.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#Date").datepicker({ minDate: 0 });
+        $("#FinalRegistrationDate").datepicker({ minDate: 0 });
+        $("#datetimepicker").datetimepicker();
+        $("#datetimepickerfinal").datetimepicker();
+    });
 </script>
-<script type='text/javascript' src='js/jquery.js'>
-        $('#timepicker').timepicki();
-</script>
+
 }
