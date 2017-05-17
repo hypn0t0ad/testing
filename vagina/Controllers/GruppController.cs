@@ -193,6 +193,7 @@ namespace Systemet.Controllers
             {
                 gruppen = grupp;
             }
+            Session["GruppID"] = gruppen.GruppID.ToString();
 
             return View(gruppen);
         }

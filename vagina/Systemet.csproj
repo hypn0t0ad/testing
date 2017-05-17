@@ -207,8 +207,17 @@
     <Compile Include="Migrations\201705172023000_lagt till kommentarer för evenemang.Designer.cs">
       <DependentUpon>201705172023000_lagt till kommentarer för evenemang.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705172041190_lagt till evenemangskommentarer.cs" />
+    <Compile Include="Migrations\201705172041190_lagt till evenemangskommentarer.Designer.cs">
+      <DependentUpon>201705172041190_lagt till evenemangskommentarer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705172048412_tagit bort starttid, och ändrat dag till tidpunkt.cs" />
+    <Compile Include="Migrations\201705172048412_tagit bort starttid, och ändrat dag till tidpunkt.Designer.cs">
+      <DependentUpon>201705172048412_tagit bort starttid, och ändrat dag till tidpunkt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Evenemang.cs" />
+    <Compile Include="Models\EvenemangsKommentarer.cs" />
     <Compile Include="Models\Grupp.cs" />
     <Compile Include="Models\OurDBContext.cs" />
     <Compile Include="Models\AnvändarKonton.cs" />
@@ -481,6 +490,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705172023000_lagt till kommentarer för evenemang.resx">
       <DependentUpon>201705172023000_lagt till kommentarer för evenemang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705172041190_lagt till evenemangskommentarer.resx">
+      <DependentUpon>201705172041190_lagt till evenemangskommentarer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705172048412_tagit bort starttid, och ändrat dag till tidpunkt.resx">
+      <DependentUpon>201705172048412_tagit bort starttid, och ändrat dag till tidpunkt.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

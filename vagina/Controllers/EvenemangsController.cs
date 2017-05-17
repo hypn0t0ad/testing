@@ -46,16 +46,19 @@ namespace Systemet.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EvenemangID,Namn,Beskrivning,StartTid,SlutTid,Dag")] Evenemang evenemang)
+        public ActionResult Create([Bind(Include = "EvenemangID,Namn,Beskrivning,Tidpunkt")] Evenemang evenemang, Grupp grupp )
         {
-            if (ModelState.IsValid)
-            {
+            int gID = Convert.ToInt32(Session["GruppID"]);
+            grupp = db.Grupps.Single(m => m.GruppID == gID);
+            evenemang.grupp = grupp;
+            //if (ModelState.IsValid)
+            //{
                 db.Evenemangs.Add(evenemang);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
+            //}
 
-            return View(evenemang);
+            //return View(evenemang);
         }
 
         // GET: Evenemangs/Edit/5
