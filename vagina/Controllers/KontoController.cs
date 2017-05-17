@@ -53,12 +53,13 @@ namespace Systemet.Controllers
             using (OurDBContext db = new OurDBContext())
             {
                 AnvändarKonton konto = db.konton.SingleOrDefault(u => u.Email == user.Email && u.Password == user.Password);
+                user = konto;
                 if (konto != null)
                 {
                     Session["AnvändarID"] = konto.AnvändarID.ToString();
                     Session["Förnamn"] = konto.FörNamn.ToString();
                     Session["Email"] = konto.Email.ToString();
-                    return RedirectToAction("inloggad");
+                    return RedirectToAction("inloggad", user);
                 }
                 else
                 {
@@ -68,17 +69,25 @@ namespace Systemet.Controllers
             return View();
         }
 
-        public ActionResult inloggad()
+        public ActionResult inloggad(AnvändarKonton user)
         {
-            if (Session["AnvändarID"] != null)
+            using (OurDBContext db = new OurDBContext())
             {
-                return View();
+                AnvändarKonton konto = db.konton.SingleOrDefault(u => u.AnvändarID == user.AnvändarID);
+                user = konto;
+                ICollection<Grupp> grupperna;
+                grupperna = user.TillhörGrupper;
+                if (Session["AnvändarID"] != null)
+                {
+                    return View(Tuple.Create(user, grupperna));
+                }
+                else
+                {
+
+                    return RedirectToAction("Index", "Home");
+                }
             }
-            else
-            {
-             
-                return RedirectToAction("Index", "Home");
-            }
+            
         }
 
         public ActionResult Redigera()

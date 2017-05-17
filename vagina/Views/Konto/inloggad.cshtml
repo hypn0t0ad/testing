@@ -1,4 +1,4 @@
-﻿
+﻿@model Tuple <Systemet.Models.AnvändarKonton, ICollection<Systemet.Models.Grupp>>
 @{
     ViewBag.Title = "inloggad";
 }
@@ -12,5 +12,24 @@
     <div>
         @Html.ActionLink("mina uppgifter", "Redigera", "Konto")
     </div>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Gruppnamn")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Item2)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GruppNamn)
+                </td>                
+            </tr>
+        }
+    </table>
 }
+
 
