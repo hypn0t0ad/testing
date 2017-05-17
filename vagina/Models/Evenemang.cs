@@ -12,9 +12,8 @@ namespace Systemet.Models
         public string Namn { get; set; }
         public string Beskrivning { get; set; }
         public DateTime StartTid { get; set; }
-        public DateTime SlutTid { get; set; }
         public DateTime Dag { get; set; }
-
+        public List<string> kommentarer { get; set; }
 
 
         public virtual Grupp grupp { get; set; }

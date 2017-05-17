@@ -203,6 +203,10 @@
     <Compile Include="Migrations\201705121250475_uppgifterviewmodel.Designer.cs">
       <DependentUpon>201705121250475_uppgifterviewmodel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705172023000_lagt till kommentarer för evenemang.cs" />
+    <Compile Include="Migrations\201705172023000_lagt till kommentarer för evenemang.Designer.cs">
+      <DependentUpon>201705172023000_lagt till kommentarer för evenemang.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Evenemang.cs" />
     <Compile Include="Models\Grupp.cs" />
@@ -474,6 +478,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705121250475_uppgifterviewmodel.resx">
       <DependentUpon>201705121250475_uppgifterviewmodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705172023000_lagt till kommentarer för evenemang.resx">
+      <DependentUpon>201705172023000_lagt till kommentarer för evenemang.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
