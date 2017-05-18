@@ -18,8 +18,8 @@
     {
         <tr>
             <td>
-                @*@Html.DisplayFor(modelItem => item.Namn)*@
-                <a href="@Url.Action("Index", new { Namn = item.Namn })" title="@item.Namn">
+            
+                <a href="@Url.Action("evenemangssida", "Evenemangs", new { Namn = item.Namn })" title="@item.Namn">
                     @item.Namn
                 </a> 
             </td>

@@ -1,0 +1,50 @@
+﻿@model Systemet.Models.Evenemang
+
+@{
+    ViewBag.Title = "evenemangssida";
+}
+
+<h2>model.Namn</h2>
+
+<p>här ska man kunna se info om vart, när och hur. man ska kunna kommentera eventet och man ska kunna läsa tidigare kommentarer</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Åsikter)
+        </th>
+        <th>
+            <div>Gör saker</div>
+
+        </th>
+        <th></th>
+    </tr>
+
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Åsikter)
+            </td>
+        </tr>
+    }
+
+</table>
+
+@using (Html.BeginForm("Create", "EvenemangsKommentarersController"))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.Beskrivning, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Beskrivning, 10, 55, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Beskrivning, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <input type="submit" value="Create" class="btn btn-default" />
+
+
+@Html.ActionLink("Kommentera", "Create", "EvenemangsKommentarersController")
+

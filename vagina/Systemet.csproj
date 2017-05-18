@@ -144,6 +144,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\EvenemangsController.cs" />
+    <Compile Include="Controllers\EvenemangsKommentarersController.cs" />
     <Compile Include="Controllers\GruppController.cs" />
     <Compile Include="Controllers\KontoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -443,6 +444,12 @@
     <Content Include="Views\Uppgifters\Index.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Views\Evenemangs\evenemangssida.cshtml" />
+    <Content Include="Views\EvenemangsKommentarers\Create.cshtml" />
+    <Content Include="Views\EvenemangsKommentarers\Delete.cshtml" />
+    <Content Include="Views\EvenemangsKommentarers\Details.cshtml" />
+    <Content Include="Views\EvenemangsKommentarers\Edit.cshtml" />
+    <Content Include="Views\EvenemangsKommentarers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

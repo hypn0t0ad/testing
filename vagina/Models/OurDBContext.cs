@@ -15,5 +15,7 @@ namespace Systemet.Models
         public DbSet<Evenemang> Evenemangs { get; set; }
 
         public DbSet<Uppgifter> Uppgifters { get; set; }
+
+        public System.Data.Entity.DbSet<Systemet.Models.EvenemangsKommentarer> EvenemangsKommentarers { get; set; }
     }
 }

@@ -53,7 +53,7 @@ namespace Systemet.Controllers
             evenemang.grupp = grupp;
             db.Evenemangs.Add(evenemang);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("evenemangssida");
         }
 
         // GET: Evenemangs/Edit/5
@@ -120,6 +120,12 @@ namespace Systemet.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult evenemangssida(Grupp grupp)
+        {
+
+            return View();
         }
     }
 }
