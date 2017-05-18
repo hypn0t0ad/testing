@@ -14,6 +14,7 @@ namespace Systemet.Models
         public string Namn { get; set; }
         public string Beskrivning { get; set; }
         public DateTime Tidpunkt { get; set; }
+        public string Plats { get; set; }
         public ICollection<EvenemangsKommentarer> Åsikter { get; set; }
 
 

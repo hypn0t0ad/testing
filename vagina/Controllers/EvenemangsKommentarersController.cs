@@ -46,8 +46,9 @@ namespace vagina.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EvenemangsKommentarerID,TidenFörKommentaren,Text")] EvenemangsKommentarer evenemangsKommentarer)
+        public ActionResult Create([Bind(Include = "EvenemangsKommentarerID,Text")] EvenemangsKommentarer evenemangsKommentarer)
         {
+            evenemangsKommentarer.TidenFörKommentaren = DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.EvenemangsKommentarers.Add(evenemangsKommentarer);
@@ -55,7 +56,7 @@ namespace vagina.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(evenemangsKommentarer);
+            return View("evenemangssida", "evenemangs");
         }
 
         // GET: EvenemangsKommentarers/Edit/5
@@ -122,6 +123,20 @@ namespace vagina.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [HttpPost]
+        public ActionResult Kommentera([Bind(Include = "EvenemangsKommentarerID,Text")] EvenemangsKommentarer evenemangsKommentarer)
+        {
+            evenemangsKommentarer.TidenFörKommentaren = DateTime.Now;
+            if (ModelState.IsValid)
+            {
+                db.EvenemangsKommentarers.Add(evenemangsKommentarer);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View("evenemangssida", "evenemangs");
         }
     }
 }

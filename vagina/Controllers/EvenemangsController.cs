@@ -122,10 +122,12 @@ namespace Systemet.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult evenemangssida(Grupp grupp)
+        public ActionResult evenemangssida(Evenemang evmg)
         {
+            Evenemang eventet = db.Evenemangs.SingleOrDefault(e => e.Namn == evmg.Namn);
+            EvenemangsKommentarer åsikter = new EvenemangsKommentarer();          
 
-            return View();
+            return View(Tuple.Create(eventet, åsikter));
         }
     }
 }
