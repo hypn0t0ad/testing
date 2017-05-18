@@ -454,6 +454,7 @@
     <Content Include="Views\EvenemangsKommentarers\Details.cshtml" />
     <Content Include="Views\EvenemangsKommentarers\Edit.cshtml" />
     <Content Include="Views\EvenemangsKommentarers\Index.cshtml" />
+    <Content Include="Views\EvenemangsKommentarers\komments.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

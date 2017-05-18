@@ -125,15 +125,25 @@ namespace vagina.Controllers
             base.Dispose(disposing);
         }
 
-        [HttpPost]
-        public ActionResult Kommentera([Bind(Include = "EvenemangsKommentarerID,Text")] EvenemangsKommentarer evenemangsKommentarer)
+      
+        public ActionResult komments(int? id)
         {
+            Evenemang eventet = db.Evenemangs.SingleOrDefault(e => e.EvenemangID == id);
+            ViewBag.rättevent = eventet;
+            return PartialView("komments");
+        }
+
+        [HttpPost]
+        public ActionResult komments([Bind(Include = "EvenemangsKommentarerID,Text")] EvenemangsKommentarer evenemangsKommentarer, int? id)
+        {
+            Evenemang evnt = db.Evenemangs.SingleOrDefault(u => u.EvenemangID == id);
+            evenemangsKommentarer.evenemang = evnt;
             evenemangsKommentarer.TidenFörKommentaren = DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.EvenemangsKommentarers.Add(evenemangsKommentarer);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("evenemangssida", "evenemangs", evnt);
             }
 
             return View("evenemangssida", "evenemangs");
