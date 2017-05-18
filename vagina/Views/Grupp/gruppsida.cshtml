@@ -1,9 +1,31 @@
-﻿@model Systemet.Models.Grupp
+﻿@model Tuple <Systemet.Models.Grupp, ICollection<Systemet.Models.Evenemang>>
 @{
     ViewBag.Title = "Gruppsida";
 }
 
-<h2>@Model.GruppNamn</h2>
+<h2>@Model.Item1.GruppNamn</h2>
 @Html.ActionLink("skapa evenemang", "Create", "Evenemangs")
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Evenemang")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Item2)
+    {
+        <tr>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Namn)*@
+                <a href="@Url.Action("Index", new { Namn = item.Namn })" title="@item.Namn">
+                    @item.Namn
+                </a> 
+            </td>
+        </tr>
+    }
+</table>
+
 <p>här ska det finnas information om dina uppgifter</p>
 <p>här ska det finnas notiser om meddelanden mm</p>

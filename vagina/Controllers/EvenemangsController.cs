@@ -47,18 +47,13 @@ namespace Systemet.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "EvenemangID,Namn,Beskrivning,Tidpunkt")] Evenemang evenemang, Grupp grupp )
-        {
+        {          
             int gID = Convert.ToInt32(Session["GruppID"]);
             grupp = db.Grupps.Single(m => m.GruppID == gID);
             evenemang.grupp = grupp;
-            //if (ModelState.IsValid)
-            //{
-                db.Evenemangs.Add(evenemang);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            //}
-
-            //return View(evenemang);
+            db.Evenemangs.Add(evenemang);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: Evenemangs/Edit/5

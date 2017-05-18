@@ -184,7 +184,7 @@ namespace Systemet.Controllers
 
         public ActionResult gruppsida (Grupp grupp)
         {
-            Grupp gruppen;
+            Grupp gruppen;            
             if (grupp.GruppNamn != null)
             {
                gruppen = db.Grupps.Single(m => m.GruppNamn == grupp.GruppNamn);
@@ -193,9 +193,11 @@ namespace Systemet.Controllers
             {
                 gruppen = grupp;
             }
+            ICollection<Evenemang> events;
+            events = gruppen.Evenemang;
             Session["GruppID"] = gruppen.GruppID.ToString();
 
-            return View(gruppen);
+            return View(Tuple.Create(grupp, events));
         }
 
         
