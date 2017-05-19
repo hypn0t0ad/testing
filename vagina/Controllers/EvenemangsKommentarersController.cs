@@ -139,9 +139,11 @@ namespace vagina.Controllers
             Evenemang evnt = db.Evenemangs.SingleOrDefault(u => u.EvenemangID == id);
             evenemangsKommentarer.evenemang = evnt;
             evenemangsKommentarer.TidenFörKommentaren = DateTime.Now;
+            
             if (ModelState.IsValid)
             {
                 db.EvenemangsKommentarers.Add(evenemangsKommentarer);
+                evnt.Åsikter.Add(evenemangsKommentarer);
                 db.SaveChanges();
                 return RedirectToAction("evenemangssida", "evenemangs", evnt);
             }
