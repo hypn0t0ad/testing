@@ -144,8 +144,10 @@ namespace vagina.Controllers
             {
                 db.EvenemangsKommentarers.Add(evenemangsKommentarer);
                 evnt.Åsikter.Add(evenemangsKommentarer);
+                ICollection<EvenemangsKommentarer> synpunkter;
+                synpunkter = evnt.Åsikter;
                 db.SaveChanges();
-                return RedirectToAction("evenemangssida", "evenemangs", evnt);
+                return RedirectToAction("evenemangssida", "evenemangs", Tuple.Create( evnt, evenemangsKommentarer, synpunkter));
             }
 
             return View("evenemangssida", "evenemangs");

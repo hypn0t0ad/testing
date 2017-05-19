@@ -197,6 +197,8 @@ namespace Systemet.Controllers
             events = gruppen.Evenemang;
             Session["GruppID"] = gruppen.GruppID.ToString();
 
+
+
             return View(Tuple.Create(grupp, events));
         }
 

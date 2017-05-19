@@ -125,9 +125,11 @@ namespace Systemet.Controllers
         public ActionResult evenemangssida(Evenemang evmg)
         {
             Evenemang eventet = db.Evenemangs.SingleOrDefault(e => e.Namn == evmg.Namn);
-            EvenemangsKommentarer åsikter = new EvenemangsKommentarer();          
+            EvenemangsKommentarer åsikter = new EvenemangsKommentarer();
+            ICollection<EvenemangsKommentarer> gamlaåsikter;
+            gamlaåsikter = eventet.Åsikter;
 
-            return View(Tuple.Create(eventet, åsikter));
+            return View(Tuple.Create(eventet, åsikter, gamlaåsikter));
         }
     }
 }
