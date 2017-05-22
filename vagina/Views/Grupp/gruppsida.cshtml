@@ -19,7 +19,7 @@
         <tr>
             <td>
             
-                <a href="@Url.Action("evenemangssida", "Evenemangs", new { Namn = item.Namn })" title="@item.Namn">
+                <a href="@Url.Action("evenemangssida", "Evenemangs", new { idet = item.EvenemangID @*EvenemangID = item.EvenemangID*@ })" title="@item.EvenemangID">
                     @item.Namn
                 </a> 
             </td>

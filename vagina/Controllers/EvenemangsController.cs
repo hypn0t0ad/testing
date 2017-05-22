@@ -126,29 +126,22 @@ namespace Systemet.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult evenemangssida(Evenemang evmg)
+        public ActionResult evenemangssida(/*Evenemang evmg*/ int? idet)
         {
-            int kommentarsid = Convert.ToInt32(Session["kommentarsID"]);
-            EvenemangsKommentarer kommentar = db.EvenemangsKommentarers.SingleOrDefault(a => a.EvenemangsKommentarerID == kommentarsid);
-            
-            Evenemang evenemanget;
-            if (evmg.Namn != null)
+            int ID = Convert.ToInt32(TempData["eventID"]);
+            Evenemang eventet;
+            if (idet.HasValue)
             {
-                evenemanget = db.Evenemangs.Single(m => m.Namn == evmg.Namn);
+                eventet = db.Evenemangs.SingleOrDefault(a => a.EvenemangID == idet);
             }
             else
             {
-                evenemanget = evmg;
+                eventet = db.Evenemangs.SingleOrDefault(a => a.EvenemangID == ID);
             }
-            
-            ICollection<EvenemangsKommentarer> kommentarer;
-            kommentarer = evenemanget.Åsikter;
-     
-
-            Session["evenemangsID"] = evenemanget.EvenemangID.ToString();
-
-            return View(Tuple.Create(evenemanget, kommentarer));
-
+            var kommentarer = db.EvenemangsKommentarers.Where(r => r.evenemang.EvenemangID == eventet.EvenemangID);
+            ICollection<EvenemangsKommentarer> comments;
+            comments = kommentarer.ToList();
+            return View(Tuple.Create(eventet, comments));
         }
     }
 }
