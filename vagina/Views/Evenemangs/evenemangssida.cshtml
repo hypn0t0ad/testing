@@ -1,4 +1,4 @@
-﻿@model Tuple <Systemet.Models.Evenemang, Systemet.Models.EvenemangsKommentarer, ICollection<Systemet.Models.EvenemangsKommentarer>>
+﻿@model Tuple <Systemet.Models.Evenemang, ICollection<Systemet.Models.EvenemangsKommentarer>>
 
 @{
     ViewBag.Title = "evenemangssida";
@@ -8,17 +8,17 @@
 
 <p>här ska man kunna se info om vart, när och hur. man ska kunna kommentera eventet och man ska kunna läsa tidigare kommentarer</p>
 
-@if (Model.Item3 != null)
+@if (Model.Item2 != null)
 {
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Item1.Åsikter)
+                @Html.DisplayName("kommentarer")
             </th>            
             <th></th>
         </tr>
 
-        @foreach (var item in Model.Item1.Åsikter)
+        @foreach (var item in Model.Item2)
         {
             <tr>
                 <td>

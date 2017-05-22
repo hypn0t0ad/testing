@@ -10,12 +10,13 @@ namespace Systemet.Models
 {
     public class Evenemang
     {
+        [Key]
         public int EvenemangID { get; set; }
         public string Namn { get; set; }
         public string Beskrivning { get; set; }
         public DateTime Tidpunkt { get; set; }
         public string Plats { get; set; }
-        public ICollection<EvenemangsKommentarer> Åsikter { get; set; }
+        public virtual ICollection<EvenemangsKommentarer> Åsikter { get; set; }
 
 
         public virtual Grupp grupp { get; set; }

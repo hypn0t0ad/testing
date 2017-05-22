@@ -46,14 +46,18 @@ namespace Systemet.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EvenemangID,Namn,Beskrivning,Tidpunkt")] Evenemang evenemang, Grupp grupp )
+        public ActionResult Create([Bind(Include = "EvenemangID,Namn,Beskrivning,Tidpunkt, Plats")] Evenemang evenemang, Grupp grupp )
         {          
             int gID = Convert.ToInt32(Session["GruppID"]);
+
+
+
             grupp = db.Grupps.Single(m => m.GruppID == gID);
             evenemang.grupp = grupp;
+
             db.Evenemangs.Add(evenemang);
             db.SaveChanges();
-            return RedirectToAction("evenemangssida");
+            return RedirectToAction("evenemangssida", evenemang);
         }
 
         // GET: Evenemangs/Edit/5
@@ -124,12 +128,27 @@ namespace Systemet.Controllers
 
         public ActionResult evenemangssida(Evenemang evmg)
         {
-            Evenemang eventet = db.Evenemangs.SingleOrDefault(e => e.Namn == evmg.Namn);
-            EvenemangsKommentarer åsikter = new EvenemangsKommentarer();
-            ICollection<EvenemangsKommentarer> gamlaåsikter;
-            gamlaåsikter = eventet.Åsikter;
+            int kommentarsid = Convert.ToInt32(Session["kommentarsID"]);
+            EvenemangsKommentarer kommentar = db.EvenemangsKommentarers.SingleOrDefault(a => a.EvenemangsKommentarerID == kommentarsid);
+            
+            Evenemang evenemanget;
+            if (evmg.Namn != null)
+            {
+                evenemanget = db.Evenemangs.Single(m => m.Namn == evmg.Namn);
+            }
+            else
+            {
+                evenemanget = evmg;
+            }
+            
+            ICollection<EvenemangsKommentarer> kommentarer;
+            kommentarer = evenemanget.Åsikter;
+     
 
-            return View(Tuple.Create(eventet, åsikter, gamlaåsikter));
+            Session["evenemangsID"] = evenemanget.EvenemangID.ToString();
+
+            return View(Tuple.Create(evenemanget, kommentarer));
+
         }
     }
 }

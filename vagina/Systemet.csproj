@@ -220,6 +220,10 @@
     <Compile Include="Migrations\201705181548045_lagt till plats vid evenmang.Designer.cs">
       <DependentUpon>201705181548045_lagt till plats vid evenmang.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705220918055_virtual på collection av kommentarer i evenemang.cs" />
+    <Compile Include="Migrations\201705220918055_virtual på collection av kommentarer i evenemang.Designer.cs">
+      <DependentUpon>201705220918055_virtual på collection av kommentarer i evenemang.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Evenemang.cs" />
     <Compile Include="Models\EvenemangsKommentarer.cs" />
@@ -511,6 +515,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705181548045_lagt till plats vid evenmang.resx">
       <DependentUpon>201705181548045_lagt till plats vid evenmang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705220918055_virtual på collection av kommentarer i evenemang.resx">
+      <DependentUpon>201705220918055_virtual på collection av kommentarer i evenemang.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

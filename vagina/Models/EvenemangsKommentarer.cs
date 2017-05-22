@@ -12,6 +12,8 @@ namespace Systemet.Models
     {
         public int EvenemangsKommentarerID { get; set; }
         public DateTime TidenFörKommentaren { get; set; }
+
+        [DisplayName("Kommentarer")]
         public string Text { get; set; }
 
 

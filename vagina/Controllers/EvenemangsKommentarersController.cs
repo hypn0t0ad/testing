@@ -136,21 +136,39 @@ namespace vagina.Controllers
         [HttpPost]
         public ActionResult komments([Bind(Include = "EvenemangsKommentarerID,Text")] EvenemangsKommentarer evenemangsKommentarer, int? id)
         {
-            Evenemang evnt = db.Evenemangs.SingleOrDefault(u => u.EvenemangID == id);
-            evenemangsKommentarer.evenemang = evnt;
-            evenemangsKommentarer.TidenFörKommentaren = DateTime.Now;
-            
-            if (ModelState.IsValid)
+            int eventid = Convert.ToInt32(Session["evenemangsID"]);
+            Evenemang händelsen;
+            if (eventid != null)
             {
-                db.EvenemangsKommentarers.Add(evenemangsKommentarer);
-                evnt.Åsikter.Add(evenemangsKommentarer);
-                ICollection<EvenemangsKommentarer> synpunkter;
-                synpunkter = evnt.Åsikter;
-                db.SaveChanges();
-                return RedirectToAction("evenemangssida", "evenemangs", Tuple.Create( evnt, evenemangsKommentarer, synpunkter));
+                händelsen = db.Evenemangs.SingleOrDefault(u => u.EvenemangID == eventid);              
+            }
+            else
+            {
+                händelsen = db.Evenemangs.SingleOrDefault(u => u.EvenemangID == id);
             }
 
-            return View("evenemangssida", "evenemangs");
+            evenemangsKommentarer.evenemang = händelsen;
+            
+            evenemangsKommentarer.TidenFörKommentaren = DateTime.Now;
+            händelsen.Åsikter.Add(evenemangsKommentarer);
+
+            if (ModelState.IsValid)
+            {
+
+                ICollection<EvenemangsKommentarer> sakersomsagts;
+                sakersomsagts = händelsen.Åsikter;
+
+                db.EvenemangsKommentarers.Add(evenemangsKommentarer);
+               
+                db.SaveChanges();
+
+
+                Session["kommentarsID"] = evenemangsKommentarer.EvenemangsKommentarerID;
+
+                return RedirectToAction("evenemangssida", "evenemangs", händelsen);
+            }
+
+            return View("evenemangssida", "Evenemangs");
         }
     }
 }
