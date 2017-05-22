@@ -19,7 +19,7 @@
         <tr>
             <td>
             
-                <a href="@Url.Action("evenemangssida", "Evenemangs", new { idet = item.EvenemangID @*EvenemangID = item.EvenemangID*@ })" title="@item.EvenemangID">
+                <a href="@Url.Action("evenemangssida", "Evenemangs", new { idet = item.EvenemangID })" title="@item.EvenemangID">
                     @item.Namn
                 </a> 
             </td>
@@ -27,5 +27,5 @@
     }
 </table>
 
-<p>här ska det finnas information om dina uppgifter</p>
+<p>@Html.ActionLink("Lägg till Uppgift", "Create", "Uppgifter")</p>
 <p>här ska det finnas notiser om meddelanden mm</p>

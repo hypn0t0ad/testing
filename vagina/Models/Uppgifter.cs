@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using Systemet.Models;
 
 namespace Systemet.Models
 {
@@ -14,12 +15,11 @@ namespace Systemet.Models
         public bool Utförd { get; set; }
         public bool Påbörjad { get; set; }
         public DateTime Startdatum { get; set; }
-        public DateTime Slutdatum { get; set; }
 
 
 
-        public AnvändarKonton Ansvarig { get; set; }
-        public Grupp TillhörGrupp { get; set; }
+        public virtual AnvändarKonton Ansvarig { get; set; }
+        public virtual Grupp TillhörGrupp { get; set; }
 
     }
 }
