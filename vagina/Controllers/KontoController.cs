@@ -78,20 +78,14 @@ namespace Systemet.Controllers
                 ICollection<Grupp> grupperna;
                 grupperna = user.TillhörGrupper;
 
-                ICollection<Evenemang> evenemang;
+                List<Evenemang> evenemang = new List<Evenemang>();
+                List<Uppgifter> uppgifts = new List<Uppgifter>();
+
                 foreach (var item in grupperna)
                 {
-                    evenemang = db.Evenemangs.Where(e => e.grupp.GruppID == item.GruppID).ToList();
-
+                    evenemang.AddRange(db.Evenemangs.Where(e => e.grupp.GruppID == item.GruppID).ToList());
+                    uppgifts.AddRange(db.Uppgifters.Where(u => u.TillhörGrupp.GruppID == item.GruppID).ToList());
                 }
-
-                ICollection<Uppgifter> uppgifts;
-                foreach (var item in grupperna)
-                {
-                    uppgifts = db.Uppgifters.Where(u => u.TillhörGrupp.GruppID == item.GruppID).ToList();
-
-                }
-
 
                 if (Session["AnvändarID"] != null)
                 {
