@@ -1,0 +1,87 @@
+﻿@model Tuple <Systemet.Models.Evenemang, ICollection<Systemet.Models.EvenemangsKommentarer>>
+
+@{
+    ViewBag.Title = "evenemangssida";
+}
+
+<h2>@Model.Item1.Namn</h2>
+
+<p>här ska man kunna se info om vart, när och hur. man ska kunna kommentera eventet och man ska kunna läsa tidigare kommentarer</p>
+
+@if (Model.Item2 != null)
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("kommentarer")
+            </th>            
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Item2)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Text)
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+<div id="modal-container" class="modal fade hidden-print" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
+
+
+@* Create a link that calls the controller method that returns the partial view*@
+@Html.ActionLink("Skriv kommentar", "komments", "EvenemangsKommentarers", new { id = Model.Item1.EvenemangID }, new
+{
+    @* Needed to link to the html of the modal*@
+data_target = "#modal-container",
+    @* Tells the bootstrap javascript to do its thing*@
+    data_toggle = "modal"
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*@using (Html.BeginForm("Kommentera", "EvenemangsKommentarers"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>EvenemangsKommentarer</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Item2.Text, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Item2.Text, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Item2.Text, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Kommentera" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}*@
+

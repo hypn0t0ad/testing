@@ -1,0 +1,32 @@
+﻿@using Systemet.Models
+@if (Session["AnvändarID"] != null)
+{
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                
+                @Html.ActionLink("Hej " + Session["Förnamn"].ToString() + "!" + " användarID " + Session["AnvändarID"].ToString(), "inloggad", "Konto")
+            </li>              
+            <li>
+                @Html.ActionLink("Mina grupper", "minagrupper", "Grupp")
+            </li>
+            <li>
+                @Html.ActionLink("Skapa Grupp", "Create", "Grupp")
+            </li>
+            <li>
+                @Html.ActionLink("Logga ut", "LogOut", "Konto")
+            </li>
+           
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Registrera", "Register", "Konto", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Logga in", "Login", "Konto", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

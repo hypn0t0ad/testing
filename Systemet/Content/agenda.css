@@ -1,0 +1,43 @@
+﻿.agenda {
+}
+ 
+/* Dates */
+.agenda .agenda-date {
+    width: 300px;
+}
+
+        .agenda .agenda-date .dayofmonth {
+            width: 80px;
+            font-size: 36px;
+            line-height: 36px;
+            /*float: left;*/
+            text-align: right;
+            margin-right: 10px;
+            display:block
+        }
+
+        .agenda .agenda-date .shortdate {
+            font-size: 0.75em;
+        }
+
+
+    /* Times */
+    .agenda .agenda-time {
+        width: 100px;
+    }
+
+
+    /* Events */
+    .agenda .agenda-events {
+    }
+
+        .agenda .agenda-events .agenda-event {
+        }
+
+.table td.fit,
+.table th.fit {
+    white-space: nowrap;
+    width: 1%;
+}
+@media (max-width: 767px) {
+}

@@ -1,0 +1,35 @@
+﻿@model Tuple <Systemet.Models.Grupp, Systemet.Models.AnvändarKonton>
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Grupp</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Item1.GruppNamn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item1.GruppNamn)
+        </dd>
+
+        <dt>            
+            Ledaren för gruppen
+        </dt>
+
+        <dd>
+            @ViewBag.ledaren
+            @*@Html.DisplayFor(model => model.LedareID)*@
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Item1.GruppID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
