@@ -129,5 +129,22 @@ namespace vagina.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        public ActionResult UppgiftsSida (int? idet)
+        {
+
+            Uppgifter uppgiften;
+            if (idet.HasValue)
+            {
+                uppgiften = db.Uppgifters.SingleOrDefault(a => a.UppgifterID == idet);
+            }
+            else
+            {
+                return View("Index", "Home");
+            }
+
+            return View(uppgiften);
+        }
     }
 }

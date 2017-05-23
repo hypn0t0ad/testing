@@ -79,11 +79,26 @@ namespace Systemet.Controllers
                 grupperna = user.TillhörGrupper;
                 if (Session["AnvändarID"] != null)
                 {
+
+                    //3 senaste eventsen
+                    foreach (var item in grupperna)
+                    {
+                        var events = db.Evenemangs.Where(e => e.grupp == e.grupp);
+                    }
+                    
+
+
+
+                    //uppgifter som inloggad är ansvarig för
+
+                    
+
+
+
                     return View(Tuple.Create(user, grupperna));
                 }
                 else
                 {
-
                     return RedirectToAction("Index", "Home");
                 }
             }
@@ -129,5 +144,7 @@ namespace Systemet.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
+
+
     }
 }

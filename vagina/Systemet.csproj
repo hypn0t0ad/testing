@@ -454,6 +454,7 @@
     <Content Include="Views\Uppgifter\Details.cshtml" />
     <Content Include="Views\Uppgifter\Edit.cshtml" />
     <Content Include="Views\Uppgifter\Index.cshtml" />
+    <Content Include="Views\Uppgifter\UppgiftsSida.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
