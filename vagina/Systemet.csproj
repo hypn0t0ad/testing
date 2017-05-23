@@ -234,6 +234,7 @@
     <Content Include="App_Data\Systemet.Models.OurDBContext_log.ldf">
       <DependentUpon>Systemet.Models.OurDBContext.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\agenda.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
