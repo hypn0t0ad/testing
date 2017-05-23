@@ -76,27 +76,27 @@ namespace Systemet.Controllers
                 AnvändarKonton konto = db.konton.SingleOrDefault(u => u.AnvändarID == user.AnvändarID);
                 user = konto;
                 ICollection<Grupp> grupperna;
+                ICollection<Evenemang> evenemangs;
+                ICollection<Uppgifter> uppgifts;
                 grupperna = user.TillhörGrupper;
 
-                ICollection<Evenemang> evenemang;
-                foreach (var item in grupperna)
+                foreach (var evenemang in grupperna)
                 {
-                    evenemang = db.Evenemangs.Where(e => e.grupp.GruppID == item.GruppID).ToList();
-
+                    var events = db.Evenemangs.Where(e => e.grupp.GruppID == evenemang.GruppID);
+                    evenemangs = events.ToList();
                 }
-
-                ICollection<Uppgifter> uppgifts;
-                foreach (var item in grupperna)
+                foreach (var uppgift in grupperna)
                 {
-                    uppgifts = db.Uppgifters.Where(u => u.TillhörGrupp.GruppID == item.GruppID).ToList();
-
+                    var upgfts = db.Uppgifters.Where(e => e.TillhörGrupp.GruppID == uppgift.GruppID);
+                    uppgifts = upgfts.ToList();
                 }
 
 
                 if (Session["AnvändarID"] != null)
                 {
-  
-                    return View(Tuple.Create(user, grupperna, evenemang, uppgifts));
+
+
+                    return View(Tuple.Create(user, grupperna, evenemangs));
                 }
                 else
                 {
