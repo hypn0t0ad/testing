@@ -148,7 +148,7 @@
     <Compile Include="Controllers\GruppController.cs" />
     <Compile Include="Controllers\KontoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\UppgiftersController.cs" />
+    <Compile Include="Controllers\UppgifterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -192,18 +192,6 @@
     <Compile Include="Migrations\201705111047107_evenemang påbörjat.Designer.cs">
       <DependentUpon>201705111047107_evenemang påbörjat.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705111725377_uppgifter.cs" />
-    <Compile Include="Migrations\201705111725377_uppgifter.Designer.cs">
-      <DependentUpon>201705111725377_uppgifter.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705121053420_uppgifter1.cs" />
-    <Compile Include="Migrations\201705121053420_uppgifter1.Designer.cs">
-      <DependentUpon>201705121053420_uppgifter1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705121250475_uppgifterviewmodel.cs" />
-    <Compile Include="Migrations\201705121250475_uppgifterviewmodel.Designer.cs">
-      <DependentUpon>201705121250475_uppgifterviewmodel.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201705172023000_lagt till kommentarer för evenemang.cs" />
     <Compile Include="Migrations\201705172023000_lagt till kommentarer för evenemang.Designer.cs">
       <DependentUpon>201705172023000_lagt till kommentarer för evenemang.cs</DependentUpon>
@@ -224,6 +212,14 @@
     <Compile Include="Migrations\201705220918055_virtual på collection av kommentarer i evenemang.Designer.cs">
       <DependentUpon>201705220918055_virtual på collection av kommentarer i evenemang.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705221304089_uppgifter.cs" />
+    <Compile Include="Migrations\201705221304089_uppgifter.Designer.cs">
+      <DependentUpon>201705221304089_uppgifter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705221318514_ändrat uppgifter.cs" />
+    <Compile Include="Migrations\201705221318514_ändrat uppgifter.Designer.cs">
+      <DependentUpon>201705221318514_ändrat uppgifter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Evenemang.cs" />
     <Compile Include="Models\EvenemangsKommentarer.cs" />
@@ -231,7 +227,6 @@
     <Compile Include="Models\OurDBContext.cs" />
     <Compile Include="Models\AnvändarKonton.cs" />
     <Compile Include="Models\Uppgifter.cs" />
-    <Compile Include="Models\UppgifterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -445,11 +440,6 @@
     <Content Include="Views\Evenemangs\Edit.cshtml" />
     <Content Include="Views\Evenemangs\Index.cshtml" />
     <Content Include="Views\Grupp\gruppsida.cshtml" />
-    <Content Include="Views\Uppgifters\Create.cshtml" />
-    <Content Include="Views\Uppgifters\Delete.cshtml" />
-    <Content Include="Views\Uppgifters\Details.cshtml" />
-    <Content Include="Views\Uppgifters\Edit.cshtml" />
-    <Content Include="Views\Uppgifters\Index.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Evenemangs\evenemangssida.cshtml" />
@@ -459,6 +449,12 @@
     <Content Include="Views\EvenemangsKommentarers\Edit.cshtml" />
     <Content Include="Views\EvenemangsKommentarers\Index.cshtml" />
     <Content Include="Views\EvenemangsKommentarers\komments.cshtml" />
+    <Content Include="Views\Uppgifter\Create.cshtml" />
+    <Content Include="Views\Uppgifter\Delete.cshtml" />
+    <Content Include="Views\Uppgifter\Details.cshtml" />
+    <Content Include="Views\Uppgifter\Edit.cshtml" />
+    <Content Include="Views\Uppgifter\Index.cshtml" />
+    <Content Include="Views\Uppgifter\UppgiftsSida.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -495,15 +491,6 @@
     <EmbeddedResource Include="Migrations\201705111047107_evenemang påbörjat.resx">
       <DependentUpon>201705111047107_evenemang påbörjat.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705111725377_uppgifter.resx">
-      <DependentUpon>201705111725377_uppgifter.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705121053420_uppgifter1.resx">
-      <DependentUpon>201705121053420_uppgifter1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705121250475_uppgifterviewmodel.resx">
-      <DependentUpon>201705121250475_uppgifterviewmodel.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705172023000_lagt till kommentarer för evenemang.resx">
       <DependentUpon>201705172023000_lagt till kommentarer för evenemang.cs</DependentUpon>
     </EmbeddedResource>
@@ -518,6 +505,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705220918055_virtual på collection av kommentarer i evenemang.resx">
       <DependentUpon>201705220918055_virtual på collection av kommentarer i evenemang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705221304089_uppgifter.resx">
+      <DependentUpon>201705221304089_uppgifter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705221318514_ändrat uppgifter.resx">
+      <DependentUpon>201705221318514_ändrat uppgifter.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

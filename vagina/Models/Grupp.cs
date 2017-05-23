@@ -26,6 +26,8 @@ namespace Systemet.Models
 
         public virtual ICollection<AnvändarKonton> GruppMedlemmar { get; set; }
         public virtual ICollection<Evenemang> Evenemang { get; set; }
+   
+        public virtual ICollection<Uppgifter> GruppUppgifter { get; set; }
 
     }
 }

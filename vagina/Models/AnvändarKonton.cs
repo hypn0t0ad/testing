@@ -21,6 +21,7 @@ namespace Systemet.Models
         public string FörNamn { get; set; }
 
         [Required(ErrorMessage = "efternamn måste anges.")]
+        
         public string EfterNamn { get; set; }
 
         [Required(ErrorMessage = "Email måste anges.")]
@@ -40,5 +41,9 @@ namespace Systemet.Models
         //public virtual Grupp grupper { get; set; }
 
         public virtual ICollection<Grupp> TillhörGrupper { get; set; }
+
+        public virtual ICollection<Uppgifter> AnsvararFörUppgift { get; set; }
+
+
     }
 }

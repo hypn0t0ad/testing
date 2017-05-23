@@ -195,11 +195,13 @@ namespace Systemet.Controllers
             }
             ICollection<Evenemang> events;
             events = gruppen.Evenemang;
+            ICollection<Uppgifter> uppgifterna;
+            uppgifterna = gruppen.GruppUppgifter;
             Session["GruppID"] = gruppen.GruppID.ToString();
 
 
 
-            return View(Tuple.Create(grupp, events));
+            return View(Tuple.Create(grupp, events, uppgifterna));
         }
 
         

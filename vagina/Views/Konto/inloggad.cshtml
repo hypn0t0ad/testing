@@ -13,23 +13,23 @@
         @Html.ActionLink("mina uppgifter", "Redigera", "Konto")
     </div>
 
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayName("Gruppnamn")
-            </th>
-            <th></th>
-        </tr>
+    <div class="jumbotron">
 
-        @foreach (var item in Model.Item2)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.GruppNamn)
-                </td>                
-            </tr>
-        }
-    </table>
-}
+       <h1>jumbotronen</h1>
+    </div>
+
+    
+        @Html.DisplayName("Gruppnamn")
+    foreach (var item in Model.Item2)
+    {
+        <div class="col-lg-6">
+            <div class="well">
+
+                @Html.DisplayFor(modelItem => item.GruppNamn)
+            </div>
+            </div>
+            }
+ 
+    }
 
 

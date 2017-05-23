@@ -1,4 +1,4 @@
-﻿@model Tuple <Systemet.Models.Grupp, ICollection<Systemet.Models.Evenemang>>
+﻿@model Tuple <Systemet.Models.Grupp, ICollection<Systemet.Models.Evenemang>, ICollection<Systemet.Models.Uppgifter>>
 @{
     ViewBag.Title = "Gruppsida";
 }
@@ -19,7 +19,7 @@
         <tr>
             <td>
             
-                <a href="@Url.Action("evenemangssida", "Evenemangs", new { idet = item.EvenemangID @*EvenemangID = item.EvenemangID*@ })" title="@item.EvenemangID">
+                <a href="@Url.Action("evenemangssida", "Evenemangs", new { idet = item.EvenemangID })" title="@item.EvenemangID">
                     @item.Namn
                 </a> 
             </td>
@@ -27,5 +27,26 @@
     }
 </table>
 
-<p>här ska det finnas information om dina uppgifter</p>
-<p>här ska det finnas notiser om meddelanden mm</p>
+<p>@Html.ActionLink("Lägg till Uppgift", "Create", "Uppgifter")</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Uppgifter")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Item3)
+    {
+        <tr>
+            <td>
+
+                <a href="@Url.Action("UppgiftsSida", "Uppgifter", new { idet = item.UppgifterID })" title="@item.UppgifterID">
+                    @item.Namn
+                </a>
+            </td>
+        </tr>
+    }
+</table>
+
