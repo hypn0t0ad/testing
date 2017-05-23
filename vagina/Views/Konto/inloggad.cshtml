@@ -1,4 +1,4 @@
-﻿@model Tuple <Systemet.Models.AnvändarKonton, ICollection<Systemet.Models.Grupp>, Systemet.Models.Evenemang, Systemet.Models.Uppgifter>
+﻿@model Tuple <Systemet.Models.AnvändarKonton, ICollection<Systemet.Models.Grupp>, List<Systemet.Models.Evenemang>, List<Systemet.Models.Uppgifter>>
 @{
     ViewBag.Title = "inloggad";
 }
@@ -26,7 +26,6 @@
             <div class="well">
 
                 @Html.DisplayFor(modelItem => item.GruppNamn)
-
 
             </div>
             </div>
