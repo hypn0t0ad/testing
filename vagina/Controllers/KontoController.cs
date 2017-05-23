@@ -77,25 +77,26 @@ namespace Systemet.Controllers
                 user = konto;
                 ICollection<Grupp> grupperna;
                 grupperna = user.TillhörGrupper;
+
+                ICollection<Evenemang> evenemang;
+                foreach (var item in grupperna)
+                {
+                    evenemang = db.Evenemangs.Where(e => e.grupp.GruppID == item.GruppID).ToList();
+
+                }
+
+                ICollection<Uppgifter> uppgifts;
+                foreach (var item in grupperna)
+                {
+                    uppgifts = db.Uppgifters.Where(u => u.TillhörGrupp.GruppID == item.GruppID).ToList();
+
+                }
+
+
                 if (Session["AnvändarID"] != null)
                 {
-
-                    //3 senaste eventsen
-                    foreach (var item in grupperna)
-                    {
-                        var events = db.Evenemangs.Where(e => e.grupp == e.grupp);
-                    }
-                    
-
-
-
-                    //uppgifter som inloggad är ansvarig för
-
-                    
-
-
-
-                    return View(Tuple.Create(user, grupperna));
+  
+                    return View(Tuple.Create(user, grupperna, evenemang, uppgifts));
                 }
                 else
                 {
