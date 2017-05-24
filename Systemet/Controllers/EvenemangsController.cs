@@ -57,7 +57,8 @@ namespace Systemet.Controllers
 
             db.Evenemangs.Add(evenemang);
             db.SaveChanges();
-            return RedirectToAction("evenemangssida", evenemang);
+            TempData["eventID"] = evenemang.EvenemangID;
+            return RedirectToAction("evenemangssida");
         }
 
         // GET: Evenemangs/Edit/5
@@ -126,7 +127,7 @@ namespace Systemet.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult evenemangssida(/*Evenemang evmg*/ int? idet)
+        public ActionResult evenemangssida(int? idet)
         {
             int ID = Convert.ToInt32(TempData["eventID"]);
             Evenemang eventet;

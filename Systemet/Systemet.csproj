@@ -224,6 +224,10 @@
     <Compile Include="Migrations\201705221318514_ändrat uppgifter.Designer.cs">
       <DependentUpon>201705221318514_ändrat uppgifter.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705241135519_användarkommentarer.cs" />
+    <Compile Include="Migrations\201705241135519_användarkommentarer.Designer.cs">
+      <DependentUpon>201705241135519_användarkommentarer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Evenemang.cs" />
     <Compile Include="Models\EvenemangsKommentarer.cs" />
@@ -239,6 +243,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\comments.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\jquery.datetimepicker.css" />
     <Content Include="Content\jquery.timepicker.css" />
@@ -517,6 +522,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705221318514_ändrat uppgifter.resx">
       <DependentUpon>201705221318514_ändrat uppgifter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705241135519_användarkommentarer.resx">
+      <DependentUpon>201705241135519_användarkommentarer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

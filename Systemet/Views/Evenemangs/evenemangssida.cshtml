@@ -3,6 +3,9 @@
 @{
     ViewBag.Title = "evenemangssida";
 }
+@*<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">*@
+<link rel="stylesheet" type="text/css" href="~/Content/comments.css">
+~/Content/agenda.css
 
 <h2>@Model.Item1.Namn</h2>
 
@@ -38,6 +41,137 @@
 </div>
 
 
+
+
+
+<div class="container bootstrap snippet">
+    <div class="col-sm-6">
+        <!-- Begin tab comment and popular posts -->
+        <div class="box-info full">
+
+            <!-- Tab comments and popular posts -->
+
+            @*<ul class="nav nav-tabs nav-justified">
+                <li class="active"><a href="#comments" data-toggle="tab"><i class="fa fa-comments"></i> Senaste kommentarerna</a></li>
+                <li><a href="#popular" data-toggle="tab"><i class="fa fa-star"></i> Viktigaste kommentarerna</a></li>
+            </ul>*@
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <!-- Pane comments -->
+                <div class="tab-pane active animated fadeInRight" id="comments">
+                    <!-- Begin scroll wrappper -->
+                    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 325px;">
+                        <div class="scroll-widget">
+                            <ul class="media-list">
+
+                                @foreach (var item in Model.Item2)
+                                {
+                                    <li class="media">
+                                        <a class="pull-left" href="#fakelink">
+                                            <span class="glyphicon glyphicon-knight"></span>
+                                           
+                                        </a>
+                                        <div class="media-body">
+                                            <h4 class="media-heading"><a>John Doe</a> <small>Just now</small></h4>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                                        </div>
+                                    </li>
+                                }
+
+                                <li class="media">
+                                    <a class="pull-left" href="#fakelink">
+                                        <img class="media-object" src="http://bootdey.com/img/Content/User_for_snippets.png" alt="Avatar">
+                                    </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading"><a href="#fakelink">John Doe</a> <small>Just now</small></h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                                    </div>
+                                </li>
+
+                                <li class="media">
+                                    <a class="pull-left" href="#fakelink">
+                                        <img class="media-object" src="http://bootdey.com/img/Content/user-453533-fdadfd.png" alt="Avatar">
+                                    </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading"><a href="#fakelink">Agent 007</a> <small>Yesterday at 04:00 AM</small></h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam rhoncus</p>
+                                    </div>
+                                </li>
+
+                                <li class="media">
+                                    <a class="pull-left" href="#fakelink">
+                                        <img class="media-object" src="http://bootdey.com/img/Content/Twitter_bird_icon.png" alt="Avatar">
+                                    </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading"><a href="#fakelink">Twitter man</a> <small>January 17, 2014 05:35 PM</small></h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                                    </div>
+                                </li>
+
+                            </ul>
+
+                        </div><div class="slimScrollBar" style="width: 3px; position: absolute; top: 11px; opacity: 0.4; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; left: 1px; height: 209.5734126984127px; background: rgb(134, 134, 134);"></div><div class="slimScrollRail" style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; opacity: 0.3; z-index: 90; left: 1px; background: rgb(51, 51, 51);"></div>
+
+                    </div><!-- End div .scroll-widget -->
+
+                    <div class="box-footer">
+                        <p><a href="#fakelink"><i class="fa fa-share"></i> See all comments</a></p>
+                    </div>
+                </div><!-- End div .tab-pane -->
+                <!-- Pane popular posts -->
+                <div class="tab-pane animated fadeInRight" id="popular">
+                    <!-- Begin scroll wrappper -->
+                    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 325px;">
+                        <div class="scroll-widget" style="overflow: hidden; width: auto; height: 325px;">
+                            <ul class="media-list">
+                                <li class="media">
+                                    <div class="media-body">
+                                        <h4 class="media-heading">
+                                            <a href="#fakelink">Cras sit amet erat sit amet lacus egestas</a>
+                                            <br><small>January 17, 2014 at 11:24 PM</small>
+                                        </h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+                                    </div>
+                                </li>
+
+                                <li class="media">
+                                    <div class="media-body">
+                                        <h4 class="media-heading">
+                                            <a href="#fakelink">Cras sit amet erat sit amet lacus egestas</a>
+                                            <br><small>January 17, 2014 at 08:24 AM</small>
+                                        </h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+                                    </div>
+                                </li>
+
+                                <li class="media">
+                                    <div class="media-body">
+                                        <h4 class="media-heading">
+                                            <a href="#fakelink">Cras sit amet erat sit amet lacus egestas</a>
+                                            <br><small>January 17, 2014 at 05:24 AM</small>
+                                        </h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div><div class="slimScrollBar" style="width: 3px; position: absolute; top: 0px; opacity: 0.4; display: block; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; left: 1px; background: rgb(134, 134, 134);"></div><div class="slimScrollRail" style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; opacity: 0.3; z-index: 90; left: 1px; background: rgb(51, 51, 51);"></div>
+                    </div><!-- End div .scroll-widget -->
+                    <div class="box-footer">
+                        <p><a href="#fakelink"><i class="fa fa-share"></i> See all posts</a></p>
+                    </div>
+                </div><!-- End div .tab-pane -->
+            </div><!-- End div .tab-content -->
+        </div><!-- End div .box-info .full -->
+        <!-- End tab comment and popular posts -->
+    </div>
+</div>
+
+
+
+
+
+
 @* Create a link that calls the controller method that returns the partial view*@
 @Html.ActionLink("Skriv kommentar", "komments", "EvenemangsKommentarers", new { id = Model.Item1.EvenemangID }, new
 {
@@ -48,40 +182,4 @@ data_target = "#modal-container",
 })
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-@*@using (Html.BeginForm("Kommentera", "EvenemangsKommentarers"))
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>EvenemangsKommentarer</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Item2.Text, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Item2.Text, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Item2.Text, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Kommentera" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}*@
 

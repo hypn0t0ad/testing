@@ -6,7 +6,6 @@
 <h2>@Model.Item1.GruppNamn</h2>
 
 
-
 <table class="table">
     <tr>
         <th>
@@ -27,8 +26,6 @@
 </table>
 
 
-@Html.ActionLink("skapa evenemang", "Create", "Evenemangs")
-
 <table class="table">
     <tr>
         <th>
@@ -41,16 +38,16 @@
     {
         <tr>
             <td>
-            
+
                 <a href="@Url.Action("evenemangssida", "Evenemangs", new { idet = item.EvenemangID })" title="@item.EvenemangID">
                     @item.Namn
-                </a> 
+                </a>
             </td>
         </tr>
     }
 </table>
+@Html.ActionLink("skapa evenemang", "Create", "Evenemangs")
 
-<p>@Html.ActionLink("Lägg till Uppgift", "Create", "Uppgifter")</p>
 
 <table class="table">
     <tr>
@@ -72,4 +69,4 @@
         </tr>
     }
 </table>
-
+<p>@Html.ActionLink("Lägg till Uppgift", "Create", "Uppgifter")</p>

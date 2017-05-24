@@ -48,7 +48,11 @@ namespace vagina.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "EvenemangsKommentarerID,Text")] EvenemangsKommentarer evenemangsKommentarer)
         {
+            AnvändarKonton användare;
+            int anv = Convert.ToInt32(Session["AnvändarID"]);
+            användare = db.konton.SingleOrDefault(a => a.AnvändarID == anv);
             evenemangsKommentarer.TidenFörKommentaren = DateTime.Now;
+            evenemangsKommentarer.kommentator = användare;
             if (ModelState.IsValid)
             {
                 db.EvenemangsKommentarers.Add(evenemangsKommentarer);
@@ -136,61 +140,26 @@ namespace vagina.Controllers
         [HttpPost]
         public ActionResult komments([Bind(Include = "EvenemangsKommentarerID,Text")] EvenemangsKommentarer evenemangsKommentarer, int? id)
         {
-            
+            AnvändarKonton användare;
+
+            int anv = Convert.ToInt32(Session["AnvändarID"]);
+            användare = db.konton.SingleOrDefault(a => a.AnvändarID == anv);
+
+            evenemangsKommentarer.kommentator = användare;
             evenemangsKommentarer.TidenFörKommentaren = DateTime.Now;
+
             Evenemang eventet = db.Evenemangs.SingleOrDefault(a => a.EvenemangID == id);
+
             eventet.Åsikter.Add(evenemangsKommentarer);
+            användare.Kommentarer.Add(evenemangsKommentarer);
+
+
             db.EvenemangsKommentarers.Add(evenemangsKommentarer);
             db.SaveChanges();
             TempData["eventID"] = eventet.EvenemangID;           
 
             return RedirectToAction("evenemangssida", "evenemangs");
 
-
-
-
-
-
-
-
-
-
-
-
-
-            //int eventid = Convert.ToInt32(Session["evenemangsID"]);
-            //Evenemang händelsen;
-            //if (eventid != null)
-            //{
-            //    händelsen = db.Evenemangs.SingleOrDefault(u => u.EvenemangID == eventid);              
-            //}
-            //else
-            //{
-            //    händelsen = db.Evenemangs.SingleOrDefault(u => u.EvenemangID == id);
-            //}
-
-            //evenemangsKommentarer.evenemang = händelsen;
-
-            //evenemangsKommentarer.TidenFörKommentaren = DateTime.Now;
-            //händelsen.Åsikter.Add(evenemangsKommentarer);
-
-            //if (ModelState.IsValid)
-            //{
-
-            //    ICollection<EvenemangsKommentarer> sakersomsagts;
-            //    sakersomsagts = händelsen.Åsikter;
-
-            //    db.EvenemangsKommentarers.Add(evenemangsKommentarer);
-
-            //    db.SaveChanges();
-
-
-            //    Session["kommentarsID"] = evenemangsKommentarer.EvenemangsKommentarerID;
-
-            //    return RedirectToAction("evenemangssida", "evenemangs", händelsen);
-            //}
-
-            //return View("evenemangssida", "Evenemangs");
         }
     }
 }

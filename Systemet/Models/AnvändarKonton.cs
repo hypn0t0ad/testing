@@ -44,6 +44,8 @@ namespace Systemet.Models
 
         public virtual ICollection<Uppgifter> AnsvararFörUppgift { get; set; }
 
+        public virtual ICollection<EvenemangsKommentarer> Kommentarer { get; set; }
+
 
     }
 }
