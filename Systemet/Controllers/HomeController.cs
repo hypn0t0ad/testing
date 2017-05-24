@@ -10,6 +10,11 @@ namespace Systemet.Controllers
     {
         public ActionResult Index()
         {
+            if (TempData["välkommen"] != null)
+            {
+                ViewBag.Message = TempData["välkommen"].ToString();
+            }
+           
             return View();
         }
 

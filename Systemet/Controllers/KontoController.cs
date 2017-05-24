@@ -36,9 +36,9 @@ namespace Systemet.Controllers
                     db.SaveChanges();
                 }
                 ModelState.Clear();
-                ViewBag.Message = Konto.FörNamn + " " + Konto.EfterNamn + " färdig med registreringen!";
+                TempData["välkommen"] = "Välkommen " + Konto.FörNamn + " " + Konto.EfterNamn +"! " + "Du är färdig med registreringen! Men du måste ändå logga in för att bekräfta.";
             }
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
         //login 

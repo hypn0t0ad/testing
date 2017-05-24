@@ -58,8 +58,9 @@ namespace Systemet.Controllers
             grupp.GruppMedlemmar.Add(user);
             user.TillhörGrupper.Add(grupp);
             db.SaveChanges();
+            TempData["nygrupp"] = grupp.GruppNamn;
 
-            return View("gruppsida", grupp);            
+            return RedirectToAction("gruppsida");            
         }
 
         [HttpPost]
@@ -184,15 +185,18 @@ namespace Systemet.Controllers
 
         public ActionResult gruppsida (Grupp grupp)
         {
-            Grupp gruppen;            
+          
+            Grupp gruppen = new Grupp();            
             if (grupp.GruppNamn != null)
             {
-               gruppen = db.Grupps.Single(m => m.GruppNamn == grupp.GruppNamn);
+                gruppen = db.Grupps.Single(m => m.GruppNamn == grupp.GruppNamn);
             }
-            else
+            else if (TempData["nygrupp"] != null && grupp.GruppNamn == null)
             {
-                gruppen = grupp;
+                string namnet = TempData["nygrupp"].ToString();
+                gruppen = db.Grupps.Single(m => m.GruppNamn == namnet);
             }
+
             ICollection<Evenemang> events;
             events = gruppen.Evenemang;
             ICollection<Uppgifter> uppgifterna;
@@ -201,7 +205,7 @@ namespace Systemet.Controllers
 
 
 
-            return View(Tuple.Create(grupp, events, uppgifterna));
+            return View(Tuple.Create(gruppen, events, uppgifterna));
         }
 
         
