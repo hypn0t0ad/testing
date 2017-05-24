@@ -192,6 +192,10 @@
     <Compile Include="Migrations\201705111047107_evenemang påbörjat.Designer.cs">
       <DependentUpon>201705111047107_evenemang påbörjat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705121053420_uppgifter1.cs" />
+    <Compile Include="Migrations\201705121053420_uppgifter1.Designer.cs">
+      <DependentUpon>201705121053420_uppgifter1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201705172023000_lagt till kommentarer för evenemang.cs" />
     <Compile Include="Migrations\201705172023000_lagt till kommentarer för evenemang.Designer.cs">
       <DependentUpon>201705172023000_lagt till kommentarer för evenemang.cs</DependentUpon>
@@ -491,6 +495,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705111047107_evenemang påbörjat.resx">
       <DependentUpon>201705111047107_evenemang påbörjat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705121053420_uppgifter1.resx">
+      <DependentUpon>201705121053420_uppgifter1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705172023000_lagt till kommentarer för evenemang.resx">
       <DependentUpon>201705172023000_lagt till kommentarer för evenemang.cs</DependentUpon>
