@@ -26,7 +26,7 @@
     {
         if (item.Evenemang.Count() != 0)
         {
-            <div class="col-sm-6">
+            <div class="well-lg" style="background-color:#eee">
 
                 @using (Html.BeginForm("gruppsida", "Grupp", new { item.GruppNamn }))
                 {
@@ -36,7 +36,7 @@
 
                     <input type="submit" value="@item.GruppNamn" class="btn btn-lg btn-danger" id="gruppknapp" style="font-size:x-large"/>
 
-                    <div class="container">
+                    <div class="container-fluid">
 
                         <div class="agenda">
                             <div class="table-responsive col-sm-6">
@@ -54,15 +54,15 @@
                                         {
                                             <tbody>
                                                 <tr class="table">
-                                                    <td class="agenda-date" class="active" rowspan="@Model.Item2.Count()">
+                                                    <td class="agenda-date active" style="background-color:#eee" rowspan="@Model.Item2.Count()">
                                                         <div class="dayofmonth">@ev.Tidpunkt.Day/@ev.Tidpunkt.Month</div>
                                                         <div class="dayofweek">@ev.Tidpunkt.DayOfWeek</div>
                                                         <div class="shortdate text-muted">@ev.Tidpunkt.Year</div>
                                                     </td>
-                                                    <td class="agenda-time">
+                                                    <td class="agenda-time" style="background-color:#eee">
                                                         @ev.Tidpunkt.ToShortTimeString();
                                                     </td>
-                                                    <td class="agenda-events">
+                                                    <td class="agenda-events" style="background-color:#eee">
                                                         <div class="agenda-event">
                                                             @ev.Namn;
                                                         </div>

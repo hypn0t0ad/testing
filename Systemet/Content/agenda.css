@@ -4,17 +4,18 @@
 /* Dates */
 .agenda .agenda-date {
     width: 300px;
+    background-color:#eee;
 }
 
-        .agenda .agenda-date .dayofmonth {
-            width: 80px;
-            font-size: 36px;
-            line-height: 36px;
-            /*float: left;*/
-            text-align: right;
-            margin-right: 10px;
-            display:block
-        }
+    .agenda .agenda-date .dayofmonth {
+        width: 80px;
+        font-size: 36px;
+        line-height: 36px;
+        /*float: left;*/
+        text-align: right;
+        margin-right: 10px;
+        display: block;
+    }
 
         .agenda .agenda-date .shortdate {
             font-size: 0.75em;
