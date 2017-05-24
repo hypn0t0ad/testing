@@ -6,7 +6,19 @@
 
 <h2>Grupper:</h2>
 
-@Html.DisplayFor(model = Model.)
+@{
+    var grupperna = TempData["allagrupper"];
 
+    } 
+
+@foreach (var item in Model )
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GruppNamn)
+    </tr>
 }
 

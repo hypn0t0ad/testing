@@ -153,7 +153,7 @@ namespace Systemet.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult gåmedigrupp()
+        public ActionResult gåmedigrupp(List<Grupp> grupperna)
         {
             return View();
         }

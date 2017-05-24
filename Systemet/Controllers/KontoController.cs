@@ -81,7 +81,7 @@ namespace Systemet.Controllers
                 List<Evenemang> evenemang = new List<Evenemang>();
                 List<Uppgifter> uppgifts = new List<Uppgifter>();
 
-                grupperna = user.TillhörGrupper.ToList();
+                grupperna = user.TillhörGrupper.ToList();   //PROBLEM NULL-REFERENCE
 
                 foreach (var item in grupperna)
                 {
@@ -145,7 +145,9 @@ namespace Systemet.Controllers
         {
             OurDBContext db = new OurDBContext();
 
-            List<Grupp> allagrupper = db.Grupps.Where(g => g.GruppNamn == sökning).ToList();
+            List<Grupp> allagrupper = db.Grupps.Where(g => g.GruppNamn.Contains(sökning)).ToList();
+
+            TempData["allagrupper"] = allagrupper.ToList();
 
             return RedirectToAction("gåmedigrupp", "Grupp", allagrupper);
         }
