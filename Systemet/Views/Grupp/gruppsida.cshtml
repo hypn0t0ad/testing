@@ -4,6 +4,29 @@
 }
 
 <h2>@Model.Item1.GruppNamn</h2>
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Medlemmar")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Item1.GruppMedlemmar)
+    {
+        <tr>
+            <td>
+
+                <a>@item.FörNamn @item.EfterNamn</a>
+            </td>
+        </tr>
+    }
+</table>
+
+
 @Html.ActionLink("skapa evenemang", "Create", "Evenemangs")
 
 <table class="table">

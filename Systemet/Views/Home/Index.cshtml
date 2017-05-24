@@ -3,7 +3,10 @@
 }
 
 <div class="jumbotron">
-    <label name="logga" value="SENSIFY" />
+    @if (ViewBag.Message != null)
+    {
+        <p>@ViewBag.Message</p>
+    }
 </div>
 
 <div class="row">
