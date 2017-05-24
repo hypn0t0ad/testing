@@ -16,7 +16,7 @@ namespace Systemet.Models
         [DisplayName("Kommentarer")]
         public string Text { get; set; }
 
-        public AnvändarKonton kommentator { get; set; }
+        public virtual AnvändarKonton kommentator { get; set; }
 
 
         public virtual Evenemang evenemang { get; set; }
