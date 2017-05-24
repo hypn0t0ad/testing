@@ -34,10 +34,12 @@
 
                     var utvalt = Model.Item3.Where(u => u.grupp.GruppID == item.GruppID).OrderBy(u => u.Tidpunkt).Take(3).ToList();
 
-                    <input type="submit" value="@item.GruppNamn" class="btn btn-lg btn-danger" id="gruppknapp" style="font-size:x-large"/>
+                    
 
                     <div class="container-fluid">
 
+                        <input type="submit" value="@item.GruppNamn" class="btn btn-lg btn-danger" id="gruppknapp" style="font-size:x-large" />
+                        
                         <div class="agenda">
                             <div class="table-responsive col-sm-6">
                                 <table class="table table-condensed table-responsive">
@@ -75,6 +77,10 @@
                                         }
                                             
                                 </table>
+                            </div>
+                            <div class="col-sm-6" style="background-color:aqua">
+                                <p>texttexttexttexttext</p>
+
                             </div>
                         </div>
                     </div>
