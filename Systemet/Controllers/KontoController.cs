@@ -89,16 +89,16 @@ namespace Systemet.Controllers
                     uppgifts.AddRange(db.Uppgifters.Where(u => u.TillhörGrupp.GruppID == item.GruppID).ToList());
                 }
 
+
                 if (Session["AnvändarID"] != null)
                 {
-  
                     return View(Tuple.Create(user, grupperna, evenemang, uppgifts));
                 }
                 else
                 {
                     return RedirectToAction("Index", "Home");
                 }
-            
+
         }
 
         public ActionResult Redigera()
@@ -141,6 +141,13 @@ namespace Systemet.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public ActionResult sökgrupp(string sökning)
+        {
+            OurDBContext db = new OurDBContext();
 
+            List<Grupp> allagrupper = db.Grupps.Where(g => g.GruppNamn == sökning).ToList();
+
+            return RedirectToAction("gåmedigrupp", "Grupp", allagrupper);
+        }
     }
 }
