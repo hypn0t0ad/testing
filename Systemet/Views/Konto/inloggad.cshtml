@@ -9,23 +9,31 @@
 {
 
     <div class="jumbotron">
-
+        
         <h2> Välkommen @Session["Förnamn"].ToString()</h2>
-        <div>
-            <span class="glyphicon glyphicon-tag"></span>
-            @Html.ActionLink("gå med i grupp", "gåmedigrupp", "Grupp")
-        </div>
+
         <div>
             <span class="glyphicon glyphicon-user"></span>
             @Html.ActionLink("mina uppgifter", "Redigera", "Konto")
         </div>
 
+          @using (Html.BeginForm("gåmedigrupp", "Grupp"))
+          { 
+              @ViewBag.Sökning
+              @Html.TextBox("sökning")
+              <input type = "submit" value = "sökning" name = "sökning" id = "sökning" />
+                      
+          }
+
+
+
+
     </div>
 
-    foreach (var item in Model.Item2)
-    {
-        if (item.Evenemang.Count() != 0)
-        {
+            foreach (var item in Model.Item2)
+                  {
+                      if (item.Evenemang.Count() != 0)
+                      {
             <div class="well-lg" style="background-color:#eee">
 
                 @using (Html.BeginForm("gruppsida", "Grupp", new { item.GruppNamn }))
@@ -50,10 +58,11 @@
                                             <th>Evenemang</th>
                                         </tr>
                                     </thead>
-                                    
+
+
 
                                         @foreach (var ev in utvalt)
-                                        {
+          {
                                             <tbody>
                                                 <tr class="table">
                                                     <td class="agenda-date active" style="background-color:#eee" rowspan="@Model.Item2.Count()">
@@ -92,4 +101,14 @@
     }
 }
 
+<script type="text/javascript">
+
+    $(function autocomplete() {
+        var grupper = @Model.Item2.Select(g => g.GruppNamn).ToArray();
+
+        $("#sökning").autocomplete({ source: grupper });
+    }
+
+
+</script>  
 

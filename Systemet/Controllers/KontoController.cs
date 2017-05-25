@@ -81,7 +81,7 @@ namespace Systemet.Controllers
                 List<Evenemang> evenemang = new List<Evenemang>();
                 List<Uppgifter> uppgifts = new List<Uppgifter>();
 
-                grupperna = user.TillhörGrupper.ToList();
+                grupperna = user.TillhörGrupper.ToList();   //PROBLEM NULL-REFERENCE
 
                 foreach (var item in grupperna)
                 {
@@ -89,16 +89,16 @@ namespace Systemet.Controllers
                     uppgifts.AddRange(db.Uppgifters.Where(u => u.TillhörGrupp.GruppID == item.GruppID).ToList());
                 }
 
+
                 if (Session["AnvändarID"] != null)
                 {
-  
                     return View(Tuple.Create(user, grupperna, evenemang, uppgifts));
                 }
                 else
                 {
                     return RedirectToAction("Index", "Home");
                 }
-            
+
         }
 
         public ActionResult Redigera()
@@ -140,7 +140,6 @@ namespace Systemet.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
-
 
     }
 }

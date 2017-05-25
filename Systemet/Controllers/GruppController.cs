@@ -155,20 +155,23 @@ namespace Systemet.Controllers
 
         public ActionResult gåmedigrupp()
         {
+            var grupperna = TempData["allagrupper"];
+
             return View();
         }
 
         [HttpPost]
         public ActionResult gåmedigrupp(string sökning)
-        {   
-            
-            Grupp grupp = db.Grupps.Where(f => f.GruppNamn == sökning).FirstOrDefault();
+        {
 
-            if (grupp != null)
+            OurDBContext db = new OurDBContext();
+
+            ICollection<Grupp> allagrupper = db.Grupps.Where(g => g.GruppNamn.Contains(sökning)).ToList();
+
+
+            if (allagrupper != null)
             {
-                ViewBag.gruppen = grupp.GruppNamn;
-                TempData["gruppnamn"] = grupp.GruppNamn;
-                return View("bekräftagrupp");
+                return View(allagrupper);
             }
             return View("error", "konto");
         }

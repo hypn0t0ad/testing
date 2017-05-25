@@ -24,10 +24,12 @@ namespace Systemet.Models
 
         public int LedareID { get; set; }
 
+
+
         public virtual ICollection<AnvändarKonton> GruppMedlemmar { get; set; }
         public virtual ICollection<Evenemang> Evenemang { get; set; }
-   
         public virtual ICollection<Uppgifter> GruppUppgifter { get; set; }
+        public virtual ICollection<GruppFörfrågan> Ansökningar { get; set; }
 
     }
 }
