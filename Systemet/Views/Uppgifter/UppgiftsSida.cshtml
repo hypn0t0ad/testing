@@ -3,6 +3,12 @@
 @{
     ViewBag.Title = "UppgiftsSida";
 }
+<ol class="breadcrumb">
+    <li><a href="~/Views/Konto/inloggad.cshtml">Start</a></li>
+    <li><a href="~/Views/Grupp/minagrupper.cshtml">Mina Grupper</a></li>
+    <li><a href="~/Views/Grupp/gruppsida.cshtml">Gruppsida</a></li>
+    <li class="active">Uppgift: @Model.Namn</li>
+</ol>
 
 <h2>UppgiftsSida</h2>
 
