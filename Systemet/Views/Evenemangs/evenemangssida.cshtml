@@ -3,9 +3,9 @@
 @{
     ViewBag.Title = "evenemangssida";
 }
-@*<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">*@
+
 <link rel="stylesheet" type="text/css" href="~/Content/comments.css">
-~/Content/agenda.css
+
 
 <h2>@Model.Item1.Namn</h2>
 
@@ -65,6 +65,9 @@
                         <div class="scroll-widget">
                             <ul class="media-list">
 
+
+  
+
                                 @foreach (var item in Model.Item2)
                                 {
                                     <li class="media">
@@ -78,87 +81,15 @@
                                         </div>
                                     </li>
                                 }
-
-                                <li class="media">
-                                    <a class="pull-left" href="#fakelink">
-                                        <img class="media-object" src="http://bootdey.com/img/Content/User_for_snippets.png" alt="Avatar">
-                                    </a>
-                                    <div class="media-body">
-                                        <h4 class="media-heading"><a href="#fakelink">John Doe</a> <small>Just now</small></h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                                    </div>
-                                </li>
-
-                                <li class="media">
-                                    <a class="pull-left" href="#fakelink">
-                                        <img class="media-object" src="http://bootdey.com/img/Content/user-453533-fdadfd.png" alt="Avatar">
-                                    </a>
-                                    <div class="media-body">
-                                        <h4 class="media-heading"><a href="#fakelink">Agent 007</a> <small>Yesterday at 04:00 AM</small></h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam rhoncus</p>
-                                    </div>
-                                </li>
-
-                                <li class="media">
-                                    <a class="pull-left" href="#fakelink">
-                                        <img class="media-object" src="http://bootdey.com/img/Content/Twitter_bird_icon.png" alt="Avatar">
-                                    </a>
-                                    <div class="media-body">
-                                        <h4 class="media-heading"><a href="#fakelink">Twitter man</a> <small>January 17, 2014 05:35 PM</small></h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                                    </div>
-                                </li>
-
                             </ul>
 
-                        </div><div class="slimScrollBar" style="width: 3px; position: absolute; top: 11px; opacity: 0.4; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; left: 1px; height: 209.5734126984127px; background: rgb(134, 134, 134);"></div><div class="slimScrollRail" style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; opacity: 0.3; z-index: 90; left: 1px; background: rgb(51, 51, 51);"></div>
+                        </div>
+                    <div class="slimScrollBar" style="width: 3px; position: absolute; top: 11px; opacity: 0.4; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; left: 1px; height: 209.5734126984127px; background: rgb(134, 134, 134);"></div><div class="slimScrollRail" style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; opacity: 0.3; z-index: 90; left: 1px; background: rgb(51, 51, 51);"></div>
 
                     </div><!-- End div .scroll-widget -->
 
                     <div class="box-footer">
-                        <p><a href="#fakelink"><i class="fa fa-share"></i> See all comments</a></p>
-                    </div>
-                </div><!-- End div .tab-pane -->
-                <!-- Pane popular posts -->
-                <div class="tab-pane animated fadeInRight" id="popular">
-                    <!-- Begin scroll wrappper -->
-                    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 325px;">
-                        <div class="scroll-widget" style="overflow: hidden; width: auto; height: 325px;">
-                            <ul class="media-list">
-                                <li class="media">
-                                    <div class="media-body">
-                                        <h4 class="media-heading">
-                                            <a href="#fakelink">Cras sit amet erat sit amet lacus egestas</a>
-                                            <br><small>January 17, 2014 at 11:24 PM</small>
-                                        </h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-                                    </div>
-                                </li>
-
-                                <li class="media">
-                                    <div class="media-body">
-                                        <h4 class="media-heading">
-                                            <a href="#fakelink">Cras sit amet erat sit amet lacus egestas</a>
-                                            <br><small>January 17, 2014 at 08:24 AM</small>
-                                        </h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-                                    </div>
-                                </li>
-
-                                <li class="media">
-                                    <div class="media-body">
-                                        <h4 class="media-heading">
-                                            <a href="#fakelink">Cras sit amet erat sit amet lacus egestas</a>
-                                            <br><small>January 17, 2014 at 05:24 AM</small>
-                                        </h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div><div class="slimScrollBar" style="width: 3px; position: absolute; top: 0px; opacity: 0.4; display: block; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; left: 1px; background: rgb(134, 134, 134);"></div><div class="slimScrollRail" style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; opacity: 0.3; z-index: 90; left: 1px; background: rgb(51, 51, 51);"></div>
-                    </div><!-- End div .scroll-widget -->
-                    <div class="box-footer">
-                        <p><a href="#fakelink"><i class="fa fa-share"></i> See all posts</a></p>
+                        <p><a href="#fakelink"><i class="fa fa-share"></i> Se alla kommentarer</a></p>
                     </div>
                 </div><!-- End div .tab-pane -->
             </div><!-- End div .tab-content -->
