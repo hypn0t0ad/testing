@@ -1,4 +1,4 @@
-﻿@model Tuple <Systemet.Models.Uppgifter, Systemet.Models.Grupp, Systemet.Models.AnvändarKonton>
+﻿@model Tuple <Systemet.Models.Uppgifter, Systemet.Models.Grupp>
 
 @{
     ViewBag.Title = "UppgiftsSida";
@@ -7,7 +7,7 @@
     <li><a href="~/Views/Konto/inloggad.cshtml">Start</a></li>
     <li><a href="~/Views/Grupp/minagrupper.cshtml">Mina Grupper</a></li>
     <li><a href="~/Views/Grupp/gruppsida.cshtml">Gruppsida</a></li>
-    <li class="active">Uppgift: @Model.Namn</li>
+    <li class="active">Uppgift: @Model.Item1.Namn</li>
 </ol>
 
 <h2>UppgiftsSida</h2>
@@ -42,10 +42,12 @@
     {
         @*@Html.BeginForm()*@
         <dt>
-            @Html.Display("välj en medlem som ska ta hand om den här skiten")
+            
         </dt>
         <dd>
-            @Html.DropDownListFor(m => m.Item2.GruppMedlemmar, new SelectList(ViewBag.användare, ViewBag.användare.FörNamn), "Välj medlem för eländet", new { @class = "form-control" })
+
+            @Html.DropDownList("AnsvarigaNamn")
+            @*@Html.DropDownListFor(m => m.Item2.GruppMedlemmar, new SelectList(Model.Item2.GruppMedlemmar), "Välj medlem för eländet", new { @class = "form-control" }))*@
             @*@Html.DropDownListFor(m => m.Item2.GruppMedlemmar, new SelectList(Model.Item2.GruppMedlemmar, Model.Item3.FörNamn, Model.Item3.EfterNamn ), "Välj medlem för eländet", new { @class = "form-control" })*@
             </dd>
     }

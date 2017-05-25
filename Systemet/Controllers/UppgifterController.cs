@@ -142,16 +142,24 @@ namespace vagina.Controllers
             {
                 return View("Index", "Home");
             }
-            int tillhörgrupp;
-            tillhörgrupp = Convert.ToInt32(uppgiften.TillhörGrupp.GruppID);
-            Grupp gruppen;
-            gruppen = db.Grupps.SingleOrDefault(g => g.GruppID == tillhörgrupp);
 
-            ICollection<AnvändarKonton> medlemmar;
-            medlemmar = gruppen.GruppMedlemmar;
-            AnvändarKonton användare = new AnvändarKonton();
-            ViewBag.användare = medlemmar;
-            return View(Tuple.Create(uppgiften, gruppen, användare));
+            int tillhörgrupp = Convert.ToInt32(uppgiften.TillhörGrupp.GruppID);
+            Grupp gruppen = db.Grupps.SingleOrDefault(g => g.GruppID == tillhörgrupp);
+            ICollection<AnvändarKonton> medlemmar = gruppen.GruppMedlemmar;
+
+            var namnen = new List<SelectListItem>();
+            namnen.Add(new SelectListItem { Value = "0", Text = "Välj ansvarig" });
+
+            int value = 1;
+            foreach (var item in medlemmar)
+            {
+                
+                namnen.Add(new SelectListItem { Value = value.ToString(), Text = item.FörNamn + " " + item.EfterNamn });
+                value++;
+            }
+            ViewData["AnsvarigaNamn"] = namnen;
+
+            return View(Tuple.Create(uppgiften, gruppen));
         }
     }
 }
