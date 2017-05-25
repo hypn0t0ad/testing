@@ -40,16 +40,12 @@
 
     if (Convert.ToInt32(Session["AnvändarID"]) == Model.Item1.TillhörGrupp.LedareID)
     {
-        @*@Html.BeginForm()*@
         <dt>
-            
         </dt>
         <dd>
-
-            @Html.DropDownList("AnsvarigaNamn")
-            @*@Html.DropDownListFor(m => m.Item2.GruppMedlemmar, new SelectList(Model.Item2.GruppMedlemmar), "Välj medlem för eländet", new { @class = "form-control" }))*@
-            @*@Html.DropDownListFor(m => m.Item2.GruppMedlemmar, new SelectList(Model.Item2.GruppMedlemmar, Model.Item3.FörNamn, Model.Item3.EfterNamn ), "Välj medlem för eländet", new { @class = "form-control" })*@
-            </dd>
+            @Html.DropDownList("AnsvarigaNamn", null, new { @class = "form-group", @id = "vald" } )
+        </dd>
+        
     }
     else
     {
@@ -76,3 +72,4 @@ else
 @Html.ActionLink("Edit", "Edit", new { id = Model.Item1.UppgifterID}) |
 @Html.ActionLink("Delete", "Delete", new { id = Model.Item1.UppgifterID })
 </dd>
+
