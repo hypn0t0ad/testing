@@ -52,7 +52,7 @@
             <dt>
             </dt>
             <dd>
-                @Html.DropDownList("AnsvarigaNamn", null, new { @class = "form-group", @id = "vald" })
+                @Html.DropDownList("AnsvarigaNamn", null, new { @class = "form-group", @id = "vald", @value="AnsvarigaNamn" })
             </dd>
 
         }
@@ -74,16 +74,18 @@
 
         <dd>
             <p>
-            @Html.DisplayFor(model => Model.Item1.Ansvarig.FörNamn)  @Html.DisplayFor(model => Model.Item1.Ansvarig.EfterNamn)
+                @Html.DisplayFor(model => Model.Item1.Ansvarig.FörNamn)  @Html.DisplayFor(model => Model.Item1.Ansvarig.EfterNamn)
             </p>
         </dd>
 
-
-        //här ska det komma en knapp när man har valt nåt i listan
-        <dt>
-            <input id="Submit1" type="submit" value="submit" />
-        </dt>
     }
+
+
+    //här ska det komma en knapp när man har valt nåt i listan
+    <dt>
+        @*<input id="Button1" type="submit" value="submit" />*@
+        <input id="Submit1" type="submit" value="submit" />
+    </dt>
 }
 
 <dd>
@@ -92,7 +94,7 @@
 </dd>
 
 @section Scripts {
-<script type="text/javascript">
+    <script type="text/javascript">
 
         function hideOnLoad() {
             $('#Submit1').hide();
@@ -102,15 +104,15 @@
             hideOnLoad();
 
             $('#vald').change(function () {
-                var value = $(this).val();
-                if (value == '0') {
-                    $('#Submit1').shide();
-                } else if (value >= '1') {
+                var AnsvarigaNamn = $(this).val();
+
+                if (AnsvarigaNamn >= '1') {
                     $('#Submit1').show();
-                } else {
+                }
+                else {
                     hideOnLoad();
                 }
             });
         });
-</script>
-    }
+    </script>
+}
