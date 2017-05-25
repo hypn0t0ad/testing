@@ -1,4 +1,4 @@
-﻿@model Systemet.Models.Uppgifter
+﻿@model Tuple <Systemet.Models.Uppgifter, Systemet.Models.Grupp, Systemet.Models.AnvändarKonton>
 
 @{
     ViewBag.Title = "UppgiftsSida";
@@ -8,26 +8,63 @@
 
 
 <dt>
-    @Html.DisplayNameFor(model => model.Namn)
+    @Html.DisplayNameFor(model => model.Item1.Namn)
 </dt>
 
 <dd>
-    @Html.DisplayFor(model => model.Namn)
+    @Html.DisplayFor(model => model.Item1.Namn)
 </dd>
 
 <dt>
-    @Html.DisplayNameFor(model => model.Beskrivning)
+    @Html.DisplayNameFor(model => model.Item1.Beskrivning)
 </dt>
 
 <dd>
-    @Html.DisplayFor(model => model.Beskrivning)
+    @Html.DisplayFor(model => model.Item1.Beskrivning)
 </dd>
 
-<dt>
-    @Html.DisplayNameFor(model => model.Ansvarig)
-</dt>
+@if (Model.Item1.Ansvarig == null)
+{
+    <dt>
+        @Html.DisplayNameFor(model => model.Item1.Ansvarig)
+    </dt>
+    <dd>
+        <p>Ingen har tagit på sig den här uppgiften än</p>
+    </dd>
+
+    if (Convert.ToInt32(Session["AnvändarID"]) == Model.Item1.TillhörGrupp.LedareID)
+    {
+        @*@Html.BeginForm()*@
+        <dt>
+            @Html.Display("välj en medlem som ska ta hand om den här skiten")
+        </dt>
+        <dd>
+            @Html.DropDownListFor(m => m.Item2.GruppMedlemmar, new SelectList(ViewBag.användare, ViewBag.användare.FörNamn), "Välj medlem för eländet", new { @class = "form-control" })
+            @*@Html.DropDownListFor(m => m.Item2.GruppMedlemmar, new SelectList(Model.Item2.GruppMedlemmar, Model.Item3.FörNamn, Model.Item3.EfterNamn ), "Välj medlem för eländet", new { @class = "form-control" })*@
+            </dd>
+    }
+    else
+    {
+        <dt>
+            @Html.Display("välj om du vill ta på dig den här skiten")
+        </dt>
+        <dd>
+            @*@Html.RadioButtonFor()*@
+        </dd>
+    }
+}
+else
+{
+    <dt>
+        @Html.DisplayNameFor(model => model.Item1.Ansvarig)
+    </dt>
+
+    <dd>
+        <p>@Html.DisplayFor(model => Model.Item1.Ansvarig.FörNamn)  @Html.DisplayFor(model => Model.Item1.Ansvarig.EfterNamn)</p>
+    </dd>
+}
 
 <dd>
-    <p>@Html.DisplayFor(model => Model.Ansvarig.FörNamn)  @Html.DisplayFor(model => Model.Ansvarig.EfterNamn)</p> 
+@Html.ActionLink("Edit", "Edit", new { id = Model.Item1.UppgifterID}) |
+@Html.ActionLink("Delete", "Delete", new { id = Model.Item1.UppgifterID })
 </dd>
-
