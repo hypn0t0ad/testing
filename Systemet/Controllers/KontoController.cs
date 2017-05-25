@@ -141,15 +141,5 @@ namespace Systemet.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult sökgrupp(string sökning)
-        {
-            OurDBContext db = new OurDBContext();
-
-            List<Grupp> allagrupper = db.Grupps.Where(g => g.GruppNamn.Contains(sökning)).ToList();
-
-            TempData["allagrupper"] = allagrupper.ToList();
-
-            return RedirectToAction("gåmedigrupp", "Grupp", allagrupper);
-        }
     }
 }

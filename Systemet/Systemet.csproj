@@ -232,10 +232,15 @@
     <Compile Include="Migrations\201705241203235_virtual på kommentator i evenemangskommentarer.Designer.cs">
       <DependentUpon>201705241203235_virtual på kommentator i evenemangskommentarer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705250914563_Gruppförfrågningar.cs" />
+    <Compile Include="Migrations\201705250914563_Gruppförfrågningar.Designer.cs">
+      <DependentUpon>201705250914563_Gruppförfrågningar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Evenemang.cs" />
     <Compile Include="Models\EvenemangsKommentarer.cs" />
     <Compile Include="Models\Grupp.cs" />
+    <Compile Include="Models\GruppFörfrågan.cs" />
     <Compile Include="Models\OurDBContext.cs" />
     <Compile Include="Models\AnvändarKonton.cs" />
     <Compile Include="Models\Uppgifter.cs" />
@@ -532,6 +537,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705241203235_virtual på kommentator i evenemangskommentarer.resx">
       <DependentUpon>201705241203235_virtual på kommentator i evenemangskommentarer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705250914563_Gruppförfrågningar.resx">
+      <DependentUpon>201705250914563_Gruppförfrågningar.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

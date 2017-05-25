@@ -41,10 +41,9 @@ namespace Systemet.Models
         //public virtual Grupp grupper { get; set; }
 
         public virtual ICollection<Grupp> TillhörGrupper { get; set; }
-
         public virtual ICollection<Uppgifter> AnsvararFörUppgift { get; set; }
-
         public virtual ICollection<EvenemangsKommentarer> Kommentarer { get; set; }
+        public virtual ICollection<GruppFörfrågan> Föfrågningar { get; set; }
 
 
     }

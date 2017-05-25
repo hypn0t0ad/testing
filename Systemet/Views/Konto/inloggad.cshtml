@@ -11,21 +11,19 @@
     <div class="jumbotron">
         
         <h2> Välkommen @Session["Förnamn"].ToString()</h2>
-        <div>
-            <span class="glyphicon glyphicon-tag"></span>
-            @Html.ActionLink("gå med i grupp", "gåmedigrupp", "Grupp")
-        </div>
+
         <div>
             <span class="glyphicon glyphicon-user"></span>
             @Html.ActionLink("mina uppgifter", "Redigera", "Konto")
         </div>
 
-          @using (Html.BeginForm("sökgrupp", "Konto"))
-                  {
-                      @Html.TextBox("sökning")
-                      <input type = "submit" value = "sökning" name = "sökning" id = "sökning" />
-                       @ViewBag.Sökning 
-                  }
+          @using (Html.BeginForm("gåmedigrupp", "Grupp"))
+          { 
+              @ViewBag.Sökning
+              @Html.TextBox("sökning")
+              <input type = "submit" value = "sökning" name = "sökning" id = "sökning" />
+                      
+          }
 
 
 
@@ -106,7 +104,7 @@
 <script type="text/javascript">
 
     $(function autocomplete() {
-        var grupper = @Model.Item2.Select(g => g.GruppNamn).ToList();
+        var grupper = @Model.Item2.Select(g => g.GruppNamn).ToArray();
 
         $("#sökning").autocomplete({ source: grupper });
     }

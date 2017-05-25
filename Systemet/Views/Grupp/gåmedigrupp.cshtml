@@ -1,4 +1,4 @@
-﻿@model Systemet.Models.Grupp
+﻿@model ICollection<Systemet.Models.Grupp>
 
 @{
     ViewBag.Title = "gåmedigrupp";
@@ -6,19 +6,18 @@
 
 <h2>Grupper:</h2>
 
-@{
-    var grupperna = TempData["allagrupper"];
 
-    } 
-
-@foreach (var item in Model )
-    {
+@foreach (var item in Model)
+{
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item)
+            @Html.DisplayFor(modelItem => item.GruppNamn)
+
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.GruppNamn)
+
     </tr>
 }
+
+
 
