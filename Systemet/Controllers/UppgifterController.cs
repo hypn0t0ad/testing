@@ -149,9 +149,9 @@ namespace vagina.Controllers
 
             ICollection<AnvändarKonton> medlemmar;
             medlemmar = gruppen.GruppMedlemmar;
-            AnvändarKonton användare = new AnvändarKonton();
+            //AnvändarKonton användare = new AnvändarKonton();
             ViewBag.användare = medlemmar;
-            return View(Tuple.Create(uppgiften, gruppen, användare));
+            return View(Tuple.Create(uppgiften, gruppen, medlemmar));
         }
     }
 }

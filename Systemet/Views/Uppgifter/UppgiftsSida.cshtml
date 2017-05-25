@@ -1,4 +1,4 @@
-﻿@model Tuple <Systemet.Models.Uppgifter, Systemet.Models.Grupp, Systemet.Models.AnvändarKonton>
+﻿@model Tuple <Systemet.Models.Uppgifter, Systemet.Models.Grupp, ICollection<Systemet.Models.AnvändarKonton>>
 
 @{
     ViewBag.Title = "UppgiftsSida";
@@ -39,8 +39,8 @@
             @Html.Display("välj en medlem som ska ta hand om den här skiten")
         </dt>
         <dd>
-            @Html.DropDownListFor(m => m.Item2.GruppMedlemmar, new SelectList(ViewBag.användare, ViewBag.användare.FörNamn), "Välj medlem för eländet", new { @class = "form-control" })
-            @*@Html.DropDownListFor(m => m.Item2.GruppMedlemmar, new SelectList(Model.Item2.GruppMedlemmar, Model.Item3.FörNamn, Model.Item3.EfterNamn ), "Välj medlem för eländet", new { @class = "form-control" })*@
+            @Html.DropDownListFor(m => m.Item2.GruppMedlemmar, new SelectList(Model.Item2.GruppMedlemmar, "", "FörNamn", "EfterNamn" ), "Välj medlem för eländet", new { @class = "form-control" })
+            @*@Html.DropDownListFor(m => m.Item2.GruppMedlemmar, new SelectList(ICollection.Equals(Model.Item3. )), "Välj medlem för eländet", new { @class = "form-control" })*@
             </dd>
     }
     else

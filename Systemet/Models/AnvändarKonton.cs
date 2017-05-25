@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
 namespace Systemet.Models
 {
@@ -18,6 +19,7 @@ namespace Systemet.Models
         public int AnvändarID { get; set; }
 
         [Required(ErrorMessage = "förnamn måste anges.")]
+                
         public string FörNamn { get; set; }
 
         [Required(ErrorMessage = "efternamn måste anges.")]
@@ -45,6 +47,7 @@ namespace Systemet.Models
         public virtual ICollection<EvenemangsKommentarer> Kommentarer { get; set; }
         public virtual ICollection<GruppFörfrågan> Föfrågningar { get; set; }
 
+        
 
     }
 }
