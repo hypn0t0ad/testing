@@ -71,33 +71,43 @@ namespace Systemet.Controllers
 
         public ActionResult inloggad(AnvändarKonton user)
         {
+            int ID;
+            OurDBContext db = new OurDBContext();
+            AnvändarKonton konto;
 
-                OurDBContext db = new OurDBContext();
+            if (user.Email == null)
+            {
+                ID = Convert.ToInt32(TempData["användarID"]);
+                konto = db.konton.SingleOrDefault(u => u.AnvändarID == ID);
+            }
+            else
+            {
+                konto = db.konton.SingleOrDefault(u => u.AnvändarID == user.AnvändarID);
+            }
 
-                AnvändarKonton konto = db.konton.SingleOrDefault(u => u.AnvändarID == user.AnvändarID);
-                user = konto;
+            user = konto;
 
-                List<Grupp> grupperna = new List<Grupp>();
-                List<Evenemang> evenemang = new List<Evenemang>();
-                List<Uppgifter> uppgifts = new List<Uppgifter>();
+            List<Grupp> grupperna = new List<Grupp>();
+            List<Evenemang> evenemang = new List<Evenemang>();
+            List<Uppgifter> uppgifts = new List<Uppgifter>();
 
-                grupperna = user.TillhörGrupper.ToList();   //PROBLEM NULL-REFERENCE
+            grupperna = user.TillhörGrupper.ToList();   //PROBLEM NULL-REFERENCE
 
-                foreach (var item in grupperna)
-                {
-                    evenemang.AddRange(db.Evenemangs.Where(e => e.grupp.GruppID == item.GruppID).ToList());
-                    uppgifts.AddRange(db.Uppgifters.Where(u => u.TillhörGrupp.GruppID == item.GruppID).ToList());
-                }
+            foreach (var item in grupperna)
+            {
+                evenemang.AddRange(db.Evenemangs.Where(e => e.grupp.GruppID == item.GruppID).ToList());
+                uppgifts.AddRange(db.Uppgifters.Where(u => u.TillhörGrupp.GruppID == item.GruppID).ToList());
+            }
 
 
-                if (Session["AnvändarID"] != null)
-                {
-                    return View(Tuple.Create(user, grupperna, evenemang, uppgifts));
-                }
-                else
-                {
-                    return RedirectToAction("Index", "Home");
-                }
+            if (Session["AnvändarID"] != null)
+            {
+                return View(Tuple.Create(user, grupperna, evenemang, uppgifts));
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
         }
 
@@ -127,8 +137,8 @@ namespace Systemet.Controllers
                     db.Entry(konto).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
                 }
-
-                return RedirectToAction("Index", "Home");
+                TempData["användarID"] = konto.AnvändarID;
+                return RedirectToAction("inloggad", "Konto");
             }
 
             return RedirectToAction("Redigera", "Konto");
