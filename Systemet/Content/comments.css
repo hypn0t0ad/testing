@@ -1,13 +1,13 @@
-﻿body {
+﻿.body {
 }
 
 
 body {
-    background: #EEEEEE;
+    background: #fff;
 }
 
 .box-info.full {
-    padding: 0px;
+    padding: 1px;
 }
 
 .box-info:hover {
@@ -17,13 +17,13 @@ body {
 .box-info {
     position: relative;
     padding: 15px;
-    background: #fff;
+    background: #ffffff;
     color: #5b5b5b;
     margin-bottom: 20px;
     -webkit-transition: All 0.4s ease;
     -moz-transition: All 0.4s ease;
     -o-transition: All 0.4s ease;
-    background: #FFFFFF;
+    background: #FFF;
     margin-top: 20px;
 }
 

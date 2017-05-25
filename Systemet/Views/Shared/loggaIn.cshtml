@@ -8,7 +8,7 @@
         <ul class="nav navbar-nav navbar-right">
             <li>
                 
-                @Html.ActionLink("Hej " + Session["Förnamn"].ToString() + "!" + " användarID " + Session["AnvändarID"].ToString(), "inloggad", "Konto")
+                @Html.ActionLink("Hej " + Session["Förnamn"].ToString() + "!", "Redigera", "Konto")
             </li>              
             <li>
                 @Html.ActionLink("Mina grupper", "minagrupper", "Grupp")

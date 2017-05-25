@@ -49,19 +49,18 @@ namespace vagina.Controllers
         public ActionResult Create([Bind(Include = "UppgifterID,Namn,Beskrivning,Startdatum")] Uppgifter uppgifter, Grupp grupp, AnvändarKonton konto)
         {
 
-                int gID = Convert.ToInt32(Session["GruppID"]);
-                int anvID = Convert.ToInt32(Session["AnvändarID"]);
+            int gID = Convert.ToInt32(Session["GruppID"]);
 
-                grupp = db.Grupps.Single(g => g.GruppID == gID);
-                konto = db.konton.Single(k => k.AnvändarID == anvID);
+            grupp = db.Grupps.Single(g => g.GruppID == gID);
 
-                uppgifter.TillhörGrupp = grupp;
-                uppgifter.Ansvarig = konto;
+            uppgifter.TillhörGrupp = grupp;
 
-                db.Uppgifters.Add(uppgifter);
-                db.SaveChanges();
 
-            return RedirectToAction("Index");
+            db.Uppgifters.Add(uppgifter);
+            db.SaveChanges();
+            TempData["nygrupp"] = grupp.GruppNamn;
+
+            return RedirectToAction("gruppsida", "Grupp");
         }
 
         // GET: Uppgifter/Edit/5
@@ -143,8 +142,16 @@ namespace vagina.Controllers
             {
                 return View("Index", "Home");
             }
+            int tillhörgrupp;
+            tillhörgrupp = Convert.ToInt32(uppgiften.TillhörGrupp.GruppID);
+            Grupp gruppen;
+            gruppen = db.Grupps.SingleOrDefault(g => g.GruppID == tillhörgrupp);
 
-            return View(uppgiften);
+            ICollection<AnvändarKonton> medlemmar;
+            medlemmar = gruppen.GruppMedlemmar;
+            AnvändarKonton användare = new AnvändarKonton();
+            ViewBag.användare = medlemmar;
+            return View(Tuple.Create(uppgiften, gruppen, användare));
         }
     }
 }

@@ -10,6 +10,27 @@
     <h4>Uppgifter</h4>
     <hr />
     <dl class="dl-horizontal">
+        @if (Model.Ansvarig != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Ansvarig)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Ansvarig)
+            </dd>
+        }
+        else
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Ansvarig)
+            </dt>
+
+            <dd>
+                @Html.Display("Ingen har valt att ansvara för den här uppgiften än")
+            </dd>
+        }
+        
         <dt>
             @Html.DisplayNameFor(model => model.Namn)
         </dt>
