@@ -45,8 +45,7 @@
             @Html.Display("välj en medlem som ska ta hand om den här skiten")
         </dt>
         <dd>
-            @Html.DropDownListFor(m => m.Item2.GruppMedlemmar, new SelectList(Model.Item2.GruppMedlemmar, "", "FörNamn", "EfterNamn" ), "Välj medlem för eländet", new { @class = "form-control" })
-            @*@Html.DropDownListFor(m => m.Item2.GruppMedlemmar, new SelectList(ICollection.Equals(Model.Item3. )), "Välj medlem för eländet", new { @class = "form-control" })*@
+            @Html.DropDownListFor(m => m.Item2.GruppMedlemmar, new SelectList(Model.Item2.GruppMedlemmar, "", "FörNamn", "EfterNamn" ), "Välj medlem för eländet", new { @class = "form-control" })            
             </dd>
     }
     else
