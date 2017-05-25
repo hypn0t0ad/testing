@@ -34,7 +34,7 @@
 
 
 
-@using (Html.BeginForm("läggtillanvändaretilluppgift", "Uppgifter"))
+@using (Html.BeginForm("läggtillanvändaretilluppgift", "Uppgifter", FormMethod.Post))
 {
 
     if (Model.Item1.Ansvarig == null)
@@ -52,7 +52,9 @@
             <dt>
             </dt>
             <dd>
-                @Html.DropDownList("AnsvarigaNamn", null, new { @class = "form-group", @id = "vald", @value="AnsvarigaNamn" })
+                <div class="form-group">
+                    @Html.DropDownList("AnsvarigaNamn", null, new { @class = "form-control", @id = "vald", @value = "AnsvarigaNamn" })
+                </div>
             </dd>
 
         }

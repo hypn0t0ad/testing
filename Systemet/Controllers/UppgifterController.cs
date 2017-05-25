@@ -163,7 +163,7 @@ namespace vagina.Controllers
         }
 
         [HttpPost]
-        public ActionResult läggtillanvändaretilluppgift(int? ID)
+        public ActionResult läggtillanvändaretilluppgift([Bind(Include = "vald,AnsvarigaNamn")]string a)
         {
             return RedirectToAction("UppgiftsSida");
         }
