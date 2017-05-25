@@ -161,5 +161,11 @@ namespace vagina.Controllers
 
             return View(Tuple.Create(uppgiften, gruppen));
         }
+
+        [HttpPost]
+        public ActionResult läggtillanvändaretilluppgift(int? ID)
+        {
+            return RedirectToAction("UppgiftsSida");
+        }
     }
 }

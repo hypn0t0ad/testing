@@ -34,7 +34,7 @@
 
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("läggtillanvändaretilluppgift", "Uppgifter"))
 {
 
     if (Model.Item1.Ansvarig == null)
@@ -59,10 +59,10 @@
         else
         {
             <dt>
-
+                @Html.Display("välj om du vill ta på dig den här skiten")
             </dt>
             <dd>
-                @Html.Display("välj om du vill ta på dig den här skiten")
+                här ska man kunna välja om man vill ta på sig eländet
             </dd>
         }
     }
@@ -80,10 +80,7 @@
 
     }
 
-
-    //här ska det komma en knapp när man har valt nåt i listan
-    <dt>
-        @*<input id="Button1" type="submit" value="submit" />*@
+    <dt> 
         <input id="Submit1" type="submit" value="submit" />
     </dt>
 }
