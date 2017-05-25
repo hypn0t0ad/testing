@@ -9,7 +9,7 @@
 {
 
     <div class="jumbotron">
-        
+
         <h2> Välkommen @Session["Förnamn"].ToString()</h2>
 
         <div>
@@ -17,37 +17,30 @@
             @Html.ActionLink("mina uppgifter", "Redigera", "Konto")
         </div>
 
-          @using (Html.BeginForm("gåmedigrupp", "Grupp"))
-          { 
-              @ViewBag.Sökning
-              @Html.TextBox("sökning")
-              <input type = "submit" value = "sökning" name = "sökning" id = "sökning" />
-                      
-          }
+        @using (Html.BeginForm("gåmedigrupp", "Grupp"))
+        {
+            @ViewBag.Sökning
+            @Html.TextBox("sökning")
+            <input type="submit" value="sökning" name="sökning" id="sökning" />
 
-
-
-
+        }
     </div>
 
-            foreach (var item in Model.Item2)
-                  {
-                      if (item.Evenemang.Count() != 0)
-                      {
+    foreach (var item in Model.Item2)
+    {
+        if (item.Evenemang.Count() != 0)
+        {
             <div class="well-lg" style="background-color:#eee">
 
                 @using (Html.BeginForm("gruppsida", "Grupp", new { item.GruppNamn }))
                 {
 
-
                     var utvalt = Model.Item3.Where(u => u.grupp.GruppID == item.GruppID).OrderBy(u => u.Tidpunkt).Take(3).ToList();
-
-                    
 
                     <div class="container-fluid">
 
                         <input type="submit" value="@item.GruppNamn" class="btn btn-lg btn-danger" id="gruppknapp" style="font-size:x-large" />
-                        
+
                         <div class="agenda">
                             <div class="table-responsive col-sm-6">
                                 <table class="table table-condensed table-responsive">
@@ -59,38 +52,45 @@
                                         </tr>
                                     </thead>
 
+                                    @foreach (var ev in utvalt)
+                                    {
+                                        <tbody>
+                                            <tr class="table">
+                                                <td class="agenda-date active" style="background-color:#eee" rowspan="@Model.Item2.Count()">
+                                                    <div class="dayofmonth">@ev.Tidpunkt.Day/@ev.Tidpunkt.Month</div>
+                                                    <div class="dayofweek">@ev.Tidpunkt.DayOfWeek</div>
+                                                    <div class="shortdate text-muted">@ev.Tidpunkt.Year</div>
+                                                </td>
+                                                <td class="agenda-time" style="background-color:#eee">
+                                                    @ev.Tidpunkt.ToShortTimeString();
+                                                </td>
+                                                <td class="agenda-events" style="background-color:#eee">
+                                                    <div class="agenda-event">
+                                                        @ev.Namn;
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
 
+                                            @*@Html.DisplayFor(model => model.Item3 , new SelectList(Model.Item3, "id", "name"));*@
 
-                                        @foreach (var ev in utvalt)
-          {
-                                            <tbody>
-                                                <tr class="table">
-                                                    <td class="agenda-date active" style="background-color:#eee" rowspan="@Model.Item2.Count()">
-                                                        <div class="dayofmonth">@ev.Tidpunkt.Day/@ev.Tidpunkt.Month</div>
-                                                        <div class="dayofweek">@ev.Tidpunkt.DayOfWeek</div>
-                                                        <div class="shortdate text-muted">@ev.Tidpunkt.Year</div>
-                                                    </td>
-                                                    <td class="agenda-time" style="background-color:#eee">
-                                                        @ev.Tidpunkt.ToShortTimeString();
-                                                    </td>
-                                                    <td class="agenda-events" style="background-color:#eee">
-                                                        <div class="agenda-event">
-                                                            @ev.Namn;
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
+                                    }
 
-                                                @*@Html.DisplayFor(model => model.Item3 , new SelectList(Model.Item3, "id", "name"));*@
-
-                                        }
-                                            
                                 </table>
                             </div>
-                            <div class="col-sm-6" style="background-color:aqua">
-                                <p>texttexttexttexttext</p>
+                           
+                        </div>
+                        <div class="col-sm-6">
+                            <p>Uppgifter:</p>
+                            @foreach (var uppg in Model.Item4)
+                            {
+                                <div class="well-sm grupper grupptext">
+                                    @Html.DisplayFor(u => uppg.Namn)
+                                </div>
+                                
+                            }
 
-                            </div>
+
                         </div>
                     </div>
 
@@ -110,5 +110,5 @@
     }
 
 
-</script>  
+</script>
 

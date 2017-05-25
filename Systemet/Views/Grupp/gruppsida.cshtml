@@ -1,72 +1,77 @@
 ﻿@model Tuple <Systemet.Models.Grupp, ICollection<Systemet.Models.Evenemang>, ICollection<Systemet.Models.Uppgifter>>
 @{
+    <link rel="stylesheet" href="~/Content/Sensify.css">
     ViewBag.Title = "Gruppsida";
 }
+<ol class="breadcrumb">
+    <li><a href="~/Views/Konto/inloggad.cshtml">Start</a></li>
+    <li><a href="~/Views/Grupp/minagrupper.cshtml">Mina Grupper</a></li>
+    <li class="active">@Model.Item1.GruppNamn</li>
+</ol>
+
 
 <h2>@Model.Item1.GruppNamn</h2>
 
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayName("Medlemmar")
-        </th>
-        <th></th>
-    </tr>
-
+<div class="container-fluid ">
+    <div class="col-lg-12">
+    @Html.DisplayName("Medlemmar")
+    </div>
     @foreach (var item in Model.Item1.GruppMedlemmar)
-    {
-        <tr>
-            <td>
-
-                <a>@item.FörNamn @item.EfterNamn</a>
-            </td>
-        </tr>
+    { 
+        <div class="col-lg-2">
+            <div class="well-lg grupper">
+            <p class="grupptext">@item.FörNamn @item.EfterNamn</p>
+            </div>
+        </div>
     }
-</table>
+</div> 
 
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayName("Evenemang")
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model.Item2)
-    {
+<div class="container-fluid ">
+    <table class="table">
         <tr>
-            <td>
-
-                <a href="@Url.Action("evenemangssida", "Evenemangs", new { idet = item.EvenemangID })" title="@item.EvenemangID">
-                    @item.Namn
-                </a>
-            </td>
+            <th>
+                @Html.DisplayName("Evenemang")
+            </th>
+            <th></th>
         </tr>
-    }
-</table>
-@Html.ActionLink("skapa evenemang", "Create", "Evenemangs")
+
+        @foreach (var item in Model.Item2)
+        {
+            <tr>
+                <td>
+
+                    <a href="@Url.Action("evenemangssida", "Evenemangs", new { idet = item.EvenemangID })" title="@item.EvenemangID">
+                        @item.Namn
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+    @Html.ActionLink("skapa evenemang", "Create", "Evenemangs")
 
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayName("Uppgifter")
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model.Item3)
-    {
+    <table class="table">
         <tr>
-            <td>
-
-                <a href="@Url.Action("UppgiftsSida", "Uppgifter", new { idet = item.UppgifterID })" title="@item.UppgifterID">
-                    @item.Namn
-                </a>
-            </td>
+            <th>
+                @Html.DisplayName("Uppgifter")
+            </th>
+            <th></th>
         </tr>
-    }
-</table>
-<p>@Html.ActionLink("Lägg till Uppgift", "Create", "Uppgifter")</p>
+
+        @foreach (var item in Model.Item3)
+        {
+            <tr>
+                <td>
+
+                    <a href="@Url.Action("UppgiftsSida", "Uppgifter", new { idet = item.UppgifterID })" title="@item.UppgifterID">
+                        @item.Namn
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+
+    <p>@Html.ActionLink("Lägg till Uppgift", "Create", "Uppgifter")</p>
