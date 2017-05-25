@@ -13,59 +13,74 @@
 <h2>UppgiftsSida</h2>
 
 
-<dt>
-    @Html.DisplayNameFor(model => model.Item1.Namn)
-</dt>
 
-<dd>
-    @Html.DisplayFor(model => model.Item1.Namn)
-</dd>
-
-<dt>
-    @Html.DisplayNameFor(model => model.Item1.Beskrivning)
-</dt>
-
-<dd>
-    @Html.DisplayFor(model => model.Item1.Beskrivning)
-</dd>
-
-@if (Model.Item1.Ansvarig == null)
-{
     <dt>
-        @Html.DisplayNameFor(model => model.Item1.Ansvarig)
+        @Html.DisplayNameFor(model => model.Item1.Namn)
     </dt>
+
     <dd>
-        <p>Ingen har tagit på sig den här uppgiften än</p>
+        @Html.DisplayFor(model => model.Item1.Namn)
     </dd>
 
-    if (Convert.ToInt32(Session["AnvändarID"]) == Model.Item1.TillhörGrupp.LedareID)
+    <dt>
+        @Html.DisplayNameFor(model => model.Item1.Beskrivning)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Item1.Beskrivning)
+    </dd>
+
+
+
+
+
+@using (Html.BeginForm())
+{
+
+    if (Model.Item1.Ansvarig == null)
     {
+
         <dt>
+            @Html.DisplayNameFor(model => model.Item1.Ansvarig)
         </dt>
         <dd>
-            @Html.DropDownList("AnsvarigaNamn", null, new { @class = "form-group", @id = "vald" } )
+            <p>Ingen har tagit på sig den här uppgiften än</p>
         </dd>
-        
+
+        if (Convert.ToInt32(Session["AnvändarID"]) == Model.Item1.TillhörGrupp.LedareID)
+        {
+            <dt>
+            </dt>
+            <dd>
+                @Html.DropDownList("AnsvarigaNamn", null, new { @class = "form-group", @id = "vald" })
+            </dd>
+
+        }
+        else
+        {
+            <dt>
+
+            </dt>
+            <dd>
+                @Html.Display("välj om du vill ta på dig den här skiten")
+            </dd>
+        }
     }
     else
     {
         <dt>
-            @Html.Display("välj om du vill ta på dig den här skiten")
+            @Html.DisplayNameFor(model => model.Item1.Ansvarig)
         </dt>
-        <dd>
-            @*@Html.RadioButtonFor()*@
-        </dd>
-    }
-}
-else
-{
-    <dt>
-        @Html.DisplayNameFor(model => model.Item1.Ansvarig)
-    </dt>
 
-    <dd>
-        <p>@Html.DisplayFor(model => Model.Item1.Ansvarig.FörNamn)  @Html.DisplayFor(model => Model.Item1.Ansvarig.EfterNamn)</p>
-    </dd>
+        <dd>
+            <p>
+            @Html.DisplayFor(model => Model.Item1.Ansvarig.FörNamn)  @Html.DisplayFor(model => Model.Item1.Ansvarig.EfterNamn)
+            </p>
+        </dd>
+        <dt>
+            <input id="Submit1" type="submit" value="submit" />
+        </dt>
+    }
 }
 
 <dd>
@@ -73,3 +88,26 @@ else
 @Html.ActionLink("Delete", "Delete", new { id = Model.Item1.UppgifterID })
 </dd>
 
+@section Scripts {
+<script type="text/javascript">
+
+        function hideOnLoad() {
+            $('#Submit1').hide();
+        }
+
+        $(document).ready(function () {
+            hideOnLoad();
+
+            $('#vald').change(function () {
+                var value = $(this).val();
+                if (value == '0') {
+                    $('#Submit1').shide();
+                } else if (value >= '1') {
+                    $('#Submit1').show();
+                } else {
+                    hideOnLoad();
+                }
+            });
+        });
+</script>
+    }
