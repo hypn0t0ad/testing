@@ -51,7 +51,8 @@
             </dt>
             <dd>
                 <div class="form-group">
-                    @Html.DropDownListFor(m => m.medlemmar, new SelectList(Model.medlemmar, "AnvändarID", "HelaNamnet"), "Välj en fårskalle", new { @class = "form-control", @id = "vald", @value = "AnvändarID" })
+                    @*@Html.DropDownListFor(m => m.medlemmar, new SelectList(Model.medlemmar, "AnvändarID", "HelaNamnet"), "Välj en fårskalle", new { @class = "form-control", @id = "vald", @value = "AnvändarID" })*@
+                    @Html.DropDownListFor(m => m.ansvarig, Model.lemmar, "Välj en fårskalle", new { @class = "form-control", @id = "vald", @value = "AnvändarID" })
                 </div>
             </dd>
             <dt>

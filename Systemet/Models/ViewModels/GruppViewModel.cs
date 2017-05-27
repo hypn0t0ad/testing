@@ -10,8 +10,11 @@ namespace Systemet.Models.ViewModels
         public virtual Uppgifter uppgift { get; set; }
         public virtual Grupp grupp { get; set; }
         public virtual int ledareID { get; set; }
+        public virtual int ansvarig { get; set; }
 
         public virtual ICollection<AnvändarKonton> medlemmar { get; set; }
+
+        public System.Web.Mvc.SelectList lemmar { get; set; }
 
     }
 }

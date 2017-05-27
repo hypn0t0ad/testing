@@ -149,19 +149,19 @@ namespace vagina.Controllers
             ICollection<AnvändarKonton> medlemmar = gruppen.GruppMedlemmar;
 
 
-            //ViewBag.medlemmar = medlemmar;
+            ViewBag.medlemmar = medlemmar;
 
-            //var namnen = new List<SelectListItem>();
-            //namnen.Add(new SelectListItem { Value = "0", Text = "Välj ansvarig" });
+            var namnen = new List<SelectListItem>();
+            namnen.Add(new SelectListItem { Value = "0", Text = "Välj ansvarig" });
 
-            //int value = 1;
-            //foreach (var item in medlemmar)
-            //{
-                
-            //    namnen.Add(new SelectListItem { Value = value.ToString(), Text = item.FörNamn + " " + item.EfterNamn });
-            //    value++;
-            //}
-            //ViewData["AnsvarigaNamn"] = namnen;
+            int value = 1;
+            foreach (var item in medlemmar)
+            {
+
+                namnen.Add(new SelectListItem { Value = value.ToString(), Text = item.FörNamn + " " + item.EfterNamn });
+                value++;
+            }
+            ViewData["AnsvarigaNamn"] = namnen;
 
 
             //prövar med viewmodel
@@ -173,8 +173,8 @@ namespace vagina.Controllers
 
 
 
-            return View(gruppviewmodel);
-            //return View(Tuple.Create(uppgiften, gruppen));
+
+            return View(Tuple.Create(uppgiften, gruppen));
         }
 
 
@@ -200,9 +200,18 @@ namespace vagina.Controllers
             var gruppviewmodel = new GruppViewModel();
             gruppviewmodel.grupp = gruppen;
             gruppviewmodel.uppgift = uppgiften;
-            gruppviewmodel.medlemmar = medlemmar;
+            gruppviewmodel.medlemmar = medlemmar;            
             gruppviewmodel.ledareID = gruppen.LedareID;
+            List<SelectListItem> namnen = new List<SelectListItem>();
 
+            
+            foreach (var item in medlemmar)
+            {
+
+               namnen.Add(new SelectListItem{ Value = item.AnvändarID.ToString(), Text = item.HelaNamnet });
+                
+            }
+            gruppviewmodel.lemmar = new SelectList(namnen, "Value", "Text");
 
 
             return View(gruppviewmodel);
