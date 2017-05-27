@@ -40,6 +40,8 @@ namespace Systemet.Models
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
 
+        
+
         //public virtual Grupp grupper { get; set; }
 
         public virtual ICollection<Grupp> TillhörGrupper { get; set; }
@@ -47,7 +49,13 @@ namespace Systemet.Models
         public virtual ICollection<EvenemangsKommentarer> Kommentarer { get; set; }
         public virtual ICollection<GruppFörfrågan> Föfrågningar { get; set; }
 
-        
 
+        public virtual string HelaNamnet
+        {
+            get
+            {
+                return string.Format(FörNamn + " " + EfterNamn);
+            }
+        }
     }
 }

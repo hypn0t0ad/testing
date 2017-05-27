@@ -236,6 +236,10 @@
     <Compile Include="Migrations\201705250914563_Gruppförfrågningar.Designer.cs">
       <DependentUpon>201705250914563_Gruppförfrågningar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705262155430_hela namnet.cs" />
+    <Compile Include="Migrations\201705262155430_hela namnet.Designer.cs">
+      <DependentUpon>201705262155430_hela namnet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Evenemang.cs" />
     <Compile Include="Models\EvenemangsKommentarer.cs" />
@@ -244,6 +248,7 @@
     <Compile Include="Models\OurDBContext.cs" />
     <Compile Include="Models\AnvändarKonton.cs" />
     <Compile Include="Models\Uppgifter.cs" />
+    <Compile Include="Models\ViewModels\GruppViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -471,6 +476,7 @@
     <Content Include="Views\Uppgifter\Edit.cshtml" />
     <Content Include="Views\Uppgifter\Index.cshtml" />
     <Content Include="Views\Uppgifter\UppgiftsSida.cshtml" />
+    <Content Include="Views\Uppgifter\UppgiftsSida2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -541,6 +547,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705250914563_Gruppförfrågningar.resx">
       <DependentUpon>201705250914563_Gruppförfrågningar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705262155430_hela namnet.resx">
+      <DependentUpon>201705262155430_hela namnet.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

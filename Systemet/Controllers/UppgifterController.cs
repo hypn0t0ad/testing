@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Systemet.Models;
+using Systemet.Models.ViewModels;
 
 namespace vagina.Controllers
 {
@@ -147,24 +148,70 @@ namespace vagina.Controllers
             Grupp gruppen = db.Grupps.SingleOrDefault(g => g.GruppID == tillhörgrupp);
             ICollection<AnvändarKonton> medlemmar = gruppen.GruppMedlemmar;
 
-            var namnen = new List<SelectListItem>();
-            namnen.Add(new SelectListItem { Value = "0", Text = "Välj ansvarig" });
 
-            int value = 1;
-            foreach (var item in medlemmar)
-            {
+            //ViewBag.medlemmar = medlemmar;
+
+            //var namnen = new List<SelectListItem>();
+            //namnen.Add(new SelectListItem { Value = "0", Text = "Välj ansvarig" });
+
+            //int value = 1;
+            //foreach (var item in medlemmar)
+            //{
                 
-                namnen.Add(new SelectListItem { Value = value.ToString(), Text = item.FörNamn + " " + item.EfterNamn });
-                value++;
-            }
-            ViewData["AnsvarigaNamn"] = namnen;
+            //    namnen.Add(new SelectListItem { Value = value.ToString(), Text = item.FörNamn + " " + item.EfterNamn });
+            //    value++;
+            //}
+            //ViewData["AnsvarigaNamn"] = namnen;
 
-            return View(Tuple.Create(uppgiften, gruppen));
+
+            //prövar med viewmodel
+            var gruppviewmodel = new GruppViewModel();
+            gruppviewmodel.grupp = gruppen;
+            gruppviewmodel.uppgift = uppgiften;
+            gruppviewmodel.medlemmar = medlemmar;
+            gruppviewmodel.ledareID = gruppen.LedareID;
+
+
+
+            return View(gruppviewmodel);
+            //return View(Tuple.Create(uppgiften, gruppen));
+        }
+
+
+
+        public ActionResult UppgiftsSida2(int? idet)
+        {
+
+            Uppgifter uppgiften;
+            if (idet.HasValue)
+            {
+                uppgiften = db.Uppgifters.SingleOrDefault(a => a.UppgifterID == idet);
+            }
+            else
+            {
+                return View("Index", "Home");
+            }
+
+            int tillhörgrupp = Convert.ToInt32(uppgiften.TillhörGrupp.GruppID);
+            Grupp gruppen = db.Grupps.SingleOrDefault(g => g.GruppID == tillhörgrupp);
+            ICollection<AnvändarKonton> medlemmar = gruppen.GruppMedlemmar;
+            
+            //prövar med viewmodel
+            var gruppviewmodel = new GruppViewModel();
+            gruppviewmodel.grupp = gruppen;
+            gruppviewmodel.uppgift = uppgiften;
+            gruppviewmodel.medlemmar = medlemmar;
+            gruppviewmodel.ledareID = gruppen.LedareID;
+
+
+
+            return View(gruppviewmodel);
         }
 
         [HttpPost]
-        public ActionResult läggtillanvändaretilluppgift([Bind(Include = "vald,AnsvarigaNamn")]string a)
+        public ActionResult läggtillanvändaretilluppgift([Bind(Include = "AnvändarID")] int? ID)
         {
+
             return RedirectToAction("UppgiftsSida");
         }
     }

@@ -53,7 +53,10 @@
             </dt>
             <dd>
                 <div class="form-group">
-                    @Html.DropDownList("AnsvarigaNamn", null, new { @class = "form-control", @id = "vald", @value = "AnsvarigaNamn" })
+                    @*@Html.DropDownList("HelaNamnet", ViewBag.medlemmar as SelectList, "Välj", new { @class = "form-control", @id = "vald", @value = "AnsvarigaNamn" })*@
+                    @Html.DropDownListFor(m => m.Item2.GruppMedlemmar, new SelectList(ViewBag.medlemmar, "AnvändarID", "HelaNamnet"), "Välj en fårskalle", new { @class = "form-control", @id = "vald", @value = "AnsvarigaNamn" })
+                    @*@Html.DropDownListFor(m => m.Item2.GruppMedlemmar, new SelectList(ViewBag.medlemmar, "AnvändarID", "HelaNamnet"), "Välj en fårskalle", new { @class = "form-control", @id = "vald", @value = "AnsvarigaNamn" })*@
+                    @*@Html.DropDownList("AnsvarigaNamn", null, new { @class = "form-control", @id = "vald", @value = "AnsvarigaNamn" })*@
                 </div>
             </dd>
 
@@ -79,11 +82,11 @@
                 @Html.DisplayFor(model => Model.Item1.Ansvarig.FörNamn)  @Html.DisplayFor(model => Model.Item1.Ansvarig.EfterNamn)
             </p>
         </dd>
-
     }
 
     <dt> 
-        <input id="Submit1" type="submit" value="submit" />
+        @*<input id="Submit1" type="submit" value="submit" />*@
+        <input  type="submit" id="Submit1"  value="submit" />
     </dt>
 }
 
