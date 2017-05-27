@@ -26,11 +26,12 @@
         }
     </div>
 
-    foreach (var item in Model.Item2)
-    {
-        if (item.Evenemang.Count() != 0)
-        {
-            <div class="well-lg" style="background-color:#eee">
+            
+            foreach (var item in Model.Item2)
+            {
+                if (item.Evenemang.Count() != 0)
+                {
+             <div class="well-lg" style="background-color:#eee">
 
                 @using (Html.BeginForm("gruppsida", "Grupp", new { item.GruppNamn }))
                 {
@@ -41,6 +42,7 @@
 
                         <input type="submit" value="@item.GruppNamn" class="btn btn-lg btn-danger" id="gruppknapp" style="font-size:x-large" />
 
+                        @*START KALENDER*@
                         <div class="agenda">
                             <div class="table-responsive col-sm-6">
                                 <table class="table table-condensed table-responsive">
@@ -80,12 +82,18 @@
                             </div>
                            
                         </div>
+                        @*SLUT KALENDER*@
+
                         <div class="col-sm-6">
                             <p>Uppgifter:</p>
-                            @foreach (var uppg in Model.Item4)
+                             
+                            @{var uppgifter = Model.Item4.Where(u => u.TillhörGrupp.GruppID == item.GruppID).ToList();}
+
+                            @foreach (var uppg in uppgifter)
                             {
+
                                 <div class="well-sm grupper grupptext">
-                                    @Html.DisplayFor(u => uppg.Namn)
+                                    @Html.DisplayFor(Model => uppg.Namn)
                                 </div>
                                 
                             }
