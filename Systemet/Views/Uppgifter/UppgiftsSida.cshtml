@@ -54,7 +54,7 @@
             <dd>
                 <div class="form-group">
                     @*@Html.DropDownList("HelaNamnet", ViewBag.medlemmar as SelectList, "Välj", new { @class = "form-control", @id = "vald", @value = "AnsvarigaNamn" })*@
-                    @Html.DropDownListFor(m => m.Item2.GruppMedlemmar, new SelectList(ViewBag.medlemmar, "AnvändarID", "HelaNamnet"), "Välj en fårskalle", new { @class = "form-control", @id = "vald", @value = "AnsvarigaNamn" })
+                    @Html.DropDownListFor(m => m.Item2.GruppMedlemmar, new SelectList(ViewBag.medlemmar, "AnvändarID", "HelaNamnet"), "Välj en Ansvarig", new { @class = "form-control", @id = "vald", @value = "AnsvarigaNamn" })
                     @*@Html.DropDownListFor(m => m.Item2.GruppMedlemmar, new SelectList(ViewBag.medlemmar, "AnvändarID", "HelaNamnet"), "Välj en fårskalle", new { @class = "form-control", @id = "vald", @value = "AnsvarigaNamn" })*@
                     @*@Html.DropDownList("AnsvarigaNamn", null, new { @class = "form-control", @id = "vald", @value = "AnsvarigaNamn" })*@
                 </div>
@@ -64,7 +64,7 @@
         else
         {
             <dt>
-                @Html.Display("välj om du vill ta på dig den här skiten")
+                @Html.Display("välj om du vill ta på dig den här uppgiften")
             </dt>
             <dd>
                 här ska man kunna välja om man vill ta på sig eländet

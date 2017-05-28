@@ -2,6 +2,7 @@
 @{
 
     <link rel="stylesheet" href="~/Content/agenda.css">
+    
     ViewBag.Title = "inloggad";
 }
 
@@ -19,18 +20,22 @@
 
         @using (Html.BeginForm("gåmedigrupp", "Grupp"))
         {
-            @ViewBag.Sökning
-            @Html.TextBox("sökning")
-            <input type="submit" value="sökning" name="sökning" id="sökning" />
+        @*<div class="ui-widget">
+            <label for="tags">Tags: </label>
+            <input id="tags">
+        </div>*@
 
+            @ViewBag.Sökning
+            @Html.TextBox("sökning", null, htmlAttributes: new {@id = "sökning" })
+            <input type="submit" value="sökning" id="sökning"/>
         }
     </div>
 
-            
-            foreach (var item in Model.Item2)
-            {
-                if (item.Evenemang.Count() != 0)
-                {
+    
+    foreach (var item in Model.Item2)
+    {
+        if (item.Evenemang.Count() != 0)
+        {
              <div class="well-lg" style="background-color:#eee">
 
                 @using (Html.BeginForm("gruppsida", "Grupp", new { item.GruppNamn }))
@@ -98,7 +103,7 @@
                                 
                             }
 
-
+                            
                         </div>
                     </div>
 
@@ -108,15 +113,39 @@
         }
     }
 }
+        
+@section Scripts { 
 
-<script type="text/javascript">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+    <script type="text/javascript">
     $(function autocomplete() {
-        var grupper = @Model.Item2.Select(g => g.GruppNamn).ToArray();
-
-        $("#sökning").autocomplete({ source: grupper });
-    }
-
-
+        $("#sökning").autocomplete({
+            source: @Html.Raw(Json.Encode(ViewBag.allagrupper))
+        });
+    });
 </script>
+
+
+}
+         }
+    });
+
+
+
+
+
+@*<script type="text/javascript">
+
+        $(function autocomplete() {
+            var $grupper = @Model.Item2.Select(g => g.GruppNamn).ToArray();
+
+            $("#sökning").autocomplete({ source: $grupper });
+        }
+
+
+    </script>*@
 
