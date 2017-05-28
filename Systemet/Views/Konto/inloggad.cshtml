@@ -11,27 +11,46 @@
 
     <div class="jumbotron">
 
-        <h2> Välkommen @Session["Förnamn"].ToString()</h2>
+        <div class="row">
+            <h2> Välkommen @Session["Förnamn"].ToString()</h2>
+            <div class="col-lg-6">
+               
+                <div class="input-group pull-left">
+                    <span class="glyphicon glyphicon-user input-group-btn"></span>
+                    @Html.ActionLink("mina uppgifter", "Redigera", "Konto", htmlAttributes: new { @class = "form-control input-group pull-left btn-danger btn-primary" })
+                </div>
+            </div>
 
-        <div>
-            <span class="glyphicon glyphicon-user"></span>
-            @Html.ActionLink("mina uppgifter", "Redigera", "Konto")
+
+            <div class="col-lg-6">
+
+                @using (Html.BeginForm("gåmedigrupp", "Grupp"))
+                {
+                    <div class="input-group pull-right">
+                        @ViewBag.Sökning
+                        @Html.TextBox("sökning", null, htmlAttributes: new { @id = "sökning", @class = "form-control input-group pull-right" })
+                        <span class="input-group-btn">
+                            <input type="submit" value="sökning" id="sökning" class="btn btn-secondary btn-danger" />
+                        </span>
+                    </div>
+
+                }
+            </div>
+
         </div>
 
-        @using (Html.BeginForm("gåmedigrupp", "Grupp"))
-        {
-        @*<div class="ui-widget">
-            <label for="tags">Tags: </label>
-            <input id="tags">
-        </div>*@
 
-            @ViewBag.Sökning
-            @Html.TextBox("sökning", null, htmlAttributes: new {@id = "sökning" })
-            <input type="submit" value="sökning" id="sökning"/>
-        }
+
+
+        @*@using (Html.BeginForm("gåmedigrupp", "Grupp"))
+            {
+                @ViewBag.Sökning
+                @Html.TextBox("sökning", null, htmlAttributes: new { @id = "sökning", @class = "pull-right" })
+                <input type="submit" value="sökning" id="sökning" class="btn-primary btn-warning" />
+            }*@
     </div>
 
-    
+
     foreach (var item in Model.Item2)
     {
         if (item.Evenemang.Count() != 0)
@@ -100,11 +119,9 @@
                                 <div class="well-sm grupper grupptext">
                                     @Html.DisplayFor(Model => uppg.Namn)
                                 </div>
-                                
                             }
-
-                            
                         </div>
+
                     </div>
 
                 }
@@ -113,6 +130,7 @@
         }
     }
 }
+
         
 @section Scripts { 
 
