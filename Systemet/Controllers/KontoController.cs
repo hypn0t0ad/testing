@@ -88,6 +88,7 @@ namespace Systemet.Controllers
             user = konto;
 
             List<Grupp> grupperna = new List<Grupp>();
+            var allagrupper = db.Grupps.Select(g => g.GruppNamn).ToList();
             List<Evenemang> evenemang = new List<Evenemang>();
             List<Uppgifter> uppgifts = new List<Uppgifter>();
 
@@ -102,6 +103,7 @@ namespace Systemet.Controllers
 
             if (Session["AnvändarID"] != null)
             {
+                ViewBag.allagrupper = allagrupper;
                 return View(Tuple.Create(user, grupperna, evenemang, uppgifts));
             }
             else
