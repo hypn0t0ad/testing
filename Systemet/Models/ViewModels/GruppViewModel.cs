@@ -12,7 +12,8 @@ namespace Systemet.Models.ViewModels
         public virtual Grupp grupp { get; set; }
         public virtual int ledareID { get; set; }
         public virtual int användareID { get; set; }
-        
+        public virtual AnvändarKonton ansvarig { get; set; }
+        public virtual int inloggad { get; set; }
 
         public virtual ICollection<AnvändarKonton> medlemmar { get; set; }
 

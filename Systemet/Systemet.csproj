@@ -469,7 +469,6 @@
     <Content Include="Views\Uppgifter\Edit.cshtml" />
     <Content Include="Views\Uppgifter\Index.cshtml" />
     <Content Include="Views\Uppgifter\UppgiftsSida.cshtml" />
-    <Content Include="Views\Uppgifter\UppgiftsSida2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
