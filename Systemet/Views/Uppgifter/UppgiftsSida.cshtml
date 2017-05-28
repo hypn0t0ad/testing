@@ -30,18 +30,16 @@
     @Html.DisplayFor(model => Model.uppgift.Beskrivning)
 </dd>
 
-    @using (Html.BeginForm("läggtillanvändaretilluppgift", "Uppgifter", FormMethod.Post))
+@using (Html.BeginForm("läggtillanvändaretilluppgift", "Uppgifter", FormMethod.Post))
+{
+    if (Model.uppgift.Ansvarig == null)
     {
-        if (Model.uppgift.Ansvarig == null)
-        {
-
         <dt>
             @Html.DisplayNameFor(model => Model.uppgift.Ansvarig)
         </dt>
         <dd>
             <p>Ingen har tagit på sig den här uppgiften än</p>
         </dd>
-
         if (Convert.ToInt32(Session["AnvändarID"]) == Model.uppgift.TillhörGrupp.LedareID)
         {
             <dt>
@@ -60,21 +58,23 @@
                 @Html.Display("vill du ta det här?")
             </dt>
             <dd>
-                @Html.RadioButtonFor(m => m.inloggad, "Ja", new { @class = "form-control", @id = "vald", @value = "AnvändarID", }))
+                <div class="form-group">
+                    @Html.RadioButtonFor(m => m.användareID, ,  new { @class = "form-control", @id = "vald", @value = "AnvändarID", })
+                </div>
             </dd>
         }
     }
     else
     {
-            <div>
-                @{Html.RenderPartial("uppgiftssidapartial");}
-            </div>
-           
-        }
-    <dt>
-        <input type="submit" id="Submitknappen" value="Lägg till" />
-</dt>
-}
+        <div>
+            @{Html.RenderPartial("uppgiftssidapartial");}
+        </div>
+
+                }
+                <dt>
+                    <input type="submit" id="Submitknappen" value="Lägg till" />
+                </dt>
+                }
 
 <dd>
     @Html.ActionLink("Edit", "Edit", new { id = Model.uppgift.UppgifterID }) |
