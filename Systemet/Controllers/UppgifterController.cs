@@ -131,9 +131,10 @@ namespace vagina.Controllers
         }
 
 
-        public ActionResult UppgiftsSida (int? idet)
+        public ActionResult UppgiftsSida(int? idet)
         {
-
+            int inloggadID = Convert.ToInt32(Session["AnvändarID"]);
+            int tempID = Convert.ToInt32(TempData["ID"]);
             Uppgifter uppgiften;
             if (idet.HasValue)
             {
@@ -141,59 +142,11 @@ namespace vagina.Controllers
             }
             else
             {
-                return View("Index", "Home");
+                uppgiften = db.Uppgifters.SingleOrDefault(a => a.UppgifterID == tempID);
             }
-
             int tillhörgrupp = Convert.ToInt32(uppgiften.TillhörGrupp.GruppID);
             Grupp gruppen = db.Grupps.SingleOrDefault(g => g.GruppID == tillhörgrupp);
-            ICollection<AnvändarKonton> medlemmar = gruppen.GruppMedlemmar;
-
-
-            ViewBag.medlemmar = medlemmar;
-
-            var namnen = new List<SelectListItem>();
-            namnen.Add(new SelectListItem { Value = "0", Text = "Välj ansvarig" });
-
-            int value = 1;
-            foreach (var item in medlemmar)
-            {
-
-                namnen.Add(new SelectListItem { Value = value.ToString(), Text = item.FörNamn + " " + item.EfterNamn });
-                value++;
-            }
-            ViewData["AnsvarigaNamn"] = namnen;
-
-
-            //prövar med viewmodel
-            var gruppviewmodel = new GruppViewModel();
-            gruppviewmodel.grupp = gruppen;
-            gruppviewmodel.uppgift = uppgiften;
-            gruppviewmodel.medlemmar = medlemmar;
-            gruppviewmodel.ledareID = gruppen.LedareID;
-
-
-
-
-            return View(Tuple.Create(uppgiften, gruppen));
-        }
-
-
-
-        public ActionResult UppgiftsSida2(int? idet)
-        {
-
-            Uppgifter uppgiften;
-            if (idet.HasValue)
-            {
-                uppgiften = db.Uppgifters.SingleOrDefault(a => a.UppgifterID == idet);
-            }
-            else
-            {
-                return View("Index", "Home");
-            }
-
-            int tillhörgrupp = Convert.ToInt32(uppgiften.TillhörGrupp.GruppID);
-            Grupp gruppen = db.Grupps.SingleOrDefault(g => g.GruppID == tillhörgrupp);
+            AnvändarKonton inloggad = db.konton.SingleOrDefault(i => i.AnvändarID == inloggadID);
             ICollection<AnvändarKonton> medlemmar = gruppen.GruppMedlemmar;
             
             var gruppviewmodel = new GruppViewModel();
@@ -201,6 +154,7 @@ namespace vagina.Controllers
             gruppviewmodel.uppgift = uppgiften;
             gruppviewmodel.medlemmar = medlemmar;            
             gruppviewmodel.ledareID = gruppen.LedareID;
+            gruppviewmodel.inloggad = inloggad.AnvändarID;
             List<SelectListItem> namnen = new List<SelectListItem>();
 
             
@@ -211,15 +165,20 @@ namespace vagina.Controllers
                 
             }
             gruppviewmodel.lemmar = new SelectList(namnen, "Value", "Text");
-
-
             return View(gruppviewmodel);
         }
 
         [HttpPost]
         public ActionResult läggtillanvändaretilluppgift(GruppViewModel gvp)
         {
-
+            int ansvarig = gvp.användareID;            
+            int uppgiftID = gvp.uppgift.UppgifterID;
+            Uppgifter uppgift = db.Uppgifters.SingleOrDefault(u => u.UppgifterID == uppgiftID);
+            AnvändarKonton ansvariganvändare = db.konton.SingleOrDefault(a => a.AnvändarID == ansvarig);
+            uppgift.Ansvarig = ansvariganvändare;
+            ansvariganvändare.AnsvararFörUppgift.Add(uppgift);            
+            db.SaveChanges();
+            TempData["ID"] = uppgift.UppgifterID;
             return RedirectToAction("UppgiftsSida");
         }
     }

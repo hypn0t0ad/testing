@@ -1,4 +1,4 @@
-﻿@model Tuple <Systemet.Models.Uppgifter, Systemet.Models.Grupp>
+﻿@model Systemet.Models.ViewModels.GruppViewModel
 
 @{
     ViewBag.Title = "UppgiftsSida";
@@ -7,114 +7,103 @@
     <li><a href="~/Views/Konto/inloggad.cshtml">Start</a></li>
     <li><a href="~/Views/Grupp/minagrupper.cshtml">Mina Grupper</a></li>
     <li><a href="~/Views/Grupp/gruppsida.cshtml">Gruppsida</a></li>
-    <li class="active">Uppgift: @Model.Item1.Namn</li>
+    <li class="active">Uppgift: @Model.uppgift.Namn</li>
 </ol>
 
 <h2>UppgiftsSida</h2>
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
 
 
+<dt>
+    @Html.DisplayNameFor(model => Model.uppgift.Namn)
+</dt>
 
-    <dt>
-        @Html.DisplayNameFor(model => model.Item1.Namn)
-    </dt>
+<dd>
+    @Html.DisplayFor(model => Model.uppgift.Namn)
+</dd>
 
-    <dd>
-        @Html.DisplayFor(model => model.Item1.Namn)
-    </dd>
+<dt>
+    @Html.DisplayNameFor(model => Model.uppgift.Beskrivning)
+</dt>
 
-    <dt>
-        @Html.DisplayNameFor(model => model.Item1.Beskrivning)
-    </dt>
+<dd>
+    @Html.DisplayFor(model => Model.uppgift.Beskrivning)
+</dd>
 
-    <dd>
-        @Html.DisplayFor(model => model.Item1.Beskrivning)
-    </dd>
-
-
-
-
-
-@using (Html.BeginForm("läggtillanvändaretilluppgift", "Uppgifter", FormMethod.Post))
-{
-
-    if (Model.Item1.Ansvarig == null)
+    @using (Html.BeginForm("läggtillanvändaretilluppgift", "Uppgifter", FormMethod.Post))
     {
+        if (Model.uppgift.Ansvarig == null)
+        {
 
         <dt>
-            @Html.DisplayNameFor(model => model.Item1.Ansvarig)
+            @Html.DisplayNameFor(model => Model.uppgift.Ansvarig)
         </dt>
         <dd>
             <p>Ingen har tagit på sig den här uppgiften än</p>
         </dd>
 
-        if (Convert.ToInt32(Session["AnvändarID"]) == Model.Item1.TillhörGrupp.LedareID)
+        if (Convert.ToInt32(Session["AnvändarID"]) == Model.uppgift.TillhörGrupp.LedareID)
         {
             <dt>
             </dt>
             <dd>
+                @Html.HiddenFor(model => model.grupp.GruppID)
+                @Html.HiddenFor(model => model.uppgift.UppgifterID)
                 <div class="form-group">
-                    @*@Html.DropDownList("HelaNamnet", ViewBag.medlemmar as SelectList, "Välj", new { @class = "form-control", @id = "vald", @value = "AnsvarigaNamn" })*@
-                    @Html.DropDownListFor(m => m.Item2.GruppMedlemmar, new SelectList(ViewBag.medlemmar, "AnvändarID", "HelaNamnet"), "Välj en fårskalle", new { @class = "form-control", @id = "vald", @value = "AnsvarigaNamn" })
-                    @*@Html.DropDownListFor(m => m.Item2.GruppMedlemmar, new SelectList(ViewBag.medlemmar, "AnvändarID", "HelaNamnet"), "Välj en fårskalle", new { @class = "form-control", @id = "vald", @value = "AnsvarigaNamn" })*@
-                    @*@Html.DropDownList("AnsvarigaNamn", null, new { @class = "form-control", @id = "vald", @value = "AnsvarigaNamn" })*@
+                    @Html.DropDownListFor(m => m.användareID, Model.lemmar, "Välj", new { @class = "form-control", @id = "vald", @value = "AnvändarID", })
                 </div>
             </dd>
-
         }
         else
         {
             <dt>
-                @Html.Display("välj om du vill ta på dig den här skiten")
+                @Html.Display("vill du ta det här?")
             </dt>
             <dd>
-                här ska man kunna välja om man vill ta på sig eländet
+                @Html.RadioButtonFor(m => m.inloggad, "Ja", new { @class = "form-control", @id = "vald", @value = "AnvändarID", }))
             </dd>
         }
     }
     else
     {
-        <dt>
-            @Html.DisplayNameFor(model => model.Item1.Ansvarig)
-        </dt>
-
-        <dd>
-            <p>
-                @Html.DisplayFor(model => Model.Item1.Ansvarig.FörNamn)  @Html.DisplayFor(model => Model.Item1.Ansvarig.EfterNamn)
-            </p>
-        </dd>
-    }
-
-    <dt> 
-        @*<input id="Submit1" type="submit" value="submit" />*@
-        <input  type="submit" id="Submit1"  value="submit" />
-    </dt>
+            <div>
+                @{Html.RenderPartial("uppgiftssidapartial");}
+            </div>
+           
+        }
+    <dt>
+        <input type="submit" id="Submitknappen" value="Lägg till" />
+</dt>
 }
 
 <dd>
-@Html.ActionLink("Edit", "Edit", new { id = Model.Item1.UppgifterID}) |
-@Html.ActionLink("Delete", "Delete", new { id = Model.Item1.UppgifterID })
+    @Html.ActionLink("Edit", "Edit", new { id = Model.uppgift.UppgifterID }) |
+    @Html.ActionLink("Delete", "Delete", new { id = Model.uppgift.UppgifterID })
 </dd>
 
+
+
 @section Scripts {
+
     <script type="text/javascript">
 
         function hideOnLoad() {
-            $('#Submit1').hide();
+            $('#Submitknappen').hide();
         }
 
         $(document).ready(function () {
             hideOnLoad();
 
             $('#vald').change(function () {
-                var AnsvarigaNamn = $(this).val();
+                var AnvändarID = $(this).val();
 
-                if (AnsvarigaNamn >= '1') {
-                    $('#Submit1').show();
+                if (AnvändarID >= '1') {
+                    $('#Submitknappen').show();
                 }
                 else {
                     hideOnLoad();
                 }
             });
         });
-    </script>
+</script>
 }
