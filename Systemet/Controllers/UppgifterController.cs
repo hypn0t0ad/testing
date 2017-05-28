@@ -196,7 +196,6 @@ namespace vagina.Controllers
             Grupp gruppen = db.Grupps.SingleOrDefault(g => g.GruppID == tillhörgrupp);
             ICollection<AnvändarKonton> medlemmar = gruppen.GruppMedlemmar;
             
-            //prövar med viewmodel
             var gruppviewmodel = new GruppViewModel();
             gruppviewmodel.grupp = gruppen;
             gruppviewmodel.uppgift = uppgiften;
@@ -218,7 +217,7 @@ namespace vagina.Controllers
         }
 
         [HttpPost]
-        public ActionResult läggtillanvändaretilluppgift([Bind(Include = "AnvändarID")] int? ID)
+        public ActionResult läggtillanvändaretilluppgift(GruppViewModel gvp)
         {
 
             return RedirectToAction("UppgiftsSida");

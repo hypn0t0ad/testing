@@ -51,12 +51,14 @@
             </dt>
             <dd>
                 <div class="form-group">
-                    @*@Html.DropDownListFor(m => m.medlemmar, new SelectList(Model.medlemmar, "AnvändarID", "HelaNamnet"), "Välj en fårskalle", new { @class = "form-control", @id = "vald", @value = "AnvändarID" })*@
-                    @Html.DropDownListFor(m => m.ansvarig, Model.lemmar, "Välj en fårskalle", new { @class = "form-control", @id = "vald", @value = "AnvändarID" })
+                  
+                  
+                    @Html.DropDownListFor(m => m.användareID, Model.lemmar, "Välj en fårskalle", new { @class = "form-control", @id = "vald", @value = "AnvändarID",  })
+                  
                 </div>
             </dd>
             <dt>
-                <input type="submit" id="Submit1" value="Lägg till" />
+                <input type="submit" id="Submitknappen" value="Lägg till" />
             </dt>
         }
     }
@@ -93,7 +95,7 @@ else
     <script type="text/javascript">
 
         function hideOnLoad() {
-            $('#Submit1').hide();
+            $('#Submitknappen').hide();
         }
 
         $(document).ready(function () {
@@ -103,7 +105,7 @@ else
                 var AnvändarID = $(this).val();
 
                 if (AnvändarID >= '1') {
-                    $('#Submit1').show();
+                    $('#Submitknappen').show();
                 }
                 else {
                     hideOnLoad();
