@@ -31,60 +31,54 @@
 </dd>
 
 
-
-
-@if (Model.uppgift.Ansvarig == null)
+@using (Html.BeginForm("läggtillanvändaretilluppgift", "Uppgifter", FormMethod.Post))
 {
-
-    <dt>
-        @Html.DisplayNameFor(model => Model.uppgift.Ansvarig)
-    </dt>
-    <dd>
-        <p>Ingen har tagit på sig den här uppgiften än</p>
-    </dd>
-
-    if (Convert.ToInt32(Session["AnvändarID"]) == Model.uppgift.TillhörGrupp.LedareID)
+    if (Model.uppgift.Ansvarig == null)
     {
-        using (Html.BeginForm("läggtillanvändaretilluppgift", "Uppgifter", FormMethod.Post))
+
+        <dt>
+            @Html.DisplayNameFor(model => Model.uppgift.Ansvarig)
+        </dt>
+        <dd>
+            <p>Ingen har tagit på sig den här uppgiften än</p>
+        </dd>
+
+        if (Convert.ToInt32(Session["AnvändarID"]) == Model.uppgift.TillhörGrupp.LedareID)
         {
             <dt>
             </dt>
             <dd>
                 <div class="form-group">
-                  
-                  
-                    @Html.DropDownListFor(m => m.användareID, Model.lemmar, "Välj en fårskalle", new { @class = "form-control", @id = "vald", @value = "AnvändarID",  })
-                  
+                    @Html.DropDownListFor(m => m.användareID, Model.lemmar, "Välj en fårskalle", new { @class = "form-control", @id = "vald", @value = "AnvändarID", })
                 </div>
             </dd>
+        }
+        else
+        {
             <dt>
-                <input type="submit" id="Submitknappen" value="Lägg till" />
+                @Html.Display("välj om du vill ta på dig den här skiten")
             </dt>
+            <dd>
+                här ska man kunna välja om man vill ta på sig eländet
+            </dd>
         }
     }
     else
     {
         <dt>
-            @Html.Display("välj om du vill ta på dig den här skiten")
+            @Html.DisplayNameFor(model => model.uppgift.Ansvarig)
         </dt>
+
         <dd>
-            här ska man kunna välja om man vill ta på sig eländet
+            <p>
+                @Html.DisplayFor(model => model.uppgift.Ansvarig.HelaNamnet)
+            </p>
         </dd>
     }
-}
-else
-{
     <dt>
-        @Html.DisplayNameFor(model => model.uppgift.Ansvarig)
+        <input type="submit" id="Submitknappen" value="Lägg till" />
     </dt>
-
-    <dd>
-        <p>
-            @Html.DisplayFor(model => model.uppgift.Ansvarig.HelaNamnet)
-        </p>
-    </dd>
 }
-
 
 <dd>
     @Html.ActionLink("Edit", "Edit", new { id = Model.uppgift.UppgifterID }) |
