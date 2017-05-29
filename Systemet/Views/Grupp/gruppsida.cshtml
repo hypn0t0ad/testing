@@ -13,9 +13,6 @@
 
 
 
-
-
-
  <div class="well-lg" style="background-color:#eee">
     <div class="container-fluid">
         <input type="submit" value="Alla venemang" class="btn btn-lg btn-danger" id="gruppknapp" style="font-size:x-large" />
@@ -102,21 +99,42 @@
 
                                 <td class="agenda-events" style="background-color:#e0e0e0">
                                     <div class="agenda-event">
-                                        <button class="btn btn-primary" type="button"
-                                                onclick="location.href='@Url.Action("uppgiftssida", "uppgifter", new { idet = ev.UppgifterID })'" title="@ev.UppgifterID">
-                                            @if (ev.Påbörjad == true)
-                                            {
-                                                @ev.Namn <span class="badge">Påbörjad</span>
-                                            }
-                                            else if (ev.Påbörjad == false)
-                                            {
-                                                @ev.Namn <span class="badge">inte påbörjad</span>
-                                            }
-                                            else if (ev.Påbörjad == true && ev.Utförd == true)
-                                            {
-                                                @ev.Namn <span class="badge">Klar</span>
-                                            }
-                                        </button>
+                                        @if (ev.Ansvarig.AnvändarID == Convert.ToInt32(Session["AnvändarID"]))
+                                        {
+                                            <button class="btn btn-primary" type="button" style="background-color:#3e8d27"
+                                                    onclick="location.href='@Url.Action("uppgiftssida", "uppgifter", new { idet = ev.UppgifterID })'" title="@ev.UppgifterID">
+                                                @if (ev.Påbörjad == true)
+                                                {
+                                                    @ev.Namn <span class="badge">Påbörjad</span>
+                                                }
+                                                else if (ev.Påbörjad == false)
+                                                {
+                                                    @ev.Namn <span class="badge">inte påbörjad</span>
+                                                }
+                                                else if (ev.Påbörjad == true && ev.Utförd == true)
+                                                {
+                                                    @ev.Namn <span class="badge">Klar</span>
+                                                }
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <button class="btn btn-primary" type="button"style="background-color:#af1432; cursor:default">
+                                                @if (ev.Påbörjad == true)
+                                                {
+                                                    @ev.Namn <span class="badge">Påbörjad</span>
+                                                }
+                                                else if (ev.Påbörjad == false)
+                                                {
+                                                    @ev.Namn <span class="badge">inte påbörjad</span>
+                                                }
+                                                else if (ev.Påbörjad == true && ev.Utförd == true)
+                                                {
+                                                    @ev.Namn <span class="badge">Klar</span>
+                                                }
+                                            </button>
+                                        }
+
                                     </div>
                                 </td>
 
@@ -146,140 +164,7 @@
 
 
 
-                @*SLUT KALENDER*@
-
-                <div class="col-sm-6">
-
-                    <table class="table table-condensed table-responsive">
-                        <thead>
-                            <tr>
-                                <th>Uppgifter</th>
-                            </tr>
-                        </thead>
-                    </table>
-
-                    @{var uppgifter = Model.Item3.Where(u => u.TillhörGrupp.GruppID == Model.Item1.GruppID).ToList();}
-
-                    @foreach (var uppg in uppgifter)
-                    {
-                        //uppgifter som inloggad är ansvarig för ska visas i rött, uppgifter som ingen tagit på sig ännu ska visas i blått
-
-                        //om det är inloggad användare
-
-                        if (uppg.Ansvarig.AnvändarID == Convert.ToInt32(Session["AnvändarID"]))
-                        {
-                            if (uppg.Utförd == true)
-                            {
-
-                            }
-                            else
-                            {
-                                <h3><span class="label label-success">@uppg.Namn</span></h3>
-                            }
-                        }
-                        //om ingen är ansvarig
-                        else if (uppg.Ansvarig.AnvändarID == 0)
-                        {
-                            if (uppg.Utförd == true)
-                            {
-
-                            }
-                            else
-                            {
-                                <h3><span class="label label-danger">@uppg.Namn</span></h3>
-                            }
-                        }
-                        //om någon annan än inloggad är ansvarig
-                        else if (uppg.Ansvarig.AnvändarID != Convert.ToInt32(Session["AnvändarID"]))
-                        {
-                            if (uppg.Utförd == true)
-                            {
-
-                            }
-                            else
-                            {
-                                <h3><span class="label label-default">@uppg.Namn</span></h3>
-                            }
-                        }
-                    }
-                </div>
-            </div>
-                        }
-    </div>
-    <div class="clearfix"></div>
-
-
-                        }
-
-
-
-
-
-
-@*<h2>@Model.Item1.GruppNamn</h2>
-
-    <div class="container-fluid ">
-        <div class="col-lg-12">
-        @Html.DisplayName("Medlemmar")
-        </div>
-        @foreach (var item in Model.Item1.GruppMedlemmar)
-        {
-            <div class="col-lg-2">
-                <div class="well-lg grupper">
-                <p class="grupptext">@item.FörNamn @item.EfterNamn</p>
-                </div>
-            </div>
-        }
-    </div>
-
-    <div class="container-fluid ">
-        <table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayName("Evenemang")
-                </th>
-                <th></th>
-            </tr>
-
-            @foreach (var item in Model.Item2)
-            {
-                <tr>
-                    <td>
-
-                        <a href="@Url.Action("evenemangssida", "Evenemangs", new { idet = item.EvenemangID })" title="@item.EvenemangID">
-                            @item.Namn
-                        </a>
-                    </td>
-                </tr>
-            }
-        </table>
-    </div>
-
-        @Html.ActionLink("skapa evenemang", "Create", "Evenemangs")
-
-
-        <table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayName("Uppgifter")
-                </th>
-                <th></th>
-            </tr>
-
-            @foreach (var item in Model.Item3)
-            {
-                <tr>
-                    <td>
-
-                        <a href="@Url.Action("UppgiftsSida", "Uppgifter", new { idet = item.UppgifterID })" title="@item.UppgifterID">
-                            @item.Namn
-                        </a>
-                    </td>
-                </tr>
-            }
-        </table>
-
-        <p>@Html.ActionLink("Lägg till Uppgift", "Create", "Uppgifter")</p>*@
+        <p>@Html.ActionLink("Lägg till Uppgift", "Create", "Uppgifter")</p>
 
 
 
