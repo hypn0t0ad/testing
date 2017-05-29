@@ -14,7 +14,7 @@
         <div class="row">
             <h2> Välkommen @Session["Förnamn"].ToString()</h2>
             <div class="col-lg-6">
-               
+
                 <div class="input-group pull-left">
                     <span class="glyphicon glyphicon-user input-group-btn"></span>
                     @Html.ActionLink("mina uppgifter", "Redigera", "Konto", htmlAttributes: new { @class = "form-control input-group pull-left btn-danger btn-primary" })
@@ -39,23 +39,13 @@
 
         </div>
 
-
-
-
-        @*@using (Html.BeginForm("gåmedigrupp", "Grupp"))
-            {
-                @ViewBag.Sökning
-                @Html.TextBox("sökning", null, htmlAttributes: new { @id = "sökning", @class = "pull-right" })
-                <input type="submit" value="sökning" id="sökning" class="btn-primary btn-warning" />
-            }*@
     </div>
-
 
     foreach (var item in Model.Item2)
     {
         if (item.Evenemang.Count() != 0)
         {
-             <div class="well-lg" style="background-color:#eee">
+            <div class="well-lg" style="background-color:#eee">
 
                 @using (Html.BeginForm("gruppsida", "Grupp", new { item.GruppNamn }))
                 {
@@ -92,44 +82,86 @@
                                                 </td>
                                                 <td class="agenda-events" style="background-color:#eee">
                                                     <div class="agenda-event">
-                                                        @ev.Namn;
+
+                                                        <button class="btn btn-primary" type="button"
+                                                                onclick="location.href='@Url.Action("evenemangssida", "Evenemangs", new { idet = ev.EvenemangID })'" title="@ev.EvenemangID">
+                                                            @ev.Namn <span class="badge">@ev.Åsikter.Count()</span>
+                                                        </button>
+
                                                     </div>
                                                 </td>
                                             </tr>
                                         </tbody>
-
-                                            @*@Html.DisplayFor(model => model.Item3 , new SelectList(Model.Item3, "id", "name"));*@
-
                                     }
 
                                 </table>
                             </div>
-                           
+
                         </div>
                         @*SLUT KALENDER*@
 
                         <div class="col-sm-6">
-                            <p>Uppgifter:</p>
-                             
+
+                            <table class="table table-condensed table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>Uppgifter</th>
+                                    </tr>
+                                </thead>
+                            </table>
+
                             @{var uppgifter = Model.Item4.Where(u => u.TillhörGrupp.GruppID == item.GruppID).ToList();}
 
                             @foreach (var uppg in uppgifter)
                             {
+                                //uppgifter som inloggad är ansvarig för ska visas i rött, uppgifter som ingen tagit på sig ännu ska visas i blått
 
-                                <div class="well-sm grupper grupptext">
-                                    @Html.DisplayFor(Model => uppg.Namn)
-                                </div>
+                                //om det är inloggad användare
+
+                                if (uppg.Ansvarig.AnvändarID == Convert.ToInt32(Session["AnvändarID"]))
+                                {
+                                    if (uppg.Utförd == true)
+                                    {
+
+                                    }
+                                    else
+                                    {                                        
+                                            <h3><span class="label label-success">@uppg.Namn</span></h3>                                        
+                                    }
+                                }
+                                //om ingen är ansvarig
+                                else if (uppg.Ansvarig.AnvändarID == 0)
+                                {
+                                    if (uppg.Utförd == true)
+                                    {
+
+                                    }
+                                    else
+                                    {                                        
+                                            <h3><span class="label label-danger">@uppg.Namn</span></h3>                                       
+                                    }
+                                }
+                                //om någon annan än inloggad är ansvarig
+                                else if (uppg.Ansvarig.AnvändarID != Convert.ToInt32(Session["AnvändarID"]))
+                                {
+                                    if (uppg.Utförd == true)
+                                    {
+
+                                    }
+                                    else
+                                    {                                        
+                                            <h3><span class="label label-default">@uppg.Namn</span></h3>                                       
+                                    }
+                                }
                             }
                         </div>
-
                     </div>
-
-                }
+                     }
             </div>
             <div class="clearfix"></div>
-        }
-    }
-}
+                                        }
+                                    }
+                                }
 
         
 @section Scripts { 
