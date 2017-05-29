@@ -89,38 +89,49 @@
                     {
                         <tbody>
                             <tr class="table">
+
                                 <td class="agenda-date active" style="background-color:#e0e0e0" rowspan="@Model.Item2.Count()">
                                     <div class="dayofmonth">@ev.Startdatum.Day/@ev.Startdatum.Month</div>
                                     <div class="dayofweek">@ev.Startdatum.DayOfWeek</div>
                                     <div class="shortdate text-muted">@ev.Startdatum.Year</div>
                                 </td>
+
                                 <td class="agenda-time" style="background-color:#e0e0e0">
                                     @ev.Beskrivning
                                 </td>
+
                                 <td class="agenda-events" style="background-color:#e0e0e0">
                                     <div class="agenda-event">
-
-                                        
                                         <button class="btn btn-primary" type="button"
-                                                onclick="location.href='@Url.Action("evenemangssida", "Evenemangs", new { idet = ev.UppgifterID })'" title="@ev.UppgifterID">
+                                                onclick="location.href='@Url.Action("uppgiftssida", "uppgifter", new { idet = ev.UppgifterID })'" title="@ev.UppgifterID">
                                             @if (ev.Påbörjad == true)
                                             {
                                                 @ev.Namn <span class="badge">Påbörjad</span>
                                             }
                                             else if (ev.Påbörjad == false)
                                             {
-                                                @ev.Namn <span class="badge">Ej tagen</span>
+                                                @ev.Namn <span class="badge">inte påbörjad</span>
                                             }
                                             else if (ev.Påbörjad == true && ev.Utförd == true)
                                             {
                                                 @ev.Namn <span class="badge">Klar</span>
                                             }
-
-
                                         </button>
-
                                     </div>
                                 </td>
+
+                                <td class="agenda-events" style="background-color:#e0e0e0">
+                                    <div class="agenda-event">
+                                        @if (ev.Ansvarig != null)
+	                                    {
+		                                     @ev.Ansvarig.HelaNamnet
+                                        }
+                                        else if (ev.Ansvarig == null)
+                                        {
+                                            <a>ingen har tagit på sig den här uppgiften än</a>
+                                        } 
+                                        </div>
+
                             </tr>
                         </tbody>
                     }

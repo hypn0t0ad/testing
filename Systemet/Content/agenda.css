@@ -3,7 +3,7 @@
  
 /* Dates */
 .agenda .agenda-date {
-    width: 300px;
+    width: 150px;
     background-color:#eee;
 }
 
@@ -24,12 +24,13 @@
 
     /* Times */
     .agenda .agenda-time {
-        width: 100px;
+        width: 450px;
     }
 
 
     /* Events */
     .agenda .agenda-events {
+        width: 150px;
     }
 
         .agenda .agenda-events .agenda-event {
@@ -40,5 +41,5 @@
     white-space: nowrap;
     width: 1%;
 }
-@media (max-width: 767px) {
+@media (max-width: 800px) {
 }
