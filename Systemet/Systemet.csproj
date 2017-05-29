@@ -483,7 +483,9 @@
     <Content Include="Views\Uppgifter\Index.cshtml" />
     <Content Include="Views\Uppgifter\UppgiftsSida.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Bilder\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

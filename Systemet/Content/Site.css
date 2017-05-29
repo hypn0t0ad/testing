@@ -34,6 +34,8 @@ textarea {
     color: white !important
 }
 
+
+
     .navbar-brand:visited {
         color: white !important
     }
@@ -43,5 +45,6 @@ textarea {
 }
 
 .navbar-inverse {
-    color: antiquewhite !important
+    color: white !important
 }
+

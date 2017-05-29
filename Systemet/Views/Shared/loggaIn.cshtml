@@ -8,16 +8,16 @@
         <ul class="nav navbar-nav navbar-right">
             <li>
                 
-                @Html.ActionLink("Hej " + Session["Förnamn"].ToString() + "!", "Redigera", "Konto")
+                @Html.ActionLink("Hej " + Session["Förnamn"].ToString() + "!", "Redigera", "Konto", new { area = "" }, new { @class = "navbar-brand" })
             </li>              
             <li>
-                @Html.ActionLink("Mina grupper", "minagrupper", "Grupp")
+                @Html.ActionLink("Mina grupper", "minagrupper", "Grupp", new { area = "" }, new { @class = "navbar-brand" })
             </li>
             <li>
-                @Html.ActionLink("Skapa Grupp", "Create", "Grupp")
+                @Html.ActionLink("Skapa Grupp", "Create", "Grupp", new { area = "" }, new { @class = "navbar-brand" })
             </li>
             <li>
-                @Html.ActionLink("Logga ut", "LogOut", "Konto")
+                @Html.ActionLink("Logga ut", "LogOut", "Konto", new { area = "" }, new { @class = "navbar-brand" })
             </li>
            
         </ul>
@@ -26,7 +26,7 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Registrera", "Register", "Konto", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Logga in", "Login", "Konto", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@Html.ActionLink("Registrera", "Register", "Konto", routeValues: new { area = "" }, htmlAttributes: new { id = "registerLink", @class = "navbar-brand" })</li>
+        <li>@Html.ActionLink("Logga in", "Login", "Konto", routeValues: new { area = "" }, htmlAttributes: new { id = "loginLink", @class = "navbar-brand" })</li>
     </ul>
 }
