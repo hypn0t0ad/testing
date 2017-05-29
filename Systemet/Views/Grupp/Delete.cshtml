@@ -5,15 +5,16 @@
 }
 
 <ol class="breadcrumb">
-    <li><a href="~/Views/Konto/inloggad.cshtml">Start</a></li>
-    <li><a href="~/Views/Grupp/minagrupper.cshtml">Mina Grupper</a></li>
+    <li>@Html.ActionLink("Startsidan", "inloggad", "Konto")</li>
+    <li>@Html.ActionLink("Alla mina grupper", "minagrupper", "Grupp")</li>
+    <li>@Html.ActionLink("Gruppens startsida", "gruppsida", "Grupp", new { Model.GruppNamn }, null)</li>
     <li class="active">Radera Grupp</li>
 </ol>
 
 
 <h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Är du säker på att du vill ta bort den här gruppen?</h3>
 <div>
     <h4>Grupp</h4>
     <hr />
@@ -41,7 +42,7 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Tillbaka", "gruppsida", "Grupp", new { Model.GruppNamn }, null)
         </div>
     }
 </div>

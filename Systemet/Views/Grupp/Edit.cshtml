@@ -5,8 +5,9 @@
 }
 
 <ol class="breadcrumb">
-    <li><a href="~/Views/Konto/inloggad.cshtml">Start</a></li>
-    <li><a href="~/Views/Grupp/minagrupper.cshtml">Mina Grupper</a></li>
+    <li>@Html.ActionLink("Startsidan", "inloggad", "Konto")</li>
+    <li>@Html.ActionLink("Alla mina grupper", "minagrupper", "Grupp")</li>
+    <li>@Html.ActionLink("Gruppens startsida", "gruppsida", "Grupp", new { Model.Item1.GruppNamn }, null)</li>
     <li class="active">Redigera Grupp</li>
 </ol>
 
@@ -45,11 +46,19 @@
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
+
     </div>
 }
-
+@using (Html.BeginForm())
+{
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Ta bort gruppen" class="btn btn-default" />
+    </div>
+</div>
+}
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Tillbaka", "Details", "Grupp", new { id = Model.GruppID }, null) |
 </div>
 
 @section Scripts {

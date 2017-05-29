@@ -173,10 +173,28 @@ namespace vagina.Controllers
         {
             int ansvarig = gvp.användareID;            
             int uppgiftID = gvp.uppgift.UppgifterID;
+            
+            
             Uppgifter uppgift = db.Uppgifters.SingleOrDefault(u => u.UppgifterID == uppgiftID);
             AnvändarKonton ansvariganvändare = db.konton.SingleOrDefault(a => a.AnvändarID == ansvarig);
             uppgift.Ansvarig = ansvariganvändare;
             ansvariganvändare.AnsvararFörUppgift.Add(uppgift);            
+            db.SaveChanges();
+            TempData["ID"] = uppgift.UppgifterID;
+            return RedirectToAction("UppgiftsSida");
+        }
+
+        [HttpPost]
+        public ActionResult tapåsiguppgift(GruppViewModel gvp)
+        {
+            int ansvarig = gvp.inloggad;
+            int uppgiftID = gvp.uppgift.UppgifterID;
+
+
+            Uppgifter uppgift = db.Uppgifters.SingleOrDefault(u => u.UppgifterID == uppgiftID);
+            AnvändarKonton ansvariganvändare = db.konton.SingleOrDefault(a => a.AnvändarID == ansvarig);
+            uppgift.Ansvarig = ansvariganvändare;
+            ansvariganvändare.AnsvararFörUppgift.Add(uppgift);
             db.SaveChanges();
             TempData["ID"] = uppgift.UppgifterID;
             return RedirectToAction("UppgiftsSida");

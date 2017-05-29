@@ -5,13 +5,12 @@
 }
 
 <ol class="breadcrumb">
-    <li><a href="~/Views/Konto/inloggad.cshtml">Start</a></li>
-    <li><a href="~/Views/Grupp/minagrupper.cshtml">Mina Grupper</a></li>
-    <li class="active">Om Gruppen</li>
+    <li>@Html.ActionLink("Startsidan", "inloggad", "Konto")</li>
+    <li>@Html.ActionLink("Alla mina grupper", "minagrupper", "Grupp")</li>
+    <li>@Html.ActionLink("Gruppens startsida", "gruppsida", "Grupp", new { Model.Item1.GruppNamn }, null)</li>
+    <li class="active">Detaljer</li>
 </ol>
 
-
-<h2>Details</h2>
 
 <div>
     <h4>Grupp</h4>
@@ -37,6 +36,5 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Item1.GruppID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Ändra", "Edit", "Grupp", new { id = Model.Item1.GruppID }, null) |
 </p>

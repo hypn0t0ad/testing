@@ -1,5 +1,13 @@
 ﻿@model Systemet.Models.AnvändarKonton
-
+@{
+    <link rel="stylesheet" href="~/Content/Sensify.css">
+    ViewBag.Title = "Gruppsida";
+    TempData["användarID"] = Model.AnvändarID;
+}
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Startsidan", "inloggad", "Konto")</li>    
+    <li class="active">Redigera</li>
+</ol>
 
 @using (Html.BeginForm())
 {
@@ -61,12 +69,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Spara" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Tillbaka", "Index")
+    @Html.ActionLink("Tillbaka", "inloggad", "Konto")
 </div>

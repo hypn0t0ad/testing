@@ -4,14 +4,56 @@
     ViewBag.Title = "Gruppsida";
 }
 <ol class="breadcrumb">
-    <li><a href="~/Views/Konto/inloggad.cshtml">Start</a></li>
-    <li><a href="~/Views/Grupp/minagrupper.cshtml">Mina Grupper</a></li>
+    <li>@Html.ActionLink("Startsidan", "inloggad", "Konto")</li>
+    <li>@Html.ActionLink("Alla mina grupper", "minagrupper", "Grupp")</li>
     <li class="active">@Model.Item1.GruppNamn</li>
 </ol>
 
 
-<h2>@Model.Item1.GruppNamn</h2>
 
+
+
+
+
+<div class="row">
+    <h2> @Model.Item1.GruppNamn</h2>
+    <div class="col-lg-6">
+
+        <div class="input-group pull-left">
+            <span class="glyphicon glyphicon-user input-group-btn"></span>
+            @Html.ActionLink("Detaljer", "Details", "Grupp", new {id=@Model.Item1.GruppID }, null @*htmlAttributes: new { @class = "form-control input-group pull-left btn-danger btn-primary" }*@)
+        </div>
+    </div>
+
+
+    <div class="col-lg-6">
+
+        @using (Html.BeginForm("gåmedigrupp", "Grupp"))
+        {
+            <div class="input-group pull-right">
+                @ViewBag.Sökning
+                @Html.TextBox("sökning", null, htmlAttributes: new { @id = "sökning", @class = "form-control input-group pull-right" })
+                <span class="input-group-btn">
+                    <input type="submit" value="sökning" id="sökning" class="btn btn-secondary btn-danger" />
+                </span>
+            </div>
+
+        }
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<h2>@Model.Item1.GruppNamn</h2>
 
 <div class="container-fluid ">
     <div class="col-lg-12">
