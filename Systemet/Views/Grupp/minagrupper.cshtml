@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "minagrupper";
+    TempData["användarID"] = Convert.ToInt32(Session["AnvändarID"]);
 }
 <ol class="breadcrumb">
     <li>@Html.ActionLink("Startsidan", "inloggad", "Konto")</li>
