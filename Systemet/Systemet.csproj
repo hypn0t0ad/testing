@@ -252,6 +252,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Systemet.Models.OurDBContext.mdf" />
+    <Content Include="App_Data\Systemet.Models.OurDBContext_log.ldf">
+      <DependentUpon>Systemet.Models.OurDBContext.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\agenda.css" />
     <Content Include="Content\awesomplete.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -479,9 +483,7 @@
     <Content Include="Views\Uppgifter\Index.cshtml" />
     <Content Include="Views\Uppgifter\UppgiftsSida.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
