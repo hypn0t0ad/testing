@@ -4,20 +4,38 @@
     ViewBag.Title = "gåmedigrupp";
 }
 
+
+
 <h2>Grupper:</h2>
 
+    @foreach (var item in Model)
+    {
+        <div class="row">
+            
+            <div class="col-lg-6">
+                <div class="input-group pull-left">
 
-@foreach (var item in Model)
-{
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.GruppNamn)
 
-        </td>
-        <td>
+                @using (Html.BeginForm("gruppsida", "Grupp", new { item.GruppNamn }))
+                {
+                        <input type = "submit" value = "@item.GruppNamn" class="input-group btn btn-lg pull-left btn-danger" id="gruppknapp"/>
+                    }
+                </div>
+            </div>
 
-    </tr>
-}
+            <div class="col-lg-6">
+                <div class="input-group pull-right">
+
+
+                </div>
+            </div>
+            
+        </div>
+<tr>
+    <td></td>
+</tr>
+
+    }
 
 
 
