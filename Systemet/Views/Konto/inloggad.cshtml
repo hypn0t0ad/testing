@@ -2,7 +2,8 @@
 @{
 
     <link rel="stylesheet" href="~/Content/agenda.css">
-    
+
+    TempData["användarID"] = Convert.ToInt32(Session["AnvändarID"]);
     ViewBag.Title = "inloggad";
 }
 
@@ -118,27 +119,30 @@
 
                                 //om det är inloggad användare
 
-                                if (uppg.Ansvarig.AnvändarID == Convert.ToInt32(Session["AnvändarID"]))
+
+                                if (uppg.Ansvarig == null)    //NULL-REFERENCE PROBLEM
                                 {
                                     if (uppg.Utförd == true)
                                     {
 
                                     }
                                     else
-                                    {                                        
-                                            <h3><span class="label label-success">@uppg.Namn</span></h3>                                        
+                                    {
+                                        <h3><span class="label label-danger">@uppg.Namn</span></h3>
+
                                     }
                                 }
                                 //om ingen är ansvarig
-                                else if (uppg.Ansvarig.AnvändarID == 0)
+                                else if (uppg.Ansvarig.AnvändarID == Convert.ToInt32(Session["AnvändarID"]))
                                 {
                                     if (uppg.Utförd == true)
                                     {
 
                                     }
                                     else
-                                    {                                        
-                                            <h3><span class="label label-danger">@uppg.Namn</span></h3>                                       
+                                    {
+                                        <h3><span class="label label-success">@uppg.Namn</span></h3>
+
                                     }
                                 }
                                 //om någon annan än inloggad är ansvarig
@@ -149,12 +153,13 @@
 
                                     }
                                     else
-                                    {                                        
-                                            <h3><span class="label label-default">@uppg.Namn</span></h3>                                       
+                                    {
+                                        <h3><span class="label label-default">@uppg.Namn</span></h3>
                                     }
                                 }
                             }
                         </div>
+
                     </div>
                      }
             </div>

@@ -10,3 +10,43 @@
     color: white;
     text-align:center
 }
+
+.slimScrollDiv {
+    position: relative;
+    overflow: hidden;
+    width: auto;
+    height: 325px;
+}
+
+.slimScrollBar {
+    width: 3px;
+    position: absolute;
+    top: 11px;
+    opacity: 0.4;
+    display: none;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+    z-index: 99;
+    left: 1px;
+    height: 209.5734126984127px;
+    background: rgb(134, 134, 134);
+    
+}
+
+.slimScrollRail {
+    width: 3px;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    display: none;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+    opacity: 0.3;
+    z-index: 90;
+    left: 1px;
+    background: rgb(51, 51, 51);
+}
