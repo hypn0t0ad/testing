@@ -134,12 +134,16 @@ namespace Systemet.Controllers
             Grupp grupp = db.Grupps.SingleOrDefault(g => g.GruppNamn == id);
 
             GruppFörfrågan ansökan = new GruppFörfrågan();
-
             ansökan.AnvändareSomFrågar = konto;
             ansökan.GruppFörfråganGäller = grupp;
             ansökan.text = "Hej, jag " + konto.HelaNamnet + " skulle vilja gå med i er grupp " + grupp.GruppNamn;
+            konto.Föfrågningar.Add(ansökan);
+            grupp.Ansökningar.Add(ansökan);
+            db.SaveChanges();
 
-            return View(ansökan);
+            konto.AnvändarID = Convert.ToInt32(TempData["användarID"]);
+
+            return RedirectToAction("inloggad", "Konto");
         }
     }
 }

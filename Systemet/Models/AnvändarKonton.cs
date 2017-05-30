@@ -48,7 +48,7 @@ namespace Systemet.Models
         public virtual ICollection<Uppgifter> AnsvararFörUppgift { get; set; }
         public virtual ICollection<EvenemangsKommentarer> Kommentarer { get; set; }
         public virtual ICollection<GruppFörfrågan> Föfrågningar { get; set; }
-
+       
 
         public virtual string HelaNamnet
         {
