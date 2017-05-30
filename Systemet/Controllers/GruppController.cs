@@ -214,7 +214,28 @@ namespace Systemet.Controllers
             return View(Tuple.Create(gruppen, events, uppgifterna));
         }
 
-        
-        
+        public ActionResult HanteraAnsökningar(string idet, int vem, int grupp)
+        {
+            GruppFörfrågan ansökning = db.GruppFörfrågan.SingleOrDefault(g => g.GruppFörfråganGäller.GruppID == grupp);
+            Grupp gruppen = db.Grupps.SingleOrDefault(j => j.GruppID == grupp);
+            AnvändarKonton anv = db.konton.SingleOrDefault(a => a.AnvändarID == vem);
+            if (idet == "neka" && idet != "godkänn")
+            {
+                ansökning.Godkänd = false;
+                ansökning.text = "nekad";
+
+                gruppen.Ansökningar.Remove(ansökning);
+            }
+            else if (idet != "neka" && idet == "godkänn")
+            {
+
+            }
+
+            return RedirectToAction("gruppsida", "Grupp");
+        }
+
+
+
+
     }
 }

@@ -11,6 +11,31 @@
     <li class="active">@Model.Item1.GruppNamn</li>
 </ol>
 
+@*här ska det vara nån form av panel eller nåt*@
+@if (Model.Item1.Ansökningar != null && Model.Item1.LedareID == Convert.ToInt32(Session["AnvändarID"]))
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Ansökningar</h3>
+        </div>
+        <div class="panel-body">
+            @foreach (var item in Model.Item1.Ansökningar)
+            {
+                <div class="well well-sm">
+                    <p><a class="btn btn-primary btn-lg" style="cursor: default" role="button">@item.AnvändareSomFrågar.HelaNamnet</a></p>
+
+                    <button class="btn btn-primary" type="button" style="background-color:yellowgreen" id="godkänn"
+                            onclick="location.href='@Url.Action("HanteraAnsökningar", "Grupp", new { idet  = "godkänn", vem = item.AnvändareSomFrågar.AnvändarID, grupp = item.GruppFörfråganGäller.GruppID})'" title="">
+                             Godkänn</button>
+                     
+                    <button class="btn btn-primary" type="button" style="background-color:red" id="neka"
+                            onclick="location.href='@Url.Action("HanteraAnsökningar", "Grupp", new { idet  = "neka", vem = item.AnvändareSomFrågar.AnvändarID, grupp = item.GruppFörfråganGäller.GruppID})'" title="">
+                        Neka</button>
+                </div>
+            }
+        </div>
+    </div>
+}
 
 
  <div class="well-lg" style="background-color:#eee">
