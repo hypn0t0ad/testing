@@ -146,6 +146,7 @@
     <Compile Include="Controllers\EvenemangsController.cs" />
     <Compile Include="Controllers\EvenemangsKommentarersController.cs" />
     <Compile Include="Controllers\GruppController.cs" />
+    <Compile Include="Controllers\GruppFörfråganController.cs" />
     <Compile Include="Controllers\KontoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UppgifterController.cs" />
@@ -247,6 +248,14 @@
     <Compile Include="Migrations\201705301151404_grupp beskrivning.cs" />
     <Compile Include="Migrations\201705301151404_grupp beskrivning.Designer.cs">
       <DependentUpon>201705301151404_grupp beskrivning.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705301240068_något.cs" />
+    <Compile Include="Migrations\201705301240068_något.Designer.cs">
+      <DependentUpon>201705301240068_något.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705301313039_text till förfrågan.cs" />
+    <Compile Include="Migrations\201705301313039_text till förfrågan.Designer.cs">
+      <DependentUpon>201705301313039_text till förfrågan.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Evenemang.cs" />
@@ -491,6 +500,11 @@
     <Content Include="Views\Uppgifter\Index.cshtml" />
     <Content Include="Views\Uppgifter\UppgiftsSida.cshtml" />
     <Content Include="Views\EvenemangsKommentarers\Partial.cshtml" />
+    <Content Include="Views\GruppFörfrågan\Create.cshtml" />
+    <Content Include="Views\GruppFörfrågan\Delete.cshtml" />
+    <Content Include="Views\GruppFörfrågan\Details.cshtml" />
+    <Content Include="Views\GruppFörfrågan\Edit.cshtml" />
+    <Content Include="Views\GruppFörfrågan\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Bilder\" />
@@ -570,6 +584,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705301151404_grupp beskrivning.resx">
       <DependentUpon>201705301151404_grupp beskrivning.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705301240068_något.resx">
+      <DependentUpon>201705301240068_något.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705301313039_text till förfrågan.resx">
+      <DependentUpon>201705301313039_text till förfrågan.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

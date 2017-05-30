@@ -17,5 +17,7 @@ namespace Systemet.Models
         public DbSet<Uppgifter> Uppgifters { get; set; }
 
         public DbSet<EvenemangsKommentarer> EvenemangsKommentarers { get; set; }
+
+        public DbSet<GruppFörfrågan> GruppFörfrågan { get; set; }
     }
 }

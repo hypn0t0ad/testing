@@ -49,7 +49,7 @@ namespace Systemet.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GruppID,GruppNamn")] Grupp grupp)
+        public ActionResult Create([Bind(Include = "GruppID,GruppNamn, beskrivning")] Grupp grupp)
         {
             int ID = Convert.ToInt32(Session["AnvändarID"]);
             AnvändarKonton user = db.konton.Single(u => u.AnvändarID == ID);
@@ -107,7 +107,7 @@ namespace Systemet.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "GruppID,GruppNamn,LedareID")] Grupp grupp)
+        public ActionResult Edit([Bind(Include = "GruppID,GruppNamn,LedareID, beskrivning")] Grupp grupp)
         {
             if (ModelState.IsValid)
             {
@@ -163,11 +163,14 @@ namespace Systemet.Controllers
         [HttpPost]
         public ActionResult gåmedigrupp(string sökning)
         {
-
+            
             OurDBContext db = new OurDBContext();
 
-            ICollection<Grupp> allagrupper = db.Grupps.Where(g => g.GruppNamn.Contains(sökning)).ToList();
+            int ID = Convert.ToInt32(Session["AnvändarID"]);
+            AnvändarKonton user = db.konton.Single(u => u.AnvändarID == ID);
 
+            ICollection <Grupp> allagrupper = db.Grupps.Where(g => g.GruppNamn.Contains(sökning)).ToList();
+           
 
             if (allagrupper != null)
             {

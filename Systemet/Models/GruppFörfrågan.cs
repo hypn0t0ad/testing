@@ -12,11 +12,11 @@ namespace Systemet.Models
         [Key]
         public int FörfråganID { get; set; }
         public bool Godkänd { get; set; }
+        public string text { get; set; }
 
 
         public virtual AnvändarKonton AnvändareSomFrågar { get; set; }
         public virtual Grupp GruppFörfråganGäller { get; set; }
-
 
 
     }

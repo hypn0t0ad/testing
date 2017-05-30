@@ -1,6 +1,7 @@
 ﻿@model ICollection<Systemet.Models.Grupp>
 
 @{
+    TempData["användarID"] = Convert.ToInt32(Session["AnvändarID"]);
     ViewBag.Title = "gåmedigrupp";
 }
 
@@ -15,20 +16,25 @@
             <div class="col-lg-4">
                 <div class="input-group pull-left">
 
-                    @*@using (Html.BeginForm("gruppsida", "Grupp", new { item.GruppNamn }))
-                        {
-                            <input type="submit" value="@item.GruppNamn" class="input-group btn btn-lg pull-left btn-danger" id="gruppknapp" />
-                        }*@
+
                     <div class="container">
-                        <a href="#demo" class="btn btn-info" data-toggle="collapse">@item.GruppNamn</a>
-                        <div id="demo" class="collapse">
+                        <a href="#@item.GruppID" class="btn btn-info" data-toggle="collapse">@item.GruppNamn</a>
+                        <div id="@item.GruppID" class="collapse">
+
+                            <h3>@item.beskrivning</h3>
+
+                            @using (Html.BeginForm("SkickaAnsökan", "GruppFörfrågan", new { id = item.GruppNamn }))
+                            {
+                                <input type="submit" value="Ansök till Grupp" class="btn btn-lg btn-danger" id="ansökanknapp" style="font-size:x-large" />
+                            }
+
 
                         </div>
                     </div>
-
-
                 </div>
             </div>
+
+
 
             <div class="col-lg-4">
                 @*<div class="span4 proj-div" data-toggle="modal" data-target="#GSCCModal"><span class="label-default">Ansök</span></div>
@@ -67,5 +73,20 @@
 
     }
 
+@section Scripts{
+<script>
+        //AUTOCOMPLETE
+        $(document).ready(function () {
+            $('[data-toggle="popoversvar"]').popover();
+        });
+</script>
 
 
+
+
+
+
+    
+
+
+    }

@@ -42,26 +42,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.StartTid, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Tidpunkt, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.StartTid, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.StartTid, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SlutTid, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SlutTid, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SlutTid, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Dag, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Dag, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Dag, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Tidpunkt, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Tidpunkt, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -74,8 +58,7 @@
 }
 
 <div>
-    @
-    Link("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {
