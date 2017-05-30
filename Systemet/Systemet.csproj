@@ -248,6 +248,10 @@
     <Compile Include="Migrations\201705301151404_grupp beskrivning.Designer.cs">
       <DependentUpon>201705301151404_grupp beskrivning.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705301204311_vet ej.cs" />
+    <Compile Include="Migrations\201705301204311_vet ej.Designer.cs">
+      <DependentUpon>201705301204311_vet ej.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Evenemang.cs" />
     <Compile Include="Models\EvenemangsKommentarer.cs" />
@@ -570,6 +574,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705301151404_grupp beskrivning.resx">
       <DependentUpon>201705301151404_grupp beskrivning.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705301204311_vet ej.resx">
+      <DependentUpon>201705301204311_vet ej.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
