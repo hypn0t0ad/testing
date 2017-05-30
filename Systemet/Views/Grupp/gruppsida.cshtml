@@ -12,191 +12,175 @@
 </ol>
 
 
-@{ var grupper = Model.Item1.GruppMedlemmar.Where(m => m.AnvändarID == (Convert.ToInt32(TempData["användarID"]))).ToList();
 
-}
+ <div class="well-lg" style="background-color:#eee">
+    <div class="container-fluid">
+        <input type="submit" value="Alla evenemang" class="btn btn-lg btn-danger" id="gruppknapp" style="font-size:x-large" />
 
-@foreach (var gr in grupper)
-{
-    <div class="well-lg" style="background-color:#eee">
-        <div class="container-fluid">
-            <input type="submit" value="Alla evenemang" class="btn btn-lg btn-danger" id="gruppknapp" style="font-size:x-large" />
+        @*START KALENDER*@
+        <div class="agenda">
+            <div class="table-responsive col-sm-12">
+                <table class="table table-condensed table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Datum</th>
+                            <th>Tid</th>
+                            <th>Evenemang</th>
+                        </tr>
+                    </thead>
 
-            @*START KALENDER*@
-            <div class="agenda">
-                <div class="table-responsive col-sm-12">
-                    <table class="table table-condensed table-responsive">
-                        <thead>
-                            <tr>
-                                <th>Datum</th>
-                                <th>Tid</th>
-                                <th>Evenemang</th>
+                    @foreach (var ev in Model.Item2)
+                    {
+                        <tbody>
+                            <tr class="table">
+                                <td class="agenda-date active" style="background-color:#eee" rowspan="@Model.Item2.Count()">
+                                    <div class="dayofmonth">@ev.Tidpunkt.Day/@ev.Tidpunkt.Month</div>
+                                    <div class="dayofweek">@ev.Tidpunkt.DayOfWeek</div>
+                                    <div class="shortdate text-muted">@ev.Tidpunkt.Year</div>
+                                </td>
+                                <td class="agenda-time" style="background-color:#eee">
+                                    @ev.Tidpunkt.ToShortTimeString();
+                                </td>
+                                <td class="agenda-events" style="background-color:#eee">
+                                    <div class="agenda-event">
+
+                                        <button class="btn btn-primary" type="button"
+                                                onclick="location.href='@Url.Action("evenemangssida", "Evenemangs", new { idet = ev.EvenemangID })'" title="@ev.EvenemangID">
+                                            @ev.Namn <span class="badge">@ev.Åsikter.Count()</span>
+                                        </button>
+
+                                    </div>
+                                </td>
                             </tr>
-                        </thead>
+                        </tbody>
+                    }
 
-                        @foreach (var ev in Model.Item2)
-                        {
-                            <tbody>
-                                <tr class="table">
-                                    <td class="agenda-date active" style="background-color:#eee" rowspan="@Model.Item2.Count()">
-                                        <div class="dayofmonth">@ev.Tidpunkt.Day/@ev.Tidpunkt.Month</div>
-                                        <div class="dayofweek">@ev.Tidpunkt.DayOfWeek</div>
-                                        <div class="shortdate text-muted">@ev.Tidpunkt.Year</div>
-                                    </td>
-                                    <td class="agenda-time" style="background-color:#eee">
-                                        @ev.Tidpunkt.ToShortTimeString();
-                                    </td>
-                                    <td class="agenda-events" style="background-color:#eee">
-                                        <div class="agenda-event">
+                </table>
+            </div>
 
-                                            <button class="btn btn-primary" type="button"
-                                                    onclick="location.href='@Url.Action("evenemangssida", "Evenemangs", new { idet = ev.EvenemangID })'" title="@ev.EvenemangID">
-                                                @ev.Namn <span class="badge">@ev.Åsikter.Count()</span>
+        </div>
+    </div>
+</div>
+
+@*här börjar uppgiftsindelningen*@
+<div class="well-lg" style="background-color:#e0e0e0">
+    <div class="container-fluid">
+        <input type="submit" value="Alla uppgifter" class="btn btn-lg btn-danger" id="gruppknapp" style="font-size:x-large" />
+
+        @*START KALENDER*@
+        <div class="agenda">
+            <div class="table-responsive col-sm-12">
+                <table class="table table-condensed table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Startdatum</th>
+                            <th>Beskrivning</th>
+                            <th>Uppgift</th>
+                            <th>Ansvarig</th>                            
+                        </tr>
+                    </thead>
+
+                    @foreach (var ev in Model.Item3)
+                    {
+                        <tbody>
+                            <tr class="table">
+
+                                <td class="agenda-date active" style="background-color:#e0e0e0" rowspan="@Model.Item2.Count()">
+                                    <div class="dayofmonth">@ev.Startdatum.Day/@ev.Startdatum.Month</div>
+                                    <div class="dayofweek">@ev.Startdatum.DayOfWeek</div>
+                                    <div class="shortdate text-muted">@ev.Startdatum.Year</div>
+                                </td>
+
+                                <td class="agenda-time" style="background-color:#e0e0e0">
+                                    @ev.Beskrivning
+                                </td>
+
+                                <td class="agenda-events" style="background-color:#e0e0e0">
+                                    <div class="agenda-event">
+
+                                        @*ingen ansvarig*@
+                                        @if (ev.Ansvarig == null)
+                                        {
+                                            <button class="btn btn-primary" type="button" style="background-color:#9d4040" id="edit"
+                                                    onclick="location.href='@Url.Action("UppgiftsSida", "uppgifter", new { idet  = ev.UppgifterID })'" title="@ev.UppgifterID">
+                                                @ev.Namn <span class="badge">ej tagen</span>
                                             </button>
+                                        }
+                                        @*inloggad är ansvarig*@
+                                        else if (ev.Ansvarig != null && ev.Ansvarig.AnvändarID == Convert.ToInt32(Session["AnvändarID"]))
+                                        {
+                                            if (ev.Påbörjad == true)
+                                            {
+                                                <button class="btn btn-primary" type="button" style="background-color:#d46666" id="edit"
+                                                        onclick="location.href='@Url.Action("Edit", "uppgifter", new { id  = ev.UppgifterID })'" title="@ev.UppgifterID">
+                                                    @ev.Namn <span class="badge">Påbörjad</span>
+                                                </button>
+                                            }
+                                            else if (ev.Påbörjad == false)
+                                            {
+                                                <button class="btn btn-primary" type="button" style="background-color:#c75151" id="edit"
+                                                        onclick="location.href='@Url.Action("Edit", "uppgifter", new { id  = ev.UppgifterID })'" title="@ev.UppgifterID">
+                                                    @ev.Namn <span class="badge">ej påbörjad</span>
+                                                </button>
+                                            }
+                                            else if (ev.Utförd == true)
+                                            {
+                                                <button class="btn btn-primary" type="button" style="background-color:#ff8a8a; cursor: default">
+                                                    @ev.Namn <span class="badge">Klar</span>
+                                                </button>
+                                            }
 
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        }
+                                        }
+                                        else if (ev.Ansvarig != null && ev.Ansvarig.AnvändarID != Convert.ToInt32(Session["AnvändarID"]))
+                                        {
+                                            if (ev.Påbörjad == true)
+                                            {
+                                                <button class="btn btn-primary" type="button" style="background-color:#d46666; cursor: default" id="edit">
+                                                    @ev.Namn <span class="badge">Påbörjad</span>
+                                                </button>
+                                            }
+                                            else if (ev.Påbörjad == false)
+                                            {
+                                                <button class="btn btn-primary" type="button" style="background-color:#c75151; cursor: default" id="edit">
+                                                    @ev.Namn <span class="badge">ej påbörjad</span>
+                                                </button>
+                                            }
+                                            else if (ev.Utförd == true)
+                                            {
+                                                <button class="btn btn-primary" type="button" style="background-color:#ff8a8a; cursor: default">
+                                                    @ev.Namn <span class="badge">Klar</span>
+                                                </button>
+                                            }
+                                        }
+                                    </div>
+                                </td>
 
-                    </table>
-                </div>
+                                <td class="agenda-events" style="background-color:#e0e0e0">
+                                    <div class="agenda-event">
+                                        @if (ev.Ansvarig != null)
+                                        {
+                                            @ev.Ansvarig.HelaNamnet
+                                        }
+                                        else if (ev.Ansvarig == null)
+                                        {
+                                            <a>ingen har tagit på sig den här uppgiften än</a>
+                                        }
+                                    </div>
 
-            </div>
-        </div>
-    </div>
-
-
-    @*här börjar uppgiftsindelningen*@
-    <div class="well-lg" style="background-color:#e0e0e0">
-        <div class="container-fluid">
-            <input type="submit" value="Alla uppgifter" class="btn btn-lg btn-danger" id="gruppknapp" style="font-size:x-large" />
-
-            @*START KALENDER*@
-            <div class="agenda">
-                <div class="table-responsive col-sm-12">
-                    <table class="table table-condensed table-responsive">
-                        <thead>
-                            <tr>
-                                <th>Startdatum</th>
-                                <th>Beskrivning</th>
-                                <th>Uppgift</th>
-                                <th>Ansvarig</th>
-                                <th>Påbörjad</th>
                             </tr>
-                        </thead>
+                        </tbody>
+                    }
 
-                        @foreach (var ev in Model.Item3)
-                        {
-                            <tbody>
-                                <tr class="table">
-
-                                    <td class="agenda-date active" style="background-color:#e0e0e0" rowspan="@Model.Item2.Count()">
-                                        <div class="dayofmonth">@ev.Startdatum.Day/@ev.Startdatum.Month</div>
-                                        <div class="dayofweek">@ev.Startdatum.DayOfWeek</div>
-                                        <div class="shortdate text-muted">@ev.Startdatum.Year</div>
-                                    </td>
-
-                                    <td class="agenda-time" style="background-color:#e0e0e0">
-                                        @ev.Beskrivning
-                                    </td>
-
-                                    <td class="agenda-events" style="background-color:#e0e0e0">
-                                        <div class="agenda-event">
-
-                                            @*om inloggad är ansvarig för uppgiften*@
-                                            @if (ev.Ansvarig.AnvändarID == Convert.ToInt32(Session["AnvändarID"]))
-                                            {
-
-                                                if (ev.Påbörjad == true)
-                                                {
-                                                    <button class="btn btn-primary" type="button" style="background-color:#3e8d27" id="edit"
-                                                            onclick="location.href='@Url.Action("Edit", "uppgifter", new { id  = ev.UppgifterID })'" title="@ev.UppgifterID">
-                                                        @ev.Namn <span class="badge">Påbörjad</span>
-                                                    </button>
-                                                }
-                                                else if (ev.Påbörjad == false)
-                                                {
-                                                    <button class="btn btn-primary" type="button" style="background-color:#3e8d27" id="edit"
-                                                            onclick="location.href='@Url.Action("Edit", "uppgifter", new { id  = ev.UppgifterID })'" title="@ev.UppgifterID">
-                                                        @ev.Namn <span class="badge">ej påbörjad</span>
-                                                    </button>
-                                                }
-                                                else if (ev.Påbörjad == true && ev.Utförd == true)
-                                                {
-                                                    <button class="btn btn-primary" type="button" style="background-color:#3e8d27; cursor: default">
-                                                        @ev.Namn <span class="badge">Klar</span>
-                                                    </button>
-                                                }
-                                            }
-                                            @*om inloggad inte ansvarar för uppgiften, och inte är ledare*@
-                                            else if (ev.Ansvarig.AnvändarID != Convert.ToInt32(Session["AnvändarID"]))
-                                            {
-
-                                                if (ev.Påbörjad == true)
-                                                {
-                                                    <button class="btn btn-primary" type="button" style="cursor: default">
-                                                        @ev.Namn <span class="badge">Påbörjad</span>
-                                                    </button>
-                                                }
-                                                else if (ev.Påbörjad == false)
-                                                {
-                                                    //om den är fri att ta på sig
-                                                    if (ev.Ansvarig.AnvändarID == 0)
-                                                    {
-                                                        <button class="btn btn-primary" type="button" style="background-color:#808080" id="uppgiftssida">
-                                                            onclick="location.href='@Url.Action("upgiftssida", "uppgifter", new { id = ev.UppgifterID })'" title="@ev.UppgifterID">
-                                                            @ev.Namn <span class="badge">inte påbörjad</span>
-                                                        </button>
-                                                    }
-                                                    //om den är upptagen av någon annan
-                                                    else if (ev.Ansvarig.AnvändarID > 0 && ev.Ansvarig.AnvändarID != Convert.ToInt32(Session["AnvändarID"]))
-                                                    {
-                                                        <button class="btn btn-primary" type="button" style="cursor: default">
-                                                            @ev.Namn <span class="badge">Klar</span>
-                                                        </button>
-                                                    }
-
-                                                }
-                                                else if (ev.Påbörjad == true && ev.Utförd == true)
-                                                {
-                                                    <button class="btn btn-primary" type="button" style="background-color:#3e8d27; cursor: default">
-                                                        @ev.Namn <span class="badge">Klar</span>
-                                                    </button>
-                                                }
-
-                                            }
-
-                                        </div>
-                                    </td>
-
-                                    <td class="agenda-events" style="background-color:#e0e0e0">
-                                        <div class="agenda-event">
-                                            @if (ev.Ansvarig != null)
-                                            {
-                                                @ev.Ansvarig.HelaNamnet
-                                            }
-                                            else if (ev.Ansvarig == null)
-                                            {
-                                                <a>ingen har tagit på sig den här uppgiften än</a>
-                                            }
-                                        </div>
-
-                                </tr>
-                            </tbody>
-                        }
-
-                    </table>
-                </div>
-
+                </table>
             </div>
+
         </div>
     </div>
-}
+</div>
 
 
-<p>@Html.ActionLink("Lägg till Uppgift", "Create", "Uppgifter")</p>
+
+        <p>@Html.ActionLink("Lägg till Uppgift", "Create", "Uppgifter")</p>
 
 
 
