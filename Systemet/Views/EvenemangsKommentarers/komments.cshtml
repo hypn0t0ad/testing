@@ -4,13 +4,9 @@
     ViewBag.Title = "Create";
 
 }
-<ol class="breadcrumb">
-    <li>@Html.ActionLink("Startsidan", "inloggad", "Konto")</li>
-    <li>@Html.ActionLink("Alla mina grupper", "minagrupper", "Grupp")</li>
-    <li>@Html.ActionLink("Gruppens startsida", "gruppsida", "Grupp", new { Model.evenemang.grupp.GruppNamn }, null)</li>
-    <li>@Html.ActionLink("Evenemanget", "evenemangssida", "Evenemangs", new { Model.evenemang.Namn }, null)</li>
-    <li class="active">Kommentarer: @Model.evenemang.Namn</li>
-</ol>
+
+
+
 
 
 @using (Html.BeginForm(new { id = @ViewBag.rättevent.EvenemangID }))

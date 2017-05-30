@@ -6,11 +6,19 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
     <link rel='stylesheet' type='text/css' href='css/timepicker.css' />
     ViewBag.Title = "Create";
+    TempData["nygrupp"] = ViewBag.gruppnamnet;
 }
 
 <link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Startsidan", "inloggad", "Konto")</li>
+    <li>@Html.ActionLink("Alla mina grupper", "minagrupper", "Grupp")</li>
+    <li>@Html.ActionLink("Gruppens startsida", "gruppsida", "Grupp", null, null)</li>
+    <li class="active">Skapa Evenemang</li>
+</ol>
 
-<h2>Create</h2>
+
+<h2>Skapa ett evenemang</h2>
 
 
 @using (Html.BeginForm()) 
@@ -32,7 +40,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Beskrivning, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Beskrivning, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.Beskrivning, 10, 55, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Beskrivning, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -48,15 +56,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Spara" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

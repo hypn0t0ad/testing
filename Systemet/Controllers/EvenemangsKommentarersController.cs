@@ -134,7 +134,7 @@ namespace vagina.Controllers
         {
             Evenemang eventet = db.Evenemangs.SingleOrDefault(e => e.EvenemangID == id);
             ViewBag.rättevent = eventet;
-            return PartialView("komments", eventet);
+            return PartialView("komments");
         }
 
         [HttpPost]
@@ -160,6 +160,17 @@ namespace vagina.Controllers
 
             return RedirectToAction("evenemangssida", "evenemangs");
 
+        }
+
+        public ActionResult Partial()
+        {
+            var list = new List<Guid>();
+            for (int i = 0; i < 5; i++)
+            {
+                list.Add(Guid.NewGuid());
+            }
+            ViewBag.List = list;
+            return PartialView("_MyPartialView");
         }
     }
 }

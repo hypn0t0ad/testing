@@ -30,7 +30,7 @@
     </div>
 </div>
 
-
+@*här börjar kommentarsfunktionen*@
 <div class="container bootstrap snippet">
     <div class="col-sm-6">
         <!-- Begin tab comment and popular posts -->
@@ -51,9 +51,6 @@
                     <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 325px;">
                         <div class="scroll-widget">
                             <ul class="media-list">
-
-
-  
 
                                 @foreach (var item in Model.Item2)
                                 {
@@ -86,6 +83,16 @@
 </div>
 
 
+
+<!-- Button trigger modal -->
+@*<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" 
+        onclick="location.href='@Url.Action("komments", "EvenemangsKommentarers", new { id = Model.Item1.EvenemangID }, null)'">
+    Launch demo modal
+</button>*@
+
+
+
+
 @* Create a link that calls the controller method that returns the partial view*@
 @Html.ActionLink("Skriv kommentar", "komments", "EvenemangsKommentarers", new { id = Model.Item1.EvenemangID }, new
 {
@@ -94,6 +101,5 @@ data_target = "#modal-container",
     @* Tells the bootstrap javascript to do its thing*@
     data_toggle = "modal"
 })
-
 
 
