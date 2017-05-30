@@ -36,8 +36,10 @@ namespace Systemet.Controllers
         }
 
         // GET: Evenemangs/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
+            Grupp gruppen = db.Grupps.SingleOrDefault(g => g.GruppID == id);
+            ViewBag.gruppnamnet = gruppen.GruppNamn;
             return View();
         }
 

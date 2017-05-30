@@ -482,6 +482,7 @@
     <Content Include="Views\Uppgifter\Edit.cshtml" />
     <Content Include="Views\Uppgifter\Index.cshtml" />
     <Content Include="Views\Uppgifter\UppgiftsSida.cshtml" />
+    <Content Include="Views\EvenemangsKommentarers\Partial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Bilder\" />
