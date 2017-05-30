@@ -90,7 +90,8 @@ namespace vagina.Controllers
             {
                 db.Entry(uppgifter).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                uppgifter.UppgifterID = Convert.ToInt32(TempData["ID"]);
+                return RedirectToAction("UppgiftsSida");
             }
             return View(uppgifter);
         }
@@ -197,6 +198,20 @@ namespace vagina.Controllers
             ansvariganvändare.AnsvararFörUppgift.Add(uppgift);
             db.SaveChanges();
             TempData["ID"] = uppgift.UppgifterID;
+            return RedirectToAction("UppgiftsSida");
+        }
+
+        [HttpPost]
+        public ActionResult påbörja()
+        {
+
+            return RedirectToAction("UppgiftsSida");
+        }
+
+        [HttpPost]
+        public ActionResult avsluta()
+        {
+
             return RedirectToAction("UppgiftsSida");
         }
     }

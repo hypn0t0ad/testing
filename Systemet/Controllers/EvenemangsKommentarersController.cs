@@ -134,7 +134,7 @@ namespace vagina.Controllers
         {
             Evenemang eventet = db.Evenemangs.SingleOrDefault(e => e.EvenemangID == id);
             ViewBag.rättevent = eventet;
-            return PartialView("komments");
+            return PartialView("komments", eventet);
         }
 
         [HttpPost]

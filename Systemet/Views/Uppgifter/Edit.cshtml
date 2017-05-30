@@ -32,19 +32,23 @@
                 @Html.ValidationMessageFor(model => model.Beskrivning, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Utförd, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Utförd)
-                    @Html.ValidationMessageFor(model => model.Utförd, "", new { @class = "text-danger" })
+        @if (Model.Påbörjad == true)
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.Utförd, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Utförd)
+                        @Html.ValidationMessageFor(model => model.Utförd, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
-        </div>
+        }
+        else if (Model.Påbörjad == false)
 
+        {
         <div class="form-group">
-            @Html.LabelFor(model => model.Påbörjad, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Starta uppgiften", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.Påbörjad)
@@ -52,6 +56,7 @@
                 </div>
             </div>
         </div>
+        }
 
         <div class="form-group">
             @Html.LabelFor(model => model.Startdatum, htmlAttributes: new { @class = "control-label col-md-2" })

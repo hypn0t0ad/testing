@@ -15,7 +15,7 @@
 
  <div class="well-lg" style="background-color:#eee">
     <div class="container-fluid">
-        <input type="submit" value="Alla venemang" class="btn btn-lg btn-danger" id="gruppknapp" style="font-size:x-large" />
+        <input type="submit" value="Alla evenemang" class="btn btn-lg btn-danger" id="gruppknapp" style="font-size:x-large" />
 
         @*START KALENDER*@
         <div class="agenda">
@@ -66,7 +66,7 @@
 @*här börjar uppgiftsindelningen*@
                 <div class="well-lg" style="background-color:#e0e0e0">
     <div class="container-fluid">
-        <input type="submit" value="Alla evenemang" class="btn btn-lg btn-danger" id="gruppknapp" style="font-size:x-large"  />
+        <input type="submit" value="Alla uppgifter" class="btn btn-lg btn-danger" id="gruppknapp" style="font-size:x-large"  />
 
         @*START KALENDER*@
         <div class="agenda">
@@ -99,43 +99,71 @@
 
                                 <td class="agenda-events" style="background-color:#e0e0e0">
                                     <div class="agenda-event">
+
+                                        @*om inloggad är ansvarig för uppgiften*@
                                         @if (ev.Ansvarig.AnvändarID == Convert.ToInt32(Session["AnvändarID"]))
                                         {
-                                            <button class="btn btn-primary" type="button" style="background-color:#3e8d27"
-                                                    onclick="location.href='@Url.Action("uppgiftssida", "uppgifter", new { idet = ev.UppgifterID })'" title="@ev.UppgifterID">
-                                                @if (ev.Påbörjad == true)
-                                                {
+                                            
+                                            if (ev.Påbörjad == true)
+                                            {
+                                                <button class="btn btn-primary" type="button" style="background-color:#3e8d27" id="edit"
+                                                        onclick="location.href='@Url.Action("Edit", "uppgifter", new { id  = ev.UppgifterID })'" title="@ev.UppgifterID">
                                                     @ev.Namn <span class="badge">Påbörjad</span>
-                                                }
-                                                else if (ev.Påbörjad == false)
-                                                {
-                                                    @ev.Namn <span class="badge">inte påbörjad</span>
-                                                }
-                                                else if (ev.Påbörjad == true && ev.Utförd == true)
-                                                {
+                                                </button>
+                                            }
+                                            else if (ev.Påbörjad == false)
+                                            {
+                                                <button class="btn btn-primary" type="button" style="background-color:#3e8d27" id="edit"
+                                                        onclick="location.href='@Url.Action("Edit", "uppgifter", new { id  = ev.UppgifterID })'" title="@ev.UppgifterID">
+                                                    @ev.Namn <span class="badge">ej påbörjad</span>
+                                                </button>
+                                            }
+                                            else if (ev.Påbörjad == true && ev.Utförd == true)
+                                            {
+                                                <button class="btn btn-primary" type="button" style="background-color:#3e8d27; cursor: default">
                                                     @ev.Namn <span class="badge">Klar</span>
-                                                }
-                                            </button>
+                                                </button>
+                                            }
                                         }
-                                        else
+                                        @*om inloggad inte ansvarar för uppgiften, och inte är ledare*@
+                                        else if (ev.Ansvarig.AnvändarID != Convert.ToInt32(Session["AnvändarID"]))
                                         {
-                                            <button class="btn btn-primary" type="button"style="background-color:#af1432; cursor:default">
-                                                @if (ev.Påbörjad == true)
-                                                {
+
+                                            if (ev.Påbörjad == true)
+                                            {
+                                                <button class="btn btn-primary" type="button" style="cursor: default">
                                                     @ev.Namn <span class="badge">Påbörjad</span>
-                                                }
-                                                else if (ev.Påbörjad == false)
+                                                </button>
+                                            }
+                                            else if (ev.Påbörjad == false)
+                                            {
+                                                //om den är fri att ta på sig
+                                                if (ev.Ansvarig.AnvändarID == 0)
                                                 {
-                                                    @ev.Namn <span class="badge">inte påbörjad</span>
+                                                    <button class="btn btn-primary" type="button" style="background-color:#808080" id="uppgiftssida">
+                                                        onclick="location.href='@Url.Action("upgiftssida", "uppgifter", new { id = ev.UppgifterID })'" title="@ev.UppgifterID">
+                                                        @ev.Namn <span class="badge">inte påbörjad</span>
+                                                    </button>
                                                 }
-                                                else if (ev.Påbörjad == true && ev.Utförd == true)
+                                                //om den är upptagen av någon annan
+                                                else if (ev.Ansvarig.AnvändarID > 0 && ev.Ansvarig.AnvändarID != Convert.ToInt32(Session["AnvändarID"]))
                                                 {
+                                                    <button class="btn btn-primary" type="button" style="cursor: default">
+                                                        @ev.Namn <span class="badge">Klar</span>
+                                                    </button>
+                                                }
+
+                                            }
+                                            else if (ev.Påbörjad == true && ev.Utförd == true)
+                                            {
+                                                <button class="btn btn-primary" type="button" style="background-color:#3e8d27; cursor: default">
                                                     @ev.Namn <span class="badge">Klar</span>
-                                                }
-                                            </button>
+                                                </button>
+                                            }
+
                                         }
 
-                                    </div>
+</div>
                                 </td>
 
                                 <td class="agenda-events" style="background-color:#e0e0e0">
