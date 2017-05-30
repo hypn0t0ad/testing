@@ -70,7 +70,7 @@
             @Html.HiddenFor(model => model.uppgift.UppgifterID)
             @Html.HiddenFor(m => m.inloggad)
             <div class="container-fluid">
-                <input type="submit" id="knappen" value="Ja, jag fixar det!" class="btn btn-lg btn-danger" />
+                <input type="submit" id="knappen" value="Jag fixar det!" class="btn btn-lg btn-danger" />
             </div>
         }
     }
@@ -83,11 +83,13 @@ else
 }
 
             
+@if (Model.inloggad == Model.ledareID)
+{
+    <dd>
+        @Html.ActionLink("Delete", "Delete", new { id = Model.uppgift.UppgifterID })
+    </dd>
+}
 
-<dd>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.uppgift.UppgifterID }) |
-    @Html.ActionLink("Delete", "Delete", new { id = Model.uppgift.UppgifterID })
-</dd>
 
 
 
