@@ -10,27 +10,40 @@
 
     @foreach (var item in Model)
     {
-        <div class="row">
-            
-            <div class="col-lg-6">
-                <div class="input-group pull-left">
+        
 
 
-                @using (Html.BeginForm("gruppsida", "Grupp", new { item.GruppNamn }))
-                {
-                        <input type = "submit" value = "@item.GruppNamn" class="input-group btn btn-lg pull-left btn-danger" id="gruppknapp"/>
-                    }
+
+            <div class="row">
+
+                <div class="col-lg-6">
+                    <div class="input-group pull-left">
+
+                        
+                            @using (Html.BeginForm("gruppsida", "Grupp", new { item.GruppNamn }))
+                            {
+                                <input type="submit" value="@item.GruppNamn" class="input-group btn btn-lg pull-left btn-danger" id="gruppknapp" />
+                            }
+                        
+                    </div>
                 </div>
+
+                <div class="col-lg-6">
+                    <div class="input-group pull-right">
+                        @using (Html.BeginForm("gruppsida", "Grupp", new { item.GruppNamn }))
+                        {
+                            <input type="submit" value="Ansök till Grupp" class="input-group btn btn-sm" id="gåmedigruppknapp" />
+                        }
+
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="form-group">
+                &nbsp;
             </div>
 
-            <div class="col-lg-6">
-                <div class="input-group pull-right">
-
-
-                </div>
-            </div>
-            
-        </div>
 <tr>
     <td></td>
 </tr>
