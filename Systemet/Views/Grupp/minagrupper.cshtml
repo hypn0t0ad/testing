@@ -13,9 +13,11 @@
 
 <p></p>
 
-<p>
-    @Html.ActionLink("Skapa ny grupp", "Create")
-</p>
+
+<button class="btn btn-primary" type="button" style="background-color:black" 
+        onclick="location.href='@Url.Action("Create", "Grupp", null)'" >
+Skapa ny grupp</button>
+
     <table class="table">
         <tr>
             <th>
@@ -27,21 +29,15 @@
             <th></th>
         </tr>
 
-
         @foreach (var item in ViewBag.minagrupper)
         {
             <tr>
                 <td>
-                    <a href="@Url.Action("gruppsida", new { GruppNamn = item.GruppNamn })" title="@item.GruppNamn">
+                    <button class="btn btn-primary" type="button" style="background-color:orangered"
+                            onclick="location.href='@Url.Action("gruppsida", "Grupp", new { GruppNamn = item.GruppNamn })'">
                         @item.GruppNamn
-                    </a>
-                </td>
+                    </button>
 
-
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.GruppID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.GruppID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.GruppID })
                 </td>
             </tr>
         }

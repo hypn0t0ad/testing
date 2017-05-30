@@ -240,6 +240,10 @@
     <Compile Include="Migrations\201705262155430_hela namnet.Designer.cs">
       <DependentUpon>201705262155430_hela namnet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705301134344_ändrat startdatum till slutdatum för uppgifter.cs" />
+    <Compile Include="Migrations\201705301134344_ändrat startdatum till slutdatum för uppgifter.Designer.cs">
+      <DependentUpon>201705301134344_ändrat startdatum till slutdatum för uppgifter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Evenemang.cs" />
     <Compile Include="Models\EvenemangsKommentarer.cs" />
@@ -556,6 +560,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705262155430_hela namnet.resx">
       <DependentUpon>201705262155430_hela namnet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705301134344_ändrat startdatum till slutdatum för uppgifter.resx">
+      <DependentUpon>201705301134344_ändrat startdatum till slutdatum för uppgifter.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -49,7 +49,7 @@ namespace vagina.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UppgifterID,Namn,Beskrivning,Startdatum")] Uppgifter uppgifter, Grupp grupp, AnvändarKonton konto)
+        public ActionResult Create([Bind(Include = "UppgifterID,Namn,Beskrivning,Slutdatum")] Uppgifter uppgifter, Grupp grupp, AnvändarKonton konto)
         {
 
             int gID = Convert.ToInt32(Session["GruppID"]);
@@ -86,7 +86,7 @@ namespace vagina.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UppgifterID,Namn,Beskrivning,Utförd,Påbörjad,Startdatum")] Uppgifter uppgifter)
+        public ActionResult Edit([Bind(Include = "UppgifterID,Namn,Beskrivning,Utförd,Påbörjad,Slutdatum")] Uppgifter uppgifter)
         {
             if (ModelState.IsValid)
             {

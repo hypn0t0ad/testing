@@ -83,7 +83,7 @@
                 <table class="table table-condensed table-responsive">
                     <thead>
                         <tr>
-                            <th>Startdatum</th>
+                            <th>Slutdatum</th>
                             <th>Beskrivning</th>
                             <th>Uppgift</th>
                             <th>Ansvarig</th>                            
@@ -96,9 +96,9 @@
                             <tr class="table">
 
                                 <td class="agenda-date active" style="background-color:#e0e0e0" rowspan="@Model.Item2.Count()">
-                                    <div class="dayofmonth">@ev.Startdatum.Day/@ev.Startdatum.Month</div>
-                                    <div class="dayofweek">@ev.Startdatum.DayOfWeek</div>
-                                    <div class="shortdate text-muted">@ev.Startdatum.Year</div>
+                                    <div class="dayofmonth">@ev.Slutdatum.Day/@ev.Slutdatum.Month</div>
+                                    <div class="dayofweek">@ev.Slutdatum.DayOfWeek</div>
+                                    <div class="shortdate text-muted">@ev.Slutdatum.Year</div>
                                 </td>
 
                                 <td class="agenda-time" style="background-color:#e0e0e0">

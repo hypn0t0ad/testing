@@ -14,7 +14,7 @@ namespace Systemet.Models
         public string Beskrivning { get; set; }
         public bool Utförd { get; set; }
         public bool Påbörjad { get; set; }
-        public DateTime Startdatum { get; set; }
+        public DateTime Slutdatum { get; set; }
 
 
 

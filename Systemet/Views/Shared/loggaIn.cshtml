@@ -11,11 +11,9 @@
                 @Html.ActionLink("Hej " + Session["Förnamn"].ToString() + "!", "Redigera", "Konto", new { area = "" }, new { @class = "navbar-brand" })
             </li>              
             <li>
-                @Html.ActionLink("Mina grupper", "minagrupper", "Grupp", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Grupper", "minagrupper", "Grupp", new { area = "" }, new { @class = "navbar-brand" })
             </li>
-            <li>
-                @Html.ActionLink("Skapa Grupp", "Create", "Grupp", new { area = "" }, new { @class = "navbar-brand" })
-            </li>
+            
             <li>
                 @Html.ActionLink("Logga ut", "LogOut", "Konto", new { area = "" }, new { @class = "navbar-brand" })
             </li>
