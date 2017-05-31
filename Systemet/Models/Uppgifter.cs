@@ -15,6 +15,7 @@ namespace Systemet.Models
         public bool Utförd { get; set; }
         public bool Påbörjad { get; set; }
         public DateTime Slutdatum { get; set; }
+        public bool bortplockad { get; set; }
 
 
 

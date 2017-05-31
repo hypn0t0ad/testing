@@ -6,6 +6,7 @@ using System.Web.ModelBinding;
 using System.Web.Mvc;
 using System.Web.Security;
 using Systemet.Models;
+using Systemet.Models.ViewModels;
 
 namespace Systemet.Controllers
 {
@@ -84,9 +85,44 @@ namespace Systemet.Controllers
             {
                 konto = db.konton.SingleOrDefault(u => u.AnvändarID == user.AnvändarID);
             }
+            user = konto;
+
+            var inloggadviewmodel = new InloggadViewModel();
+            inloggadviewmodel.användare = user;
+            inloggadviewmodel.Grupperna = user.TillhörGrupper.ToList();
+            List<Evenemang> evenemang = new List<Evenemang>();
+            List<Uppgifter> uppgifts = new List<Uppgifter>();
+            foreach (var item in inloggadviewmodel.Grupperna)
+            {
+                evenemang.AddRange(db.Evenemangs.Where(e => e.grupp.GruppID == item.GruppID).ToList());
+                uppgifts.AddRange(db.Uppgifters.Where(u => u.TillhörGrupp.GruppID == item.GruppID).ToList());
+            }
+            inloggadviewmodel.Evenemangen = evenemang;
+            inloggadviewmodel.uppgifterna = uppgifts;
+            inloggadviewmodel.ansökningarna = user.Föfrågningar.ToList();
+            
+            return View(inloggadviewmodel);
+
+        }
+
+        public ActionResult inloggad2(AnvändarKonton user)
+        {
+            int ID;
+            OurDBContext db = new OurDBContext();
+            AnvändarKonton konto;
+
+            if (user.Email == null)
+            {
+                ID = Convert.ToInt32(TempData["användarID"]);
+                konto = db.konton.SingleOrDefault(u => u.AnvändarID == ID);
+            }
+            else
+            {
+                konto = db.konton.SingleOrDefault(u => u.AnvändarID == user.AnvändarID);
+            }
 
             user = konto;
-            
+
             List<Grupp> grupperna = new List<Grupp>();
             var allagrupper = db.Grupps.Select(g => g.GruppNamn).ToList();
             List<Evenemang> evenemang = new List<Evenemang>();
@@ -117,7 +153,7 @@ namespace Systemet.Controllers
             if (Session["AnvändarID"] != null)
             {
                 ViewBag.allagrupper = allagrupper;
-               
+
                 return View(Tuple.Create(user, grupperna, evenemang, uppgifts));
             }
             else

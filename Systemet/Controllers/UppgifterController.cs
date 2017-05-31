@@ -206,5 +206,16 @@ namespace vagina.Controllers
 
             return RedirectToAction("UppgiftsSida");
         }
+
+        public ActionResult tabortfrånlista(int? id, int? grupp)
+        {
+            Grupp grp = db.Grupps.SingleOrDefault(g => g.GruppID == grupp);
+            Uppgifter upg = db.Uppgifters.SingleOrDefault(u => u.UppgifterID == id);
+            upg.bortplockad = true;
+            upg.Utförd = false;
+            db.SaveChanges();
+            TempData["nygrupp"] = grp.GruppNamn;
+            return RedirectToAction("gruppsida", "Grupp");
+        }
     }
 }

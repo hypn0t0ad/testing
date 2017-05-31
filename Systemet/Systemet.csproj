@@ -257,6 +257,10 @@
     <Compile Include="Migrations\201705301313039_text till förfrågan.Designer.cs">
       <DependentUpon>201705301313039_text till förfrågan.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705310756388_bortplockad bool.cs" />
+    <Compile Include="Migrations\201705310756388_bortplockad bool.Designer.cs">
+      <DependentUpon>201705310756388_bortplockad bool.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Evenemang.cs" />
     <Compile Include="Models\EvenemangsKommentarer.cs" />
@@ -266,6 +270,7 @@
     <Compile Include="Models\AnvändarKonton.cs" />
     <Compile Include="Models\Uppgifter.cs" />
     <Compile Include="Models\ViewModels\GruppViewModel.cs" />
+    <Compile Include="Models\ViewModels\InloggadViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -505,6 +510,7 @@
     <Content Include="Views\GruppFörfrågan\Details.cshtml" />
     <Content Include="Views\GruppFörfrågan\Edit.cshtml" />
     <Content Include="Views\GruppFörfrågan\Index.cshtml" />
+    <Content Include="Views\Konto\inloggad2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Bilder\" />
@@ -590,6 +596,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705301313039_text till förfrågan.resx">
       <DependentUpon>201705301313039_text till förfrågan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705310756388_bortplockad bool.resx">
+      <DependentUpon>201705310756388_bortplockad bool.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
