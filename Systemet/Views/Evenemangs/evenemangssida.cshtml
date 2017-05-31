@@ -81,23 +81,22 @@
         <!-- End tab comment and popular posts -->
     </div>
 </div>
-@if (Model.Item1.grupp.LedareID == Convert.ToInt32(Session["AnvändarID"]))
+
+<div>
+    @Html.ActionLink("Skriv kommentar", "komments", "EvenemangsKommentarers", new { id = Model.Item1.EvenemangID },
+    new { data_target = "#modal-container", data_toggle = "modal", @class = "btn btn-primary" })
+</div>
+
+<div>
+    @if (Model.Item1.grupp.LedareID == Convert.ToInt32(Session["AnvändarID"]))
     {
-<button class="btn btn-primary" type="button" style="background-color:black" id="delete"
-        onclick="location.href='@Url.Action("DeleteConfirmed", "Evenemangs", new { id = Model.Item1.EvenemangID })'" title="">
-    Radera evenemanget
-</button>
+        <button class="btn btn-primary" type="button" style="background-color:black" id="delete"
+                onclick="location.href='@Url.Action("DeleteConfirmed", "Evenemangs", new { id = Model.Item1.EvenemangID })'" title="">
+            Radera evenemanget
+        </button>
     }
+</div>
 
 
-
-@* Create a link that calls the controller method that returns the partial view*@
-@Html.ActionLink("Skriv kommentar", "komments", "EvenemangsKommentarers", new { id = Model.Item1.EvenemangID }, new
-{
-    @* Needed to link to the html of the modal*@
-data_target = "#modal-container",
-    @* Tells the bootstrap javascript to do its thing*@
-    data_toggle = "modal"
-})
 
 
