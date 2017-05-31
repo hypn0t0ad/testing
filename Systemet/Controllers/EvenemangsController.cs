@@ -52,8 +52,6 @@ namespace Systemet.Controllers
         {          
             int gID = Convert.ToInt32(Session["GruppID"]);
 
-
-
             grupp = db.Grupps.Single(m => m.GruppID == gID);
             evenemang.grupp = grupp;
 

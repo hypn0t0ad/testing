@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Systemet.Models;
 
-namespace vagina.Controllers
+namespace Systemet.Controllers
 {
     public class EvenemangsKommentarersController : Controller
     {
@@ -111,7 +111,6 @@ namespace vagina.Controllers
 
         // POST: EvenemangsKommentarers/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             EvenemangsKommentarer evenemangsKommentarer = db.EvenemangsKommentarers.Find(id);
@@ -171,6 +170,17 @@ namespace vagina.Controllers
             }
             ViewBag.List = list;
             return PartialView("_MyPartialView");
+        }
+
+        
+        public ActionResult TaBort(int id, int eid)
+        {
+            EvenemangsKommentarer evenemangsKommentarer = db.EvenemangsKommentarers.Find(id);
+            TempData["eventID"] = eid;
+            db.EvenemangsKommentarers.Remove(evenemangsKommentarer);
+            db.SaveChanges();
+
+            return RedirectToAction("evenemangssida", "evenemangs");
         }
     }
 }

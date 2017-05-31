@@ -126,7 +126,7 @@ namespace Systemet.Controllers
 
         public ActionResult SkickaAnsökan(string id)
         {
-            int anvid = Convert.ToInt32(TempData["användarID"]);
+            int anvid = Convert.ToInt32(TempData["AnvändarID"]);
 
             OurDBContext db = new OurDBContext();
 
@@ -143,6 +143,9 @@ namespace Systemet.Controllers
 
 
             konto.AnvändarID = Convert.ToInt32(TempData["användarID"]);
+            //TempData["ansökanID"] = ansökan.FörfråganID;
+            //TempData["gruppNamn"] = ansökan.GruppFörfråganGäller.GruppNamn;
+            //TempData["gruppID"] = ansökan.GruppFörfråganGäller.GruppID;
 
             return RedirectToAction("inloggad", "Konto");
         }
