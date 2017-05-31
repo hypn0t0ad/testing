@@ -2,7 +2,7 @@
 @{
 
     <link rel="stylesheet" href="~/Content/agenda.css">
-
+    
     TempData["användarID"] = Convert.ToInt32(Session["AnvändarID"]);
     ViewBag.Title = "inloggad";
 }
@@ -27,15 +27,19 @@
 
                 @if (Model.Item1.Föfrågningar != null)
                 {
-                    
+
                     //int tempid = Convert.ToInt32(TempData["användarID"]);
                     //var förfrågningar = Model.Item1.Föfrågningar.Where(f => f.AnvändareSomFrågar.AnvändarID == tempid);
                     //var grupper = Model.Item2.Where(m => m.GruppID == förfrågningar.SingleOrDefault(f => f.Godkänd == false).GruppFörfråganGäller.GruppID);
                 }
 
-                    <h2>Ansökningar</h2>
+                    <h3>Ansökningar</h3>
 
-                    <div class="label" Value="gruppnamn"><span class="label label-info"></span></div>
+                    @{
+                        
+                    }
+
+                    <div class="label" Value="@TempData["gruppNamn"]"><span class="label label-info"></span></div>
                     
                     }
 

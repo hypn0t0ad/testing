@@ -101,18 +101,18 @@ namespace Systemet.Controllers
             }
 
 
+            //int aid = Convert.ToInt32(TempData["ansökanID"]);
             //GruppFörfrågan ansökan = new GruppFörfrågan();
+            //ansökan = db.GruppFörfrågan.SingleOrDefault(a => a.FörfråganID == aid);
 
-            //    ansökan = db.GruppFörfrågan.SingleOrDefault(f => f.AnvändareSomFrågar.AnvändarID == user.AnvändarID);
-            //    ansökan.AnvändareSomFrågar.AnvändarID = user.AnvändarID;
-            //    //ansökan.GruppFörfråganGäller.GruppID = 3;
-            //    ansökan.Godkänd = false;
-            //    user.Föfrågningar.Add(ansökan);
-            ////Grupp gruppen = grupperna.SingleOrDefault(g => g.GruppID == 3);
-            ////gruppen.Ansökningar.Add(ansökan);
-            //db.SaveChanges();
-            
-            
+            //TempData["ansökanID"] = TempData["ansökanID"];
+            //TempData["gruppNamn"] = TempData["gruppNamn"];
+            //TempData["gruppID"] = TempData["gruppID"];
+
+            //string gn = TempData["gruppNamn"].ToString();
+            //int gid = Convert.ToInt32(TempData["gruppID"]);
+            //int aid = Convert.ToInt32(TempData["ansökanID"]);
+
 
             if (Session["AnvändarID"] != null)
             {
