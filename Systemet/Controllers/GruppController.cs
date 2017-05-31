@@ -197,39 +197,43 @@ namespace Systemet.Controllers
             {
                 gruppen = db.Grupps.Single(m => m.GruppNamn == grupp.GruppNamn);
             }
-            else if (TempData["nygrupp"] != null && grupp.GruppNamn == null)
+            else if (TempData["nygrupp"] != null)
             {
                 string namnet = TempData["nygrupp"].ToString();
                 gruppen = db.Grupps.Single(m => m.GruppNamn == namnet);
             }
-
+            
             ICollection<Evenemang> events;
             events = gruppen.Evenemang;
-            ICollection<Uppgifter> uppgifterna;
+            ICollection<Uppgifter> uppgifterna;           
             uppgifterna = gruppen.GruppUppgifter;
+            //uppgifterna.OrderByDescending()
             Session["GruppID"] = gruppen.GruppID.ToString();
-
-
 
             return View(Tuple.Create(gruppen, events, uppgifterna));
         }
 
         public ActionResult HanteraAnsökningar(string idet, int vem, int grupp)
         {
-            GruppFörfrågan ansökning = db.GruppFörfrågan.SingleOrDefault(g => g.GruppFörfråganGäller.GruppID == grupp);
+
             Grupp gruppen = db.Grupps.SingleOrDefault(j => j.GruppID == grupp);
             AnvändarKonton anv = db.konton.SingleOrDefault(a => a.AnvändarID == vem);
+            GruppFörfrågan ansökning = db.GruppFörfrågan.SingleOrDefault(g => g.AnvändareSomFrågar.AnvändarID == anv.AnvändarID && g.GruppFörfråganGäller.GruppID == grupp);
             if (idet == "neka" && idet != "godkänn")
             {
                 ansökning.Godkänd = false;
                 ansökning.text = "nekad";
-
-                gruppen.Ansökningar.Remove(ansökning);
+                
             }
             else if (idet != "neka" && idet == "godkänn")
             {
-
+                ansökning.Godkänd = true;
+                ansökning.text = "godkänd";
+                anv.TillhörGrupper.Add(gruppen);
+                gruppen.GruppMedlemmar.Add(anv);
+                db.SaveChanges();
             }
+            TempData["nygrupp"] = gruppen.GruppNamn;
 
             return RedirectToAction("gruppsida", "Grupp");
         }

@@ -94,30 +94,14 @@ namespace Systemet.Controllers
             return View(evenemang);
         }
 
-        // GET: Evenemangs/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Evenemang evenemang = db.Evenemangs.Find(id);
-            if (evenemang == null)
-            {
-                return HttpNotFound();
-            }
-            return View(evenemang);
-        }
-
-        // POST: Evenemangs/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Evenemang evenemang = db.Evenemangs.Find(id);
+            Grupp grp = db.Grupps.SingleOrDefault(g => g.GruppID == evenemang.grupp.GruppID);
             db.Evenemangs.Remove(evenemang);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            TempData["nygrupp"] = grp.GruppNamn;
+            return RedirectToAction("gruppsida", "Grupp");
         }
 
         protected override void Dispose(bool disposing)

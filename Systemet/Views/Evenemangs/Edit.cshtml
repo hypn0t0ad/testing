@@ -55,6 +55,14 @@
             </div>
         </div>
     </div>
+
+    if (Model.grupp.LedareID == Convert.ToInt32(Session["AnvändarID"]))
+    {
+        <button class="btn btn-primary" type="button" style="background-color:black" id="delete"
+                onclick="location.href='@Url.Action("DeleteConfirmed", "Uppgifter", new { id = Model.EvenemangID })'" title="">
+            Radera evenemanget
+        </button>
+    }
 }
 
 <div>

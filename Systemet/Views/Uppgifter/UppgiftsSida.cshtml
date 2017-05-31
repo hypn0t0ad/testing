@@ -58,7 +58,7 @@
                 </div>
             </dd>
                 <dt>
-                    <input type="submit" id="Submitknappen" value="Lägg till" />
+                    <input type="submit" id="Submitknappen" value="Lägg till"/>
                 </dt>
         }
     }
@@ -90,7 +90,7 @@ else
 @if (Model.inloggad == Model.ledareID)
 {
     <dd>
-        @Html.ActionLink("Delete", "Delete", new { id = Model.uppgift.UppgifterID })
+        @Html.ActionLink("Ta bort uppgiften", "Delete", new { id = Model.uppgift.UppgifterID })
     </dd>
 }
 

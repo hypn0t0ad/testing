@@ -12,9 +12,9 @@
     <li class="active">Radera Evenemang</li>
 </ol>
 
-<h2>Delete</h2>
+<h2>Ta bort</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Helt säker på att du vill ta bort det här?</h3>
 <div>
     <h4>Evenemang</h4>
     <hr />
@@ -36,28 +36,13 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.StartTid)
+            @Html.DisplayNameFor(model => model.Tidpunkt)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.StartTid)
+            @Html.DisplayFor(model => model.Tidpunkt)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SlutTid)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SlutTid)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Dag)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Dag)
-        </dd>
+        
 
     </dl>
 
@@ -65,8 +50,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Delete" class="btn btn-default"/> |           
         </div>
     }
 </div>

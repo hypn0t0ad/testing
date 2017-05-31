@@ -67,7 +67,7 @@ namespace vagina.Controllers
         }
 
         // GET: Uppgifter/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, string gruppnamn)
         {
             if (id == null)
             {
@@ -78,6 +78,7 @@ namespace vagina.Controllers
             {
                 return HttpNotFound();
             }
+            TempData["nygrupp"] = gruppnamn;
             return View(uppgifter);
         }
 
@@ -86,42 +87,29 @@ namespace vagina.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UppgifterID,Namn,Beskrivning,Utförd,Påbörjad,Slutdatum")] Uppgifter uppgifter)
+        public ActionResult Edit([Bind(Include = "UppgifterID,Namn,Beskrivning,Utförd,Påbörjad,Slutdatum")] Uppgifter uppgifter, string gruppnamn)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(uppgifter).State = EntityState.Modified;
+                
                 db.SaveChanges();
-                uppgifter.UppgifterID = Convert.ToInt32(TempData["ID"]);
-                return RedirectToAction("UppgiftsSida");
+                TempData["nygrupp"] = gruppnamn;
+                return RedirectToAction("gruppsida", "Grupp");
             }
             return View(uppgifter);
+
+
         }
 
-        // GET: Uppgifter/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Uppgifter uppgifter = db.Uppgifters.Find(id);
-            if (uppgifter == null)
-            {
-                return HttpNotFound();
-            }
-            return View(uppgifter);
-        }
-
-        // POST: Uppgifter/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Uppgifter uppgifter = db.Uppgifters.Find(id);
+            Grupp grp = db.Grupps.SingleOrDefault(g => g.GruppID == uppgifter.TillhörGrupp.GruppID);
             db.Uppgifters.Remove(uppgifter);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            TempData["nygrupp"] = grp.GruppNamn;
+            return RedirectToAction("gruppsida", "Grupp");
         }
 
         protected override void Dispose(bool disposing)
@@ -176,15 +164,16 @@ namespace vagina.Controllers
         {
             int ansvarig = gvp.användareID;            
             int uppgiftID = gvp.uppgift.UppgifterID;
-            
-            
+
+            Grupp grupp = db.Grupps.SingleOrDefault(g => g.GruppID == gvp.grupp.GruppID);
             Uppgifter uppgift = db.Uppgifters.SingleOrDefault(u => u.UppgifterID == uppgiftID);
             AnvändarKonton ansvariganvändare = db.konton.SingleOrDefault(a => a.AnvändarID == ansvarig);
             uppgift.Ansvarig = ansvariganvändare;
             ansvariganvändare.AnsvararFörUppgift.Add(uppgift);            
             db.SaveChanges();
             TempData["ID"] = uppgift.UppgifterID;
-            return RedirectToAction("UppgiftsSida");
+            TempData["nygrupp"] = grupp.GruppNamn;
+            return RedirectToAction("gruppsida", "Grupp");
         }
 
         [HttpPost]
@@ -193,14 +182,15 @@ namespace vagina.Controllers
             int ansvarig = gvp.inloggad;
             int uppgiftID = gvp.uppgift.UppgifterID;
 
-
+            Grupp grupp = db.Grupps.SingleOrDefault(g => g.GruppID == gvp.grupp.GruppID);
             Uppgifter uppgift = db.Uppgifters.SingleOrDefault(u => u.UppgifterID == uppgiftID);
             AnvändarKonton ansvariganvändare = db.konton.SingleOrDefault(a => a.AnvändarID == ansvarig);
             uppgift.Ansvarig = ansvariganvändare;
             ansvariganvändare.AnsvararFörUppgift.Add(uppgift);
             db.SaveChanges();
             TempData["ID"] = uppgift.UppgifterID;
-            return RedirectToAction("UppgiftsSida");
+            TempData["nygrupp"] = grupp.GruppNamn;
+            return RedirectToAction("gruppsida", "Grupp");
         }
 
         [HttpPost]

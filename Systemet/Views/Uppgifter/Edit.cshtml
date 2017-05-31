@@ -2,20 +2,23 @@
 
 @{
     ViewBag.Title = "Edit";
+    TempData["nygrupp"] = TempData["nygrupp"];
 }
 
-<h2>Edit</h2>
+<h2>Gör ändringar</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
+
+
     <div class="form-horizontal">
         <h4>Uppgifter</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.UppgifterID)
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.Namn, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -28,7 +31,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Beskrivning, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Beskrivning, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.Beskrivning, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Beskrivning, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -39,23 +42,23 @@
                 <div class="col-md-10">
                     <div class="checkbox">
                         @Html.EditorFor(model => model.Utförd)
+                        @Html.HiddenFor(m => m.Påbörjad)
                         @Html.ValidationMessageFor(model => model.Utförd, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
         }
         else if (Model.Påbörjad == false)
-
         {
-        <div class="form-group">
-            @Html.Label("Starta uppgiften", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Påbörjad)
-                    @Html.ValidationMessageFor(model => model.Påbörjad, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.Label("Starta uppgiften", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Påbörjad)
+                        @Html.ValidationMessageFor(model => model.Påbörjad, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
-        </div>
         }
 
         <div class="form-group">
@@ -65,18 +68,23 @@
                 @Html.ValidationMessageFor(model => model.Slutdatum, "", new { @class = "text-danger" })
             </div>
         </div>
+        @Html.HiddenFor(m => m.UppgifterID)
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Spara" class="btn btn-default" />
             </div>
         </div>
     </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
+    <button class="btn btn-primary" type="button" style="background-color:black" id="delete"
+            onclick="location.href='@Url.Action("DeleteConfirmed", "Uppgifter", new { id = Model.UppgifterID })'" title="">
+        Radera uppgiften
+    </button>
+
+}
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
