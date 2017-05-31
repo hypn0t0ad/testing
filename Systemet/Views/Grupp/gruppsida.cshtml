@@ -4,7 +4,6 @@
     <link rel="stylesheet" href="~/Content/agenda.css">
     ViewBag.Title = "Gruppsida";
     TempData["användarID"] = Convert.ToInt32(Session["AnvändarID"]);
-
 }
 <ol class="breadcrumb">
     <li>@Html.ActionLink("Startsidan", "inloggad", "Konto")</li>
@@ -164,7 +163,7 @@
                                                             @*ingen ansvarig*@
                                                             @if (ev.Ansvarig == null)
                                                             {
-                                                                <button class="btn btn-primary" type="button" style="background-color:#9d4040" id="edit"
+                                                                <button class="btn btn-primary" type="button" style="background-color:#6c6666" id="edit"
                                                                         onclick="location.href='@Url.Action("UppgiftsSida", "uppgifter", new { idet = ev.UppgifterID })'" title="@ev.UppgifterID">
                                                                     @ev.Namn <span class="badge">ej tagen</span>
                                                                 </button>
@@ -176,7 +175,7 @@
                                                                 if (ev.Påbörjad == true && ev.Utförd == false)
                                                                 {
                                                                     // här ska den skicka till ett ställe där man kan avsluta uppgiften
-                                                                    <button class="btn btn-primary" type="button" style="background-color:#d46666" id="edit"
+                                                                    <button class="btn btn-primary" type="button" style="background-color:#af1432" id="edit"
                                                                             onclick="location.href='@Url.Action("Edit", "uppgifter", new { id = ev.UppgifterID, gruppnamn = Model.Item1.GruppNamn })'" title="@ev.UppgifterID">
                                                                         @ev.Namn <span class="badge">Påbörjad</span>
                                                                     </button>
@@ -184,7 +183,7 @@
 
                                                                 else if (ev.Påbörjad == false && ev.Utförd == false)
                                                                 {
-                                                                    <button class="btn btn-primary" type="button" style="background-color:#c75151" id="edit"
+                                                                    <button class="btn btn-primary" type="button" style="background-color:#af1432" id="edit"
                                                                             onclick="location.href='@Url.Action("Edit", "uppgifter", new { id = ev.UppgifterID, gruppnamn = Model.Item1.GruppNamn })'" title="@ev.UppgifterID">
                                                                         @ev.Namn <span class="badge">ej påbörjad</span>
                                                                     </button>
@@ -192,7 +191,7 @@
 
                                                                 else if (ev.Utförd == true && ev.Påbörjad == true)
                                                                 {
-                                                                    <button class="btn btn-primary" type="button" style="background-color:#ff8a8a; cursor: default">
+                                                                    <button class="btn btn-primary" type="button" style="background-color:#dccccc; cursor: default">
                                                                         @ev.Namn <span class="badge">Klar</span>
                                                                     </button>
                                                                 }
@@ -202,19 +201,19 @@
                                                             {
                                                                 if (ev.Påbörjad == true && ev.Utförd == false)
                                                                 {
-                                                                    <button class="btn btn-primary" type="button" style="background-color:#d46666; cursor: default" id="edit">
+                                                                    <button class="btn btn-primary" type="button" style="background-color:#af1432; cursor: default" id="edit">
                                                                         @ev.Namn <span class="badge">Påbörjad</span>
                                                                     </button>
                                                                 }
                                                                 else if (ev.Påbörjad == false && ev.Utförd == false)
                                                                 {
-                                                                    <button class="btn btn-primary" type="button" style="background-color:#c75151; cursor: default" id="edit">
+                                                                    <button class="btn btn-primary" type="button" style="background-color:#af1432; cursor: default" id="edit">
                                                                         @ev.Namn <span class="badge">ej påbörjad</span>
                                                                     </button>
                                                                 }
                                                                 else if (ev.Utförd == true && ev.Påbörjad == true)
                                                                 {
-                                                                    <button class="btn btn-primary" type="button" style="background-color:#ff8a8a; cursor: default">
+                                                                    <button class="btn btn-primary" type="button" style="background-color:#dccccc; cursor: default">
                                                                         @ev.Namn <span class="badge">Klar</span>
                                                                     </button>
                                                                 }

@@ -68,7 +68,7 @@
                                             {
                                                 <button class="btn btn-xs pull-right" type="button" style="background-color:#d46666; font-size:x-small" id="tabortknapp" onclick="location.href='@Url.Action("TaBort", "EvenemangsKommentarers", new { id = item.EvenemangsKommentarerID, eid = Model.Item1.EvenemangID })'">x</button>
                                             }
-                                            <h4 class="media-heading" style="cursor: default"><a>@item.kommentator.HelaNamnet</a> <small>@item.TidenFörKommentaren.ToShortTimeString()</small></h4>
+                                            <h4 class="media-heading" style="cursor: default"><a>@item.kommentator.HelaNamnet </a><small>@item.TidenFörKommentaren.DayOfWeek @item.TidenFörKommentaren.Day @item.TidenFörKommentaren.ToShortTimeString()</small></h4>
                                             <p>@item.Text</p>
 
                                             
@@ -80,22 +80,19 @@
                         @*</div>*@
                     @*<div class="slimScrollBar"></div><div class="slimScrollRail"></div>*@
 
-                    @*</div>*@<!-- End div .scroll-widget -->
-
-                    <div class="box-footer">
-                        
-                    </div>
+                    @*</div>*@<!-- End div .scroll-widget -->                   
                 </div><!-- End div .tab-pane -->
             </div><!-- End div .tab-content -->
         </div><!-- End div .box-info .full -->
         <!-- End tab comment and popular posts -->
     </div>
+    <div>
+        @Html.ActionLink("Skriv kommentar", "komments", "EvenemangsKommentarers", new { id = Model.Item1.EvenemangID },
+    new { data_target = "#modal-container", data_toggle = "modal", @class = "btn btn-primary" })
+    </div>
 </div>
 
-<div>
-    @Html.ActionLink("Skriv kommentar", "komments", "EvenemangsKommentarers", new { id = Model.Item1.EvenemangID },
-    new { data_target = "#modal-container", data_toggle = "modal", @class = "btn btn-primary" })
-</div>
+
 
 <div>
     @if (Model.Item1.grupp.LedareID == Convert.ToInt32(Session["AnvändarID"]))

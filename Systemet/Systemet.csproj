@@ -510,7 +510,6 @@
     <Content Include="Views\GruppFörfrågan\Details.cshtml" />
     <Content Include="Views\GruppFörfrågan\Edit.cshtml" />
     <Content Include="Views\GruppFörfrågan\Index.cshtml" />
-    <Content Include="Views\Konto\inloggad2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Bilder\" />

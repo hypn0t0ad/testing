@@ -67,7 +67,7 @@ namespace Systemet.Controllers
                     ModelState.AddModelError("", "email eller lösenordet är felaktigt");
                 }
             }
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult inloggad(AnvändarKonton user)
@@ -102,65 +102,13 @@ namespace Systemet.Controllers
             inloggadviewmodel.ansökningarna = user.Föfrågningar.ToList();
             
             return View(inloggadviewmodel);
-
         }
 
-        public ActionResult inloggad2(AnvändarKonton user)
+        public ActionResult LogOut()
         {
-            int ID;
-            OurDBContext db = new OurDBContext();
-            AnvändarKonton konto;
-
-            if (user.Email == null)
-            {
-                ID = Convert.ToInt32(TempData["användarID"]);
-                konto = db.konton.SingleOrDefault(u => u.AnvändarID == ID);
-            }
-            else
-            {
-                konto = db.konton.SingleOrDefault(u => u.AnvändarID == user.AnvändarID);
-            }
-
-            user = konto;
-
-            List<Grupp> grupperna = new List<Grupp>();
-            var allagrupper = db.Grupps.Select(g => g.GruppNamn).ToList();
-            List<Evenemang> evenemang = new List<Evenemang>();
-            List<Uppgifter> uppgifts = new List<Uppgifter>();
-
-            grupperna = user.TillhörGrupper.ToList();   //PROBLEM NULL-REFERENCE
-
-            foreach (var item in grupperna)
-            {
-                evenemang.AddRange(db.Evenemangs.Where(e => e.grupp.GruppID == item.GruppID).ToList());
-                uppgifts.AddRange(db.Uppgifters.Where(u => u.TillhörGrupp.GruppID == item.GruppID).ToList());
-            }
-
-
-            //int aid = Convert.ToInt32(TempData["ansökanID"]);
-            //GruppFörfrågan ansökan = new GruppFörfrågan();
-            //ansökan = db.GruppFörfrågan.SingleOrDefault(a => a.FörfråganID == aid);
-
-            //TempData["ansökanID"] = TempData["ansökanID"];
-            //TempData["gruppNamn"] = TempData["gruppNamn"];
-            //TempData["gruppID"] = TempData["gruppID"];
-
-            //string gn = TempData["gruppNamn"].ToString();
-            //int gid = Convert.ToInt32(TempData["gruppID"]);
-            //int aid = Convert.ToInt32(TempData["ansökanID"]);
-
-
-            if (Session["AnvändarID"] != null)
-            {
-                ViewBag.allagrupper = allagrupper;
-
-                return View(Tuple.Create(user, grupperna, evenemang, uppgifts));
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
+            Session.Clear();
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Redigera()
@@ -195,13 +143,5 @@ namespace Systemet.Controllers
 
             return RedirectToAction("Redigera", "Konto");
         }
-
-        public ActionResult LogOut()
-        {
-            Session.Clear();
-            FormsAuthentication.SignOut();
-            return RedirectToAction("Index", "Home");
-        }
-
     }
 }
