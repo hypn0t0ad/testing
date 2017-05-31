@@ -101,6 +101,19 @@ namespace Systemet.Controllers
             }
 
 
+            //GruppFörfrågan ansökan = new GruppFörfrågan();
+
+            //    ansökan = db.GruppFörfrågan.SingleOrDefault(f => f.AnvändareSomFrågar.AnvändarID == user.AnvändarID);
+            //    ansökan.AnvändareSomFrågar.AnvändarID = user.AnvändarID;
+            //    //ansökan.GruppFörfråganGäller.GruppID = 3;
+            //    ansökan.Godkänd = false;
+            //    user.Föfrågningar.Add(ansökan);
+            ////Grupp gruppen = grupperna.SingleOrDefault(g => g.GruppID == 3);
+            ////gruppen.Ansökningar.Add(ansökan);
+            //db.SaveChanges();
+            
+            
+
             if (Session["AnvändarID"] != null)
             {
                 ViewBag.allagrupper = allagrupper;
