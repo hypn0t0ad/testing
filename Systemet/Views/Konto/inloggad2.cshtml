@@ -1,4 +1,4 @@
-﻿@model Systemet.Models.ViewModels.InloggadViewModel
+﻿@model Tuple<Systemet.Models.AnvändarKonton, List<Systemet.Models.Grupp>, List<Systemet.Models.Evenemang>, List<Systemet.Models.Uppgifter>>
 @{
 
     <link rel="stylesheet" href="~/Content/agenda.css">
@@ -13,7 +13,7 @@
     <div class="jumbotron">
 
         <div class="row">
-            <h2> Välkommen @Model.användare.HelaNamnet</h2>
+            <h2> Välkommen @Session["Förnamn"].ToString()</h2>
             <div class="col-lg-6">
                 <div class="input-group pull-left">
                     <span class="glyphicon glyphicon-user input-group-btn"></span>
@@ -23,28 +23,16 @@
 
             <div class="col-lg-6">
 
-                @if (Model.ansökningarna != null)
+                @if (Model.Item1.Föfrågningar != null)
                 {
-                    <h2>Mina ansökningar</h2>
-                    foreach (var item in Model.ansökningarna)
-                    {
-                        if (item.text == "behandlas")
-                        {
-                            <span class="label label-primary">Ansökan till gruppen @item.GruppFörfråganGäller.GruppNamn @item.text!</span>
-                        }
-                        else if (item.text == "godkänd")
-                        {
-                            <span class="label label-success">Ansökan till gruppen @item.GruppFörfråganGäller.GruppNamn blev @item.text!</span>
-                        }
-                        else if (item.text == "nekad")
-                        {
-                            <span class="label label-default">Ansökan till gruppen @item.GruppFörfråganGäller.GruppNamn har tyvärr blivit @item.text!</span>
-                        }
-                    }
-                }
-                
-                                        
                     
+                    //int tempid = Convert.ToInt32(TempData["användarID"]);
+                    //var förfrågningar = Model.Item1.Föfrågningar.Where(f => f.AnvändareSomFrågar.AnvändarID == tempid);
+                    //var grupper = Model.Item2.Where(m => m.GruppID == förfrågningar.SingleOrDefault(f => f.Godkänd == false).GruppFörfråganGäller.GruppID);
+                }
+                    <h2>Ansökningar</h2>
+                    <div class="label" Value="gruppnamn"><span class="label label-info"></span></div>                    
+                    }
                 @using (Html.BeginForm("gåmedigrupp", "Grupp"))
                 {
                     <div class="input-group pull-right">
@@ -59,14 +47,14 @@
         </div>
     </div>
 
-    foreach (var item in Model.Grupperna)
+    foreach (var item in Model.Item2)
     {
         if (item.Evenemang.Count() != 0)
         {
             <div class="well-lg" style="background-color:#eee">
                 @using (Html.BeginForm("gruppsida", "Grupp", new { item.GruppNamn }))
                 {
-                    var utvalt = Model.Evenemangen.Where(u => u.grupp.GruppID == item.GruppID).OrderBy(u => u.Tidpunkt).Take(3).ToList();
+                    var utvalt = Model.Item3.Where(u => u.grupp.GruppID == item.GruppID).OrderBy(u => u.Tidpunkt).Take(3).ToList();
                     <div class="container-fluid">
                         <input type="submit" value="@item.GruppNamn" class="btn btn-lg btn-danger" id="gruppknapp" style="font-size:x-large" />
 
@@ -86,7 +74,7 @@
                                     {
                                         <tbody>
                                             <tr class="table">
-                                                <td class="agenda-date active" style="background-color:#eee" rowspan="@Model.Grupperna.Count()">
+                                                <td class="agenda-date active" style="background-color:#eee" rowspan="@Model.Item2.Count()">
                                                     <div class="dayofmonth">@ev.Tidpunkt.Day/@ev.Tidpunkt.Month</div>
                                                     <div class="dayofweek">@ev.Tidpunkt.DayOfWeek</div>
                                                     <div class="shortdate text-muted">@ev.Tidpunkt.Year</div>
@@ -121,7 +109,7 @@
                                 </thead>
                             </table>
 
-                            @{var uppgifter = Model.uppgifterna.Where(u => u.TillhörGrupp.GruppID == item.GruppID).ToList();}
+                            @{var uppgifter = Model.Item4.Where(u => u.TillhörGrupp.GruppID == item.GruppID).ToList();}
 
                             @foreach (var uppg in uppgifter)
                             {

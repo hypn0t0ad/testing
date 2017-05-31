@@ -206,8 +206,7 @@ namespace Systemet.Controllers
             ICollection<Evenemang> events;
             events = gruppen.Evenemang;
             ICollection<Uppgifter> uppgifterna;           
-            uppgifterna = gruppen.GruppUppgifter;
-            //uppgifterna.OrderByDescending()
+            uppgifterna = gruppen.GruppUppgifter.OrderBy(x => x.Slutdatum).ToList();
             Session["GruppID"] = gruppen.GruppID.ToString();
 
             return View(Tuple.Create(gruppen, events, uppgifterna));
