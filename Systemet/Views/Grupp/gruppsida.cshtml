@@ -51,11 +51,23 @@
         <div class="panel-body">
             <div class="well well-sm">
 
+@*<button class="btn btn-primary" type="button" style="background-color:#808080; cursor: default" id="medlem">
+        @item.HelaNamnet
+    </button>*@
+
                 @foreach (var item in Model.Item1.GruppMedlemmar)
                 {
-                    <button class="btn btn-primary" type="button" style="background-color:#808080; cursor: default" id="medlem">
-                        @item.HelaNamnet
-                    </button>
+                    
+                
+                    <div class="container">
+                        <a href="#@item.AnvändarID" class="btn btn-info" data-toggle="collapse">@item.HelaNamnet</a>
+                        @if (Model.Item1.LedareID == Convert.ToInt32(TempData["användarid"]) || item.AnvändarID == Convert.ToInt32(TempData["användarid"]))
+                        {
+                        <div id="@item.AnvändarID" class="collapse">
+                            <button class="btn btn-xs" type="button" style="background-color:#d46666; font-size:x-small" id="tabort @item.AnvändarID" onclick="location.href='@Url.Action("taborturgruppen", "Grupp", new { id = item.AnvändarID, gid = Model.Item1.GruppID })'">ta bort?</button>
+                        </div>
+                        }
+                    </div>
                 }
             </div>
         </div>

@@ -133,17 +133,24 @@ namespace Systemet.Controllers
             AnvändarKonton konto = db.konton.SingleOrDefault(k => k.AnvändarID == anvid);
             Grupp grupp = db.Grupps.SingleOrDefault(g => g.GruppNamn == id);
 
-            GruppFörfrågan ansökan = new GruppFörfrågan();
-            ansökan.AnvändareSomFrågar = konto;
-            ansökan.GruppFörfråganGäller = grupp;
-            ansökan.text = "behandlas";
-            konto.Föfrågningar.Add(ansökan);
-            grupp.Ansökningar.Add(ansökan);
-            db.SaveChanges();
+            
+
+            if (!grupp.GruppMedlemmar.Contains(konto))
+            {
+                GruppFörfrågan ansökan = new GruppFörfrågan();
+                ansökan.AnvändareSomFrågar = konto;
+                ansökan.GruppFörfråganGäller = grupp;
+                ansökan.text = "behandlas";
+                konto.Föfrågningar.Add(ansökan);
+                grupp.Ansökningar.Add(ansökan);
+                db.SaveChanges();
 
 
-            konto.AnvändarID = Convert.ToInt32(TempData["användarID"]);
-            //TempData["ansökanID"] = ansökan.FörfråganID;
+                konto.AnvändarID = Convert.ToInt32(TempData["användarID"]);
+            }
+
+            
+            //TempData["aid"] = ansökan.FörfråganID;
             //TempData["gruppNamn"] = ansökan.GruppFörfråganGäller.GruppNamn;
             //TempData["gruppID"] = ansökan.GruppFörfråganGäller.GruppID;
 

@@ -8,9 +8,15 @@
         <ul class="nav navbar-nav navbar-right">
             <li>
                 
-                @Html.ActionLink("Hej " + Session["Förnamn"].ToString() + "!", "Redigera", "Konto", new { area = "" }, new { @class = "navbar-brand" })
-            </li>              
+                <p class="navbar-brand ">@Session["Förnamn"].ToString()</p>
+            </li>   
             <li>
+                <p class="navbar-brand ">    </p>
+                
+            <li>
+                @Html.ActionLink("Mina uppgifter", "Redigera", "Konto", htmlAttributes: new { @class = "navbar-brand" })
+            
+                <li>
                 @Html.ActionLink("Grupper", "minagrupper", "Grupp", new { area = "" }, new { @class = "navbar-brand" })
             </li>
             

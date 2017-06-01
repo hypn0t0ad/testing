@@ -87,6 +87,20 @@ namespace Systemet.Controllers
             return View();
         }
 
+        public ActionResult taborturgruppen(int ? id, int ? gid)
+        {
+            OurDBContext db = new OurDBContext();
+
+            AnvändarKonton user = db.konton.Find(id);
+            Grupp grupp = db.Grupps.Find(gid);
+
+            grupp.GruppMedlemmar.Remove(user);
+            user.TillhörGrupper.Remove(grupp);
+            db.SaveChanges();
+            return RedirectToAction("gruppsida", "Grupp", grupp);
+
+        }
+
         // GET: Grupp/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -169,14 +183,17 @@ namespace Systemet.Controllers
             int ID = Convert.ToInt32(Session["AnvändarID"]);
             AnvändarKonton user = db.konton.Single(u => u.AnvändarID == ID);
 
-            ICollection <Grupp> allagrupper = db.Grupps.Where(g => g.GruppNamn.Contains(sökning)).ToList();
-           
+            ICollection<Grupp> allagrupper;
+
+            allagrupper = db.Grupps.Where(g => g.GruppNamn.Contains(sökning)).ToList();
+            
 
             if (allagrupper != null)
             {
                 return View(allagrupper);
             }
-            return View("error", "konto");
+            ViewBag.noll = "Inga resultat tyvärr!";
+            return View();
         }
 
         public ActionResult minagrupper()
@@ -214,10 +231,12 @@ namespace Systemet.Controllers
 
         public ActionResult HanteraAnsökningar(string idet, int vem, int grupp)
         {
-
+            List<GruppFörfrågan> glist = new List<GruppFörfrågan>();
             Grupp gruppen = db.Grupps.SingleOrDefault(j => j.GruppID == grupp);
             AnvändarKonton anv = db.konton.SingleOrDefault(a => a.AnvändarID == vem);
-            GruppFörfrågan ansökning = db.GruppFörfrågan.SingleOrDefault(g => g.AnvändareSomFrågar.AnvändarID == anv.AnvändarID && g.GruppFörfråganGäller.GruppID == grupp);
+
+            glist = db.GruppFörfrågan.Where(g => g.AnvändareSomFrågar.AnvändarID == anv.AnvändarID).ToList();
+            GruppFörfrågan ansökning = glist.SingleOrDefault(g => g.GruppFörfråganGäller.GruppID == grupp && g.text != "hide");
             if (idet == "neka" && idet != "godkänn")
             {
                 ansökning.Godkänd = false;

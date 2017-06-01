@@ -5,18 +5,18 @@
     ViewBag.Title = "gåmedigrupp";
 }
 
-
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Startsidan", "inloggad", "Konto")</li>
+    <li class="active">Sök Grupp</li>
+</ol>
 
 <h2>Grupper:</h2>
 
     @foreach (var item in Model)
     {
-
         <div class="row">
             <div class="col-lg-4">
                 <div class="input-group pull-left">
-
-
                     <div class="container">
                         <a href="#@item.GruppID" class="btn btn-info" data-toggle="collapse">@item.GruppNamn</a>
                         <div id="@item.GruppID" class="collapse">
@@ -27,46 +27,19 @@
                             {
                                 <input type="submit" value="Ansök till Grupp" class="btn btn-lg btn-danger" id="ansökanknapp" style="font-size:x-large" />
                             }
-
-
                         </div>
                     </div>
                 </div>
-            </div>
-
-
 
             <div class="col-lg-4">
-                @*<div class="span4 proj-div" data-toggle="modal" data-target="#GSCCModal"><span class="label-default">Ansök</span></div>
-
-                    <div id="GSCCModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;  </button>
-                                    <h4 class="modal-title" id="myModalLabel">Ansök</h4>
-                                </div>
-                                <div class="modal-body">
-                                    @using (Html.BeginForm("gruppsida", "Grupp", new { item.GruppNamn }))
-                                    {
-                                        <input type="submit" value="@item.GruppNamn" class="input-group btn btn-lg pull-left btn-danger" id="gruppknapp" />
-                                    }
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>*@
+                
             </div>
-
         </div>
 
             <div class="form-group">
                 &nbsp;
             </div>
-
+            </div>
 <tr>
     <td></td>
 </tr>
