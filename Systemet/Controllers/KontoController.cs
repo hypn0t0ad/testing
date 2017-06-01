@@ -100,10 +100,8 @@ namespace Systemet.Controllers
             }
             inloggadviewmodel.Evenemangen = evenemang;
             inloggadviewmodel.uppgifterna = uppgifts;
-            inloggadviewmodel.ansökningarna = db.GruppFörfrågan.Where(g => g.AnvändareSomFrågar.AnvändarID == user.AnvändarID).ToList();
-            //inloggadviewmodel.ansökningarna = user.Föfrågningar.ToList();
-
-            //ViewBag.allagrupper = db.Grupps.ToList();
+            inloggadviewmodel.ansökningarna = db.GruppFörfrågan.Where(g => g.AnvändareSomFrågar.AnvändarID == user.AnvändarID).ToList();            
+            inloggadviewmodel.allagrupper = db.Grupps.Select(g => g.GruppNamn).ToList();
 
             return View(inloggadviewmodel);
         }

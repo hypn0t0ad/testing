@@ -13,5 +13,7 @@ namespace Systemet.Models.ViewModels
         public virtual List<Evenemang> Evenemangen { get; set; }
         public virtual List<Uppgifter> uppgifterna { get; set; }
         public virtual List<GruppFörfrågan> ansökningarna { get; set; }
+
+        public virtual List<string> allagrupper { get; set; }
     }
 }
