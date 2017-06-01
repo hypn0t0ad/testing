@@ -27,7 +27,7 @@ namespace Systemet.Controllers
                 AnvändarKonton konto = db.konton.SingleOrDefault(u => u.Email == user.Email && u.Password == user.Password);
                 user = konto;
                 if (konto != null)
-                {
+                {                    
                     Session["AnvändarID"] = konto.AnvändarID.ToString();
                     Session["Förnamn"] = konto.FörNamn.ToString();
                     Session["Email"] = konto.Email.ToString();
