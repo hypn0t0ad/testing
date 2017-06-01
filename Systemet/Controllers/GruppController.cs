@@ -93,12 +93,23 @@ namespace Systemet.Controllers
 
             AnvändarKonton user = db.konton.Find(id);
             Grupp grupp = db.Grupps.Find(gid);
-
-            grupp.GruppMedlemmar.Remove(user);
-            user.TillhörGrupper.Remove(grupp);
-            db.SaveChanges();
-            return RedirectToAction("gruppsida", "Grupp", grupp);
-
+            if (user.AnvändarID == grupp.LedareID)
+            {
+                grupp.GruppMedlemmar.Remove(user);
+                user.TillhörGrupper.Remove(grupp);
+                var medlemmar = grupp.GruppMedlemmar.ToList();
+                grupp.LedareID = medlemmar.FirstOrDefault().AnvändarID;
+                db.SaveChanges();
+                return RedirectToAction("gruppsida", "Grupp", grupp);
+            }
+            else
+            {
+                grupp.GruppMedlemmar.Remove(user);
+                user.TillhörGrupper.Remove(grupp);
+                db.SaveChanges();
+                return RedirectToAction("gruppsida", "Grupp", grupp);
+            }
+            return View();
         }
 
         // GET: Grupp/Edit/5
