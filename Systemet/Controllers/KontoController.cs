@@ -76,6 +76,7 @@ namespace Systemet.Controllers
             OurDBContext db = new OurDBContext();
             AnvändarKonton konto;
 
+
             if (user.Email == null)
             {
                 ID = Convert.ToInt32(TempData["användarID"]);
@@ -91,7 +92,7 @@ namespace Systemet.Controllers
             inloggadviewmodel.användare = user;
             inloggadviewmodel.Grupperna = user.TillhörGrupper.ToList();
             List<Evenemang> evenemang = new List<Evenemang>();
-            List<Uppgifter> uppgifts = new List<Uppgifter>();
+            List<Uppgifter> uppgifts = new List<Uppgifter>(); 
             foreach (var item in inloggadviewmodel.Grupperna)
             {
                 evenemang.AddRange(db.Evenemangs.Where(e => e.grupp.GruppID == item.GruppID).ToList());
@@ -99,9 +100,28 @@ namespace Systemet.Controllers
             }
             inloggadviewmodel.Evenemangen = evenemang;
             inloggadviewmodel.uppgifterna = uppgifts;
-            inloggadviewmodel.ansökningarna = user.Föfrågningar.ToList();
-            
+            inloggadviewmodel.ansökningarna = db.GruppFörfrågan.Where(g => g.AnvändareSomFrågar.AnvändarID == user.AnvändarID).ToList();
+            //inloggadviewmodel.ansökningarna = user.Föfrågningar.ToList();
+
+            //ViewBag.allagrupper = db.Grupps.ToList();
+
             return View(inloggadviewmodel);
+        }
+
+        
+        public ActionResult knapp(string text, int ? FörfråganID)
+        {
+            OurDBContext db = new OurDBContext();
+
+            if (FörfråganID != null)
+            {
+                GruppFörfrågan gf = db.GruppFörfrågan.Find(FörfråganID);
+                gf.text = "hide" ;
+                db.SaveChanges();
+            }
+            
+
+            return RedirectToAction("inloggad", "Konto");
         }
 
         public ActionResult LogOut()

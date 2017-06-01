@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="~/Content/agenda.css">
 
     TempData["användarID"] = Convert.ToInt32(Session["AnvändarID"]);
+    var aid = Session["aid"];
     ViewBag.Title = "inloggad";
 }
 
@@ -12,53 +13,62 @@
 
     <div class="jumbotron">
 
+        <div class="panel-heading">
+            <h2>@Model.användare.HelaNamnet</h2>
+        </div>
         <div class="row">
-            <h2> Välkommen @Model.användare.HelaNamnet</h2>
-            <div class="col-lg-6">
-                <div class="input-group pull-left">
-                    <span class="glyphicon glyphicon-user input-group-btn"></span>
-                    @Html.ActionLink("mina uppgifter", "Redigera", "Konto", htmlAttributes: new { @class = "form-control input-group pull-left btn-danger btn-primary" })
-                </div>
-            </div>
 
-            <div class="col-lg-6">
+            @*<span class="glyphicon glyphicon-user input-group-btn top"></span>*@
+            @*@Html.ActionLink("mina uppgifter", "Redigera", "Konto", htmlAttributes: new { @class = "form-control input-group pull-left btn-danger btn-primary" })*@
+
+            <div class="col-lg-4">
 
                 @if (Model.ansökningarna != null)
                 {
-                    <h2>Mina ansökningar</h2>
+
+                    <h3>Mina ansökningar</h3>
                     foreach (var item in Model.ansökningarna)
                     {
                         if (item.text == "behandlas")
                         {
-                            <span class="label label-primary">Ansökan till gruppen @item.GruppFörfråganGäller.GruppNamn @item.text!</span>
+                            <span class="label label-primary">
+                                Ansökan till gruppen @item.GruppFörfråganGäller.GruppNamn @item.text!
+                            </span>
+                            <button class="btn btn-xs" type="button" style="background-color:#d46666; font-size:x-small" id="tabort @item.FörfråganID" onclick="location.href='@Url.Action("knapp", "Konto", new { item.text, item.FörfråganID})'">x</button>
                         }
                         else if (item.text == "godkänd")
                         {
-                            <span class="label label-success">Ansökan till gruppen @item.GruppFörfråganGäller.GruppNamn blev @item.text!</span>
+                            <span class="label label-success">
+                                Ansökan till gruppen @item.GruppFörfråganGäller.GruppNamn blev @item.text!
+                            </span>
+                            <button class="btn btn-xs" type="button" style="background-color:#d46666; font-size:x-small" id="tabort @item.FörfråganID" onclick="location.href='@Url.Action("knapp", "Konto", new { item.text, item.FörfråganID})'">x</button>
                         }
                         else if (item.text == "nekad")
                         {
-                            <span class="label label-default">Ansökan till gruppen @item.GruppFörfråganGäller.GruppNamn har tyvärr blivit @item.text!</span>
+                            <span class="label label-default">
+                                Ansökan till gruppen @item.GruppFörfråganGäller.GruppNamn har tyvärr blivit @item.text!
+                            </span>
+                            <button class="btn btn-xs" type="button" style="background-color:#d46666; font-size:x-small" id="tabort @item.FörfråganID" onclick="location.href='@Url.Action("knapp", "Konto", new { item.text, item.FörfråganID})'">x</button>
                         }
+
                     }
                 }
-                
-                                        
-                    
+
+            </div>
+            <div class="col-lg-4 pull-right">
                 @using (Html.BeginForm("gåmedigrupp", "Grupp"))
-                {
-                    <div class="input-group pull-right">
-                        @ViewBag.Sökning
-                        @Html.TextBox("sökning", null, htmlAttributes: new { @id = "sökning", @class = "form-control input-group pull-right" })
-                        <span class="input-group-btn">
-                            <input type="submit" value="sökning" id="sökning" class="btn btn-secondary btn-danger" />
-                        </span>
-                    </div>
+                {<h2>Sök Grupp:</h2>
+                <div class=" input-group pull-right">
+                    @ViewBag.Sökning
+                    @Html.TextBox("sökning", null, htmlAttributes: new { @id = "sökning", @class = "form-control input-group pull-right" })
+                    <span class="input-group-btn">
+                        <input type="submit" value="sökning" id="sökning" class="btn btn-secondary btn-danger" />
+                    </span>
+                </div>
                 }
             </div>
         </div>
     </div>
-
     foreach (var item in Model.Grupperna)
     {
         if (item.Evenemang.Count() != 0)
