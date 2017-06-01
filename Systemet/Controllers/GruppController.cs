@@ -108,8 +108,7 @@ namespace Systemet.Controllers
                 user.TillhörGrupper.Remove(grupp);
                 db.SaveChanges();
                 return RedirectToAction("gruppsida", "Grupp", grupp);
-            }
-            return View();
+            }            
         }
 
         // GET: Grupp/Edit/5
