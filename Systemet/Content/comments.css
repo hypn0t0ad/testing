@@ -1,0 +1,74 @@
+﻿.body {
+}
+
+
+body {
+    background: #fff;
+}
+
+.box-info.full {
+    padding: 1px;
+}
+
+.box-info:hover {
+    color: #393E48;
+}
+
+.box-info {
+    position: relative;
+    padding: 15px;
+    background: #ffffff;
+    color: #5b5b5b;
+    margin-bottom: 20px;
+    -webkit-transition: All 0.4s ease;
+    -moz-transition: All 0.4s ease;
+    -o-transition: All 0.4s ease;
+    background: #FFF;
+    margin-top: 20px;
+}
+
+    .box-info .nav-tabs {
+        background: #1B1E24;
+    }
+
+        .box-info .nav-tabs li.active a, .box-info .nav-tabs li.active a:hover, .box-info .nav-tabs li.active a:focus {
+            cursor: default;
+            border-top: none;
+            border-right: none;
+            border-left: none;
+            border-bottom: none;
+            background-color: #ffffff;
+            color: #1B1E24;
+        }
+
+            .box-info .nav-tabs li.active a i, .box-info .nav-tabs li.active a:hover i, .box-info .nav-tabs li.active a:focus i {
+                color: #212121;
+            }
+
+        .box-info .nav-tabs li a i {
+            color: #fff;
+        }
+
+    .box-info.full .box-footer {
+        padding: 20px 20px 15px 20px;
+    }
+
+    .box-info .media-list {
+        margin-top: 30px;
+    }
+
+        .box-info .media-list .media {
+            padding: 5px 20px;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+            .box-info .media-list .media .media-object {
+                width: 50px;
+            }
+
+.scroll-widget {
+    overflow: hidden;
+    width: auto;
+    height: 325px;
+}
+

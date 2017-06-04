@@ -1,0 +1,57 @@
+﻿@model Systemet.Models.Grupp
+
+@{
+    ViewBag.Title = "Delete";
+    TempData["användarID"] = Convert.ToInt32(Session["AnvändarID"]);
+}
+
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Startsidan", "inloggad", "Konto")</li>
+    <li>@Html.ActionLink("Alla mina grupper", "minagrupper", "Grupp")</li>
+    <li>@Html.ActionLink("Gruppens startsida", "gruppsida", "Grupp", new { Model.GruppNamn }, null)</li>
+    <li class="active">Radera Grupp</li>
+</ol>
+
+
+<h2>Delete</h2>
+
+<h3>Är du säker på att du vill ta bort den här gruppen?</h3>
+<div>
+    <h4>Grupp</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GruppNamn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GruppNamn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.beskrivning)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.beskrivning)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LedareID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LedareID)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Tillbaka", "gruppsida", "Grupp", new { Model.GruppNamn }, null)
+        </div>
+    }
+</div>

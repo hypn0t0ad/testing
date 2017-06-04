@@ -1,0 +1,56 @@
+﻿@model Systemet.Models.Evenemang
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<ol class="breadcrumb">
+    <li><a href="~/Views/Konto/inloggad.cshtml">Start</a></li>
+    <li><a href="~/Views/Grupp/minagrupper.cshtml">Mina Grupper</a></li>
+    <li><a href="~/Views/Grupp/gruppsida.cshtml">Gruppsida</a></li>
+    <li><a href="~/Views/Evenemangs/evenemangssida.cshtml">Evenemang</a></li>
+    <li class="active">Radera Evenemang</li>
+</ol>
+
+<h2>Ta bort</h2>
+
+<h3>Helt säker på att du vill ta bort det här?</h3>
+<div>
+    <h4>Evenemang</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Namn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Namn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Beskrivning)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Beskrivning)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tidpunkt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tidpunkt)
+        </dd>
+        
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default"/> |           
+        </div>
+    }
+</div>

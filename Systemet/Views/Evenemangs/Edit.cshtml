@@ -1,0 +1,74 @@
+﻿@model Systemet.Models.Evenemang
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<ol class="breadcrumb">
+    <li><a href="~/Views/Konto/inloggad.cshtml">Start</a></li>
+    <li><a href="~/Views/Grupp/minagrupper.cshtml">Mina Grupper</a></li>
+    <li><a href="~/Views/Grupp/gruppsida.cshtml">Gruppsida</a></li>
+    <li><a href="~/Views/Evenemangs/evenemangssida.cshtml">Evenemang</a></li>
+    <li class="active">Redigera Evenemang</li>
+</ol>
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Evenemang</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.EvenemangID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Namn, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Namn, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Namn, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Beskrivning, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Beskrivning, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Beskrivning, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tidpunkt, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Tidpunkt, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Tidpunkt, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+    if (Model.grupp.LedareID == Convert.ToInt32(Session["AnvändarID"]))
+    {
+        <button class="btn btn-primary" type="button" style="background-color:black" id="delete"
+                onclick="location.href='@Url.Action("DeleteConfirmed", "Uppgifter", new { id = Model.EvenemangID })'" title="">
+            Radera evenemanget
+        </button>
+    }
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

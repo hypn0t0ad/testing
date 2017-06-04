@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Systemet.Models.Evenemang>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<ol class="breadcrumb">
+    <li><a href="~/Views/Konto/inloggad.cshtml">Start</a></li>
+    <li><a href="~/Views/Grupp/minagrupper.cshtml">Mina Grupper</a></li>
+    <li><a href="~/Views/Grupp/gruppsida.cshtml">Gruppsida</a></li>
+    <li><a href="~/Views/Evenemangs/evenemangssida.cshtml">Evenemang</a></li>
+    <li class="active">Alla Evenemang</li>
+</ol>
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Namn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Beskrivning)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tidpunkt)
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Namn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Beskrivning)
+        </td>        
+        <td>
+            @Html.DisplayFor(modelItem => item.Tidpunkt)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EvenemangID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EvenemangID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EvenemangID })
+        </td>
+    </tr>
+}
+
+</table>

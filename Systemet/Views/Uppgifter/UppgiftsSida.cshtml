@@ -1,0 +1,123 @@
+﻿@model Systemet.Models.ViewModels.GruppViewModel
+
+@{
+    ViewBag.Title = "UppgiftsSida";
+    TempData["användarID"] = Model.inloggad;
+}
+<ol class="breadcrumb">    
+    <li>@Html.ActionLink("Startsidan", "inloggad", "Konto")</li>
+    <li>@Html.ActionLink("Alla mina grupper", "minagrupper", "Grupp")</li>
+    <li>@Html.ActionLink("Gruppens startsida", "gruppsida", "Grupp", new { Model.grupp.GruppNamn }, null)</li>
+    <li class="active">Uppgift: @Model.uppgift.Namn</li>
+</ol>
+
+<h2>@Model.uppgift.Namn detaljer</h2>
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+
+
+<dt>
+    @Html.DisplayNameFor(model => Model.uppgift.Namn)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => Model.uppgift.Namn)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => Model.uppgift.Beskrivning)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => Model.uppgift.Beskrivning)
+</dd>
+
+<dd>
+    @Html.DisplayFor(model => Model.uppgift.Slutdatum)
+</dd>
+
+@if (Model.uppgift.Ansvarig == null)
+{
+
+    <dt>
+        @Html.DisplayNameFor(model => Model.uppgift.Ansvarig)
+    </dt>
+    <dd>
+        <p>Ingen har tagit på sig den här uppgiften än</p>
+    </dd>
+    if (Model.inloggad == Model.uppgift.TillhörGrupp.LedareID)
+    {
+        using (Html.BeginForm("läggtillanvändaretilluppgift", "Uppgifter", FormMethod.Post))
+        {
+            <dt>
+            </dt>
+            <dd>
+                @Html.HiddenFor(model => model.grupp.GruppID)
+                @Html.HiddenFor(model => model.uppgift.UppgifterID)
+                <div class="form-group">
+                    @Html.DropDownListFor(m => m.användareID, Model.lemmar, "Välj", new { @class = "form-control", @id = "vald", @value = "AnvändarID", })
+                </div>
+            </dd>
+                <dt>
+                    <input type="submit" id="Submitknappen" value="Lägg till"/>
+                </dt>
+        }
+    }
+    else
+    {
+        <dt>
+            @Html.Display("vill du ta det här?")
+        </dt>
+
+        using (Html.BeginForm("tapåsiguppgift", "Uppgifter", FormMethod.Post))
+        {
+            @Html.HiddenFor(model => model.grupp.GruppID)
+            @Html.HiddenFor(model => model.uppgift.UppgifterID)
+            @Html.HiddenFor(m => m.inloggad)
+            <div class="container-fluid">
+                <input type="submit" id="knappen" value="Jag fixar det!" class="btn btn-lg btn-danger" />
+            </div>
+        }
+    }
+}
+else
+{
+    <div>
+    @{ Html.RenderPartial("uppgiftssidapartial");}
+    </div>
+}
+
+            
+@if (Model.inloggad == Model.ledareID)
+{
+    <dd>
+        @Html.ActionLink("Ta bort uppgiften", "Delete", new { id = Model.uppgift.UppgifterID })
+    </dd>
+}
+
+
+
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+        function hideOnLoad() {
+            $('#Submitknappen').hide();
+        }
+
+        $(document).ready(function () {
+            hideOnLoad();
+
+            $('#vald').change(function () {
+                var AnvändarID = $(this).val();
+
+                if (AnvändarID >= '1') {
+                    $('#Submitknappen').show();
+                }
+                else {
+                    hideOnLoad();
+                }
+            });
+        });
+</script>
+}

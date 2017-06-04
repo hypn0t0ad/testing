@@ -1,0 +1,66 @@
+﻿@model Systemet.Models.Evenemang
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<ol class="breadcrumb">
+    <li><a href="~/Views/Konto/inloggad.cshtml">Start</a></li>
+    <li><a href="~/Views/Grupp/minagrupper.cshtml">Mina Grupper</a></li>
+    <li><a href="~/Views/Grupp/gruppsida.cshtml">Gruppsida</a></li>
+    <li><a href="~/Views/Evenemangs/evenemangssida.cshtml">Evenemang</a></li>
+    <li class="active">Om Evenemang</li>
+</ol>
+
+<h2>Details</h2>
+
+<div>
+    <h4>Evenemang</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Namn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Namn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Beskrivning)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Beskrivning)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SlutTid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SlutTid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dag)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dag)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EvenemangID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

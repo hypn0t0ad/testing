@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Systemet.Models.Grupp>
+
+@{
+    ViewBag.Title = "minagrupper";
+    TempData["användarID"] = Convert.ToInt32(Session["AnvändarID"]);
+}
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Startsidan", "inloggad", "Konto")</li>
+    <li class="active">Mina Grupper</li>
+</ol>
+
+<h2>Mina Grupper</h2>
+
+<p></p>
+
+
+<button class="btn btn-primary" type="button" style="background-color:black" 
+        onclick="location.href='@Url.Action("Create", "Grupp", null)'" >
+Skapa ny grupp</button>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GruppNamn)
+            </th>
+            
+            <th></th>
+        </tr>
+
+        @foreach (var item in ViewBag.minagrupper)
+        {
+            <tr>
+                <td>
+                    <button class="btn btn-primary" type="button" style="background-color:orangered"
+                            onclick="location.href='@Url.Action("gruppsida", "Grupp", new { GruppNamn = item.GruppNamn })'">
+                        @item.GruppNamn
+                    </button>
+
+                </td>
+            </tr>
+        }
+
+    </table>
+

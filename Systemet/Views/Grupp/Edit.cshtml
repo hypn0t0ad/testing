@@ -1,0 +1,67 @@
+﻿@model Systemet.Models.Grupp
+
+@{
+    ViewBag.Title = "Edit";
+    TempData["användarID"] = Convert.ToInt32(Session["AnvändarID"]);
+}
+
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Startsidan", "inloggad", "Konto")</li>
+    <li>@Html.ActionLink("Alla mina grupper", "minagrupper", "Grupp")</li>
+    <li>@Html.ActionLink("Gruppens startsida", "gruppsida", "Grupp", new { Model.GruppNamn }, null)</li>
+    <li class="active">Redigera Grupp</li>
+</ol>
+
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Grupp</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.GruppID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GruppNamn, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GruppNamn, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GruppNamn, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LedareID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LedareID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LedareID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+
+    </div>
+}
+@using (Html.BeginForm())
+{
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Ta bort gruppen" class="btn btn-default" />
+    </div>
+</div>
+}
+<div>
+    @Html.ActionLink("Tillbaka", "Details", "Grupp", new { id = Model.GruppID }, null) |
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

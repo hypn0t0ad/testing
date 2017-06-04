@@ -1,0 +1,41 @@
+﻿@model Tuple <Systemet.Models.Grupp, Systemet.Models.AnvändarKonton>
+
+@{
+    ViewBag.Title = "Details";
+    TempData["användarID"] = Convert.ToInt32(Session["AnvändarID"]);
+}
+
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Startsidan", "inloggad", "Konto")</li>
+    <li>@Html.ActionLink("Alla mina grupper", "minagrupper", "Grupp")</li>
+    <li>@Html.ActionLink("Gruppens startsida", "gruppsida", "Grupp", new { Model.Item1.GruppNamn }, null)</li>
+    <li class="active">Detaljer</li>
+</ol>
+
+
+<div>
+    <h4>Grupp</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Item1.GruppNamn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item1.GruppNamn)
+        </dd>
+
+        <dt>            
+            Ledaren för gruppen
+        </dt>
+
+        <dd>
+            @ViewBag.ledaren
+            @*@Html.DisplayFor(model => model.LedareID)*@
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Ändra", "Edit", "Grupp", new { id = Model.Item1.GruppID }, null) |
+</p>

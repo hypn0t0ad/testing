@@ -1,0 +1,5 @@
+﻿-------------- migrations-kommandon
+
+enable-migrations = gör projektet klar för att migrera data till databasen. 
+add-migration = gör nya saker i databasen
+update -database = updaterar databasen

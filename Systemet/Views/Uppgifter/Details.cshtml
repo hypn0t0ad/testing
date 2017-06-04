@@ -1,0 +1,79 @@
+﻿@model Systemet.Models.Uppgifter
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Uppgifter</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @if (Model.Ansvarig != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Ansvarig)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Ansvarig)
+            </dd>
+        }
+        else
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Ansvarig)
+            </dt>
+
+            <dd>
+                @Html.Display("Ingen har valt att ansvara för den här uppgiften än")
+            </dd>
+        }
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.Namn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Namn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Beskrivning)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Beskrivning)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Utförd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Utförd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Påbörjad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Påbörjad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Slutdatum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Slutdatum)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.UppgifterID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
