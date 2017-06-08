@@ -12,7 +12,7 @@ namespace Systemet.Controllers
 {
     public class EvenemangsController : Controller
     {
-        private OurDBContext db = new OurDBContext();
+        private SystemetDBContext db = new SystemetDBContext();
 
         // GET: Evenemangs
         public ActionResult Index()

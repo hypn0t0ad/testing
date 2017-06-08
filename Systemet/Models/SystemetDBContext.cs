@@ -6,8 +6,10 @@ using System.Data.Entity;
 
 namespace Systemet.Models
 {
-    public class OurDBContext : DbContext
+    public class SystemetDBContext : DbContext
     {
+
+
         public DbSet<AnvändarKonton> konton { get; set; }
 
         public DbSet<Grupp> Grupps { get; set; }

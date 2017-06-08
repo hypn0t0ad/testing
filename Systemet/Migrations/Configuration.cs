@@ -5,7 +5,7 @@ namespace Systemet.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Systemet.Models.OurDBContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Systemet.Models.SystemetDBContext>
     {
         public Configuration()
         {
@@ -13,7 +13,7 @@ namespace Systemet.Migrations
             ContextKey = "Systemet.Models.OurDBContext";
         }
 
-        protected override void Seed(Systemet.Models.OurDBContext context)
+        protected override void Seed(Systemet.Models.SystemetDBContext context)
         {
             //  This method will be called after migrating to the latest version.
 

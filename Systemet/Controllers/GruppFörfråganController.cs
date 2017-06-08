@@ -12,7 +12,7 @@ namespace Systemet.Controllers
 {
     public class GruppFörfråganController : Controller
     {
-        private OurDBContext db = new OurDBContext();
+        private SystemetDBContext db = new SystemetDBContext();
 
         // GET: GruppFörfrågan
         public ActionResult Index()
@@ -128,7 +128,7 @@ namespace Systemet.Controllers
         {
             int anvid = Convert.ToInt32(TempData["AnvändarID"]);
 
-            OurDBContext db = new OurDBContext();
+            SystemetDBContext db = new SystemetDBContext();
 
             AnvändarKonton konto = db.konton.SingleOrDefault(k => k.AnvändarID == anvid);
             Grupp grupp = db.Grupps.SingleOrDefault(g => g.GruppNamn == id);

@@ -12,7 +12,7 @@ namespace Systemet.Controllers
 {
     public class GruppController : Controller
     {
-        private OurDBContext db = new OurDBContext();
+        private SystemetDBContext db = new SystemetDBContext();
 
         // GET: Grupp
         public ActionResult Index()
@@ -89,7 +89,7 @@ namespace Systemet.Controllers
 
         public ActionResult taborturgruppen(int ? id, int ? gid)
         {
-            OurDBContext db = new OurDBContext();
+            SystemetDBContext db = new SystemetDBContext();
 
             AnvändarKonton user = db.konton.Find(id);
             Grupp grupp = db.Grupps.Find(gid);
@@ -188,7 +188,7 @@ namespace Systemet.Controllers
         public ActionResult gåmedigrupp(string sökning)
         {
             
-            OurDBContext db = new OurDBContext();
+            SystemetDBContext db = new SystemetDBContext();
 
             int ID = Convert.ToInt32(Session["AnvändarID"]);
             AnvändarKonton user = db.konton.Single(u => u.AnvändarID == ID);

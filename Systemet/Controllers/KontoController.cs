@@ -15,7 +15,7 @@ namespace Systemet.Controllers
         // GET: Konto
         public ActionResult Index()
         {
-            using (OurDBContext db = new OurDBContext())
+            using (SystemetDBContext db = new SystemetDBContext())
             {
                 return View(db.konton.ToList());
             }
@@ -31,7 +31,7 @@ namespace Systemet.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (OurDBContext db = new OurDBContext())
+                using (SystemetDBContext db = new SystemetDBContext())
                 {
                     db.konton.Add(Konto);
                     db.SaveChanges();
@@ -51,7 +51,7 @@ namespace Systemet.Controllers
         [HttpPost]
         public ActionResult Login(AnvändarKonton user)
         {
-            using (OurDBContext db = new OurDBContext())
+            using (SystemetDBContext db = new SystemetDBContext())
             {
                 AnvändarKonton konto = db.konton.SingleOrDefault(u => u.Email == user.Email && u.Password == user.Password);
                 user = konto;
@@ -73,7 +73,7 @@ namespace Systemet.Controllers
         public ActionResult inloggad(AnvändarKonton user)
         {
             int ID;
-            OurDBContext db = new OurDBContext();
+            SystemetDBContext db = new SystemetDBContext();
             AnvändarKonton konto;
 
 
@@ -109,7 +109,7 @@ namespace Systemet.Controllers
         
         public ActionResult knapp(string text, int ? FörfråganID)
         {
-            OurDBContext db = new OurDBContext();
+            SystemetDBContext db = new SystemetDBContext();
 
             if (FörfråganID != null)
             {
@@ -132,7 +132,7 @@ namespace Systemet.Controllers
         public ActionResult Redigera()
         {
             int ID = Convert.ToInt32(Session["AnvändarID"]);
-            using (OurDBContext db = new OurDBContext())
+            using (SystemetDBContext db = new SystemetDBContext())
             {
                 if (Session["AnvändarID"] != null)
                 {
@@ -150,7 +150,7 @@ namespace Systemet.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (OurDBContext db = new OurDBContext())
+                using (SystemetDBContext db = new SystemetDBContext())
                 {
                     db.Entry(konto).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();

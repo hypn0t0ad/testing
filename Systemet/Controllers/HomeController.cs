@@ -22,7 +22,7 @@ namespace Systemet.Controllers
         [HttpPost]
         public ActionResult Index(AnvändarKonton user)
         {
-            using (OurDBContext db = new OurDBContext())
+            using (SystemetDBContext db = new SystemetDBContext())
             {
                 AnvändarKonton konto = db.konton.SingleOrDefault(u => u.Email == user.Email && u.Password == user.Password);
                 user = konto;

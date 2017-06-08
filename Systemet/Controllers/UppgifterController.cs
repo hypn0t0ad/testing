@@ -13,7 +13,7 @@ namespace vagina.Controllers
 {
     public class UppgifterController : Controller
     {
-        private OurDBContext db = new OurDBContext();
+        private SystemetDBContext db = new SystemetDBContext();
 
         // GET: Uppgifter
         public ActionResult Index()
