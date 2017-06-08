@@ -274,6 +274,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Systemet.Models.SystemetDBContext.mdf" />
+    <Content Include="App_Data\Systemet.Models.SystemetDBContext_log.ldf">
+      <DependentUpon>Systemet.Models.SystemetDBContext.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\agenda.css" />
     <Content Include="Content\awesomplete.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -511,7 +515,6 @@
     <Content Include="Views\GruppFörfrågan\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Bilder\" />
   </ItemGroup>
   <ItemGroup>
